@@ -34,6 +34,7 @@ CREATE TABLE user (
 CREATE TABLE comment (
   id INTEGER PRIMARY KEY,
   story_id INTEGER REFERENCES story,
+  comment_id NULL INTEGER REFERENCES comment,
   username VARCHAR REFERENCES user,
   published INTEGER, -- date when comment was published in epoch format
   points INTEGER DEFAULT 0,
