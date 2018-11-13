@@ -1,7 +1,7 @@
 <?php 
-    include_once('tpl_commmon.php');
+    include_once('../templates/tpl_common.php');
 
-    draw_header('Simawatt', 'Reddit');
-    
-    echo TEST;
+    draw_header(null, 'Reddit');
+    draw_info_bar('SIMAWATT', 'Reddit');
+    draw_footer();
 ?>

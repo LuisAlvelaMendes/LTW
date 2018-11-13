@@ -1,0 +1,42 @@
+body {
+   margin: 0 auto;
+}
+
+body > header{
+    display: grid;
+    grid-template-columns: 1fr auto;
+    grid-template-rows: auto auto;
+
+    background-color: pink;
+    color: black;
+}
+
+body > header h1 {
+    padding-left: 1em;
+    
+    grid-column: 1;
+    grid-row: 1;
+}
+
+body > header #signup {
+    padding-right: 2em;
+    padding-bottom: 5px; 
+
+    grid-column: 2;
+    grid-row: 2;
+}
+
+body > header #signup a:first-child {
+    border-right: 1px solid white;
+}
+
+body > header #signup a {
+    padding: 0 1em;
+    color: white;
+    text-decoration: none;
+}
+
+body > header #signup a:first-child {
+    padding-left: 0;
+}
+
