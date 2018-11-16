@@ -1,5 +1,7 @@
 <?php 
     include_once('../templates/tpl_common.php');
+    include_once('../templates/draw_subscriberList.php');
+    include_once('../templates/db_getSubscribedChannelList.php');
 ?>
 
 <!DOCTYPE html>
@@ -10,7 +12,7 @@
         <meta charset="utf-8">
     </head>
 
-    <?php draw_header('SIMAWATT', 'REDDIT') ?>
+    <?php draw_header('SIMAWATT', 'NOT REDDIT') ?>
     
     <nav id="top_ch">
         <ul>
@@ -29,6 +31,7 @@
     
     <aside id="subscriptions">
         <!--lista de subs do usr se nao estiver logged alargar o espaço das story -->
+        <?php ?>
     </aside>
     
     <section id="storys">

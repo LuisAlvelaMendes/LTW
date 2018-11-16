@@ -9,7 +9,7 @@
         <meta charset="utf-8">
     </head>
 
-    <?php draw_header('SIMAWATT', 'REDDIT') ?>  
+    <?php draw_header('SIMAWATT', 'NOT REDDIT') ?>  
     
     <aside id="subscriptions">
         <!--lista de subs do usr se nao estiver logged alargar o espaço das story -->
