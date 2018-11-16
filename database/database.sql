@@ -1,22 +1,22 @@
+BEGIN TRANSACTION;
 
-.mode columns
 .headers on
-PRAGMA foreign_keys = ON;
+.mode columns
 
-drop table if exists channel;
-drop table if exists story;
-drop table if exists utilizer;
-drop table if exists userSubscriptions;
-drop table if exists comment;
-drop table if exists storyVote;
-drop table if exists commentVote;
+drop table if exists Channel;
+drop table if exists Story;
+drop table if exists Utilizer;
+drop table if exists UserSubscriptions;
+drop table if exists Comment;
+drop table if exists StoryVote;
+drop table if exists CommentVote;
 
-CREATE TABLE channel (
+CREATE TABLE Channel (
   name VARCHAR PRIMARY KEY,
   subscribers INTEGER DEFAULT 0
 );
 
-CREATE TABLE story (
+CREATE TABLE Story (
   id INTEGER PRIMARY KEY,
   title VARCHAR,
   published INTEGER, -- date when the story was published in epoch format
@@ -26,111 +26,76 @@ CREATE TABLE story (
   fulltext VARCHAR
 );
 
-CREATE TABLE utilizer (
+CREATE TABLE Utilizer (
   username VARCHAR PRIMARY KEY,
   password VARCHAR,
   points INTEGER DEFAULT 0,
   created INTEGER -- date when the utilizer was created in epoch format
 );
 
-CREATE TABLE comment (
+CREATE TABLE Comment (
   id INTEGER PRIMARY KEY,
   story_id INTEGER REFERENCES story,
-  comment_id INTEGER REFERENCES comment,
+  parent_comment INTEGER REFERENCES comment,
   username VARCHAR REFERENCES utilizer,
   published INTEGER, -- date when comment was published in epoch format
   points INTEGER DEFAULT 0,
   text VARCHAR
 );
 
-CREATE TABLE userSubscriptions (
+CREATE TABLE UserSubscriptions (
   username VARCHAR REFERENCES utilizer,
-  channel VARCHAR REFERENCES channel
+  channel VARCHAR REFERENCES channel,
+  PRIMARY KEY (username, channel)
 );
 
-CREATE TABLE storyVote (
+CREATE TABLE StoryVote (
   username VARCHAR REFERENCES utilizer,
   story_id INTEGER REFERENCES story,
-  type INTEGER CHECK (type = 0 OR type = 1)
+  type INTEGER CHECK (type = 0 OR type = 1),
+  PRIMARY KEY (username, story_id)
 );
 
-CREATE TABLE commentVote (
+CREATE TABLE CommentVote (
   username VARCHAR REFERENCES utilizer,
   comment_id INTEGER REFERENCES comment,
-  type INTEGER CHECK (type = 0 OR type = 1)
+  type INTEGER CHECK (type = 0 OR type = 1),
+  PRIMARY KEY (username, comment_id)
 );
 
---TODO sub comments
+PRAGMA foreign_keys = ON;
 
---INSERT INTO channel VALUES()
-
+INSERT INTO Channel (name) VALUES ("Portugal");
+INSERT INTO Channel (name) VALUES ("Lorem Ipsum");
 
 -- All passwords are 1234 in SHA-1 format
 
-INSERT INTO utilizer (username, password, created) VALUES ("dominic", "7110eda4d09e062aa5e4a390b0a572ac0d2c0220", 1507901651);
-INSERT INTO utilizer (username, password, created) VALUES ("zachary", "7110eda4d09e062aa5e4a390b0a572ac0d2c0220", 1508074451);
-INSERT INTO utilizer (username, password, created) VALUES ("alicia", "7110eda4d09e062aa5e4a390b0a572ac0d2c0220", 1508160851);
-INSERT INTO utilizer (username, password, created) VALUES ("abril", "7110eda4d09e062aa5e4a390b0a572ac0d2c0220", 1508247278);
+INSERT INTO Utilizer (username, password, created) VALUES ("dominic", "7110eda4d09e062aa5e4a390b0a572ac0d2c0220", 1507901651);
+INSERT INTO Utilizer (username, password, created) VALUES ("zachary", "7110eda4d09e062aa5e4a390b0a572ac0d2c0220", 1508074451);
+INSERT INTO Utilizer (username, password, created) VALUES ("alicia", "7110eda4d09e062aa5e4a390b0a572ac0d2c0220", 1508160851);
+INSERT INTO Utilizer (username, password, created) VALUES ("abril", "7110eda4d09e062aa5e4a390b0a572ac0d2c0220", 1508247278);
 
-/*
-INSERT INTO news VALUES (NULL,
-  'Lorem ipsum dolor sit amet, consectetur',
-  1507901651,
-  'politics,economy',
-  'abril',
-  'Nulla facilisi. Proin et lectus dapibus, fermentum nisi a, varius nulla. Sed massa dolor, commodo at iaculis id, facilisis ut erat. Ut ac fringilla sem. Ut vel eros suscipit, convallis arcu porttitor, fringilla purus. Pellentesque eget sapien sem. Maecenas eget pharetra ipsum. Ut sollicitudin sem non feugiat pharetra.',
-  'Aliquam justo nibh, lacinia suscipit odio nec, condimentum tincidunt urna. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec lacus mi, blandit nec dolor in, ultrices condimentum elit. Quisque interdum, ante non pellentesque viverra, ipsum velit ultrices tortor, id rhoncus orci est at augue. In hac habitasse platea dictumst. Donec dolor nisi.
+INSERT INTO Story (title, published, channel, author, fulltext) VALUES ("A Autoeuropa, lembram-se?", 1507901651, "Portugal", "dominic", "Há cerca de um ano estava o sub inundado de posts com notícias sobre a Autoeuropa e algumas divergências entre administração e trabalhadoras, relativamente a folgas, horários e remuneração de dias como sábado e domingo. Alguns dos títulos:");
+INSERT INTO Story (title, published, channel, author, fulltext) VALUES ("Vida profissional de um advogado em Portugal", 1508074451, "Portugal", "abril", "Estou a fazer agora um estágio num escritório enquanto acabo o quarto ano de Direito. Gostava de conhecer o testemunho de alguns advogados enquanto vou conhecendo aos poucos a prática. Como é o ambiente no vosso escritório? Quais as qualidades mais prezadas num advogado/estagiário? Que salário devo esperar quando começar exercer a sério/ estagiar na ordem? Quais os principais problemas que costumam ocorrer e quais os pontos fortes da profissão?");
+INSERT INTO Story (title, published, channel, author, fulltext) VALUES ("What is Lorem Ipsum?", 1508160851, "Lorem Ipsum", "alicia", "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.");
+INSERT INTO Story (title, published, channel, author, fulltext) VALUES ("Where does it come from?", 1508247278, "Lorem Ipsum", "zachary", "Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, comes from a line in section 1.10.32.");
 
-Suspendisse potenti. Nullam lacinia dictum massa sed sagittis. Sed id ultrices libero. Cras convallis commodo ante, quis sagittis erat vulputate et. Cras nunc lorem, mollis a nibh eget, dignissim auctor lorem. Suspendisse placerat convallis ante vitae dapibus. Donec tellus felis, tincidunt eget iaculis eget, varius non turpis. Curabitur in eros at sapien fringilla venenatis eu a risus. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Pellentesque eu consectetur tellus. Suspendisse vitae urna ex. Cras sit amet enim id turpis gravida lacinia a vitae lacus. Vivamus augue ante, pellentesque sed semper non, rutrum ornare ante. Orci varius.');
-*/
-/*INSERT INTO news VALUES (NULL,
-  'Donec placerat tempor ex sit amet',
-  1508074451,
-  'local,life',
-  'alicia',
-  'Nam aliquet leo vel scelerisque sagittis. Praesent hendrerit lectus et augue condimentum, vitae dapibus elit bibendum. Quisque id sapien nec nisl commodo vulputate. Cras vehicula semper lectus. Duis a purus in velit iaculis luctus id ac justo. Mauris a lectus eu dui aliquam pretium nec a massa. Suspendisse risus metus, laoreet quis velit eu, mollis auctor tellus. Maecenas vulputate, nulla a commodo porttitor, urna arcu viverra dolor, a eleifend lectus leo a justo.',
-  'Morbi bibendum volutpat pellentesque. In bibendum est et orci semper rhoncus. Sed cursus vel orci sed malesuada. Fusce ac dictum ligula, quis hendrerit ipsum. Proin hendrerit a.
+INSERT INTO Comment (story_id, parent_comment, username, published,text) VALUES (1, NULL, "dominic", 1507901651, "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut at consequat libero. Ut a orci orci. Proin sodales venenatis risus.");
+INSERT INTO Comment (story_id, parent_comment, username, published,text) VALUES (1, 1, "alicia", 1508160851, "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce id convallis odio. Vivamus risus velit, accumsan in pellentesque sed, commodo.");
+INSERT INTO Comment (story_id, parent_comment, username, published,text) VALUES (3, NULL, "dominic", 1508160851, "Sed ullamcorper nec elit ut egestas. Ut et vehicula tellus. Donec faucibus, massa sit amet porta pharetra, dolor lorem consequat.");
 
-Nulla commodo eu nulla ac facilisis. Donec ante lorem, tincidunt nec interdum vulputate, fringilla a urna. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla sapien erat, suscipit a nisl sed, molestie convallis eros. Curabitur egestas massa et metus dignissim, et vestibulum libero porttitor. Sed non metus pharetra, lobortis orci a, commodo diam. Praesent a sagittis massa, quis condimentum augue. Donec id est feugiat ipsum egestas vulputate vel in dolor. Pellentesque pretium placerat lorem, sed sodales diam molestie a. Donec dictum dui ut accumsan tempor. Nam vestibulum in erat et sagittis. Donec venenatis, ante vitae tristique tristique, nisi metus aliquet.');
-*/
-/*
-INSERT INTO news VALUES (NULL,
-  'Vivamus fermentum dui nisi, at posuere',
-  1508160851,
-  'nature,science',
-  'zachary',
-  'Donec magna sapien, feugiat vel commodo et, aliquam in purus. Duis posuere, orci eu mollis lobortis, eros augue aliquam augue, et posuere metus nisl semper quam. In tortor nulla, iaculis at varius a, pharetra et lectus. Pellentesque convallis nibh id justo pellentesque, at sollicitudin ex auctor. Nulla ornare rutrum est, ac faucibus turpis interdum et. Vivamus nisi metus, tempor in dapibus in, vestibulum eget diam. Nunc tristique ante eu diam porta, id consectetur ligula sagittis. Pellentesque eu leo vel felis eleifend luctus eget sit amet ligula. Ut semper ante tristique interdum imperdiet. Mauris et libero varius, sollicitudin turpis at, ullamcorper.',
-  'Nullam et arcu non tellus congue ultrices id id enim. Donec malesuada, neque ut euismod ullamcorper, massa dui congue ante, quis scelerisque enim arcu vel turpis. Praesent ornare elementum finibus. Integer aliquam risus ac lorem mollis, sit amet dignissim dolor faucibus. Praesent non eros ut ligula rhoncus egestas. Duis ex nibh, maximus eget vulputate nec, sagittis in ex. Suspendisse potenti.
+INSERT INTO UserSubscriptions VALUES ("abril", "Portugal");
+INSERT INTO UserSubscriptions VALUES ("abril", "Lorem Ipsum");
+INSERT INTO UserSubscriptions VALUES ("alicia", "Lorem Ipsum");
 
-Praesent pellentesque, nisi ut ultrices sagittis, mauris urna tincidunt nibh, eu faucibus ante nisi eu nisl. Quisque commodo est non sapien rhoncus, a fringilla tellus ultricies. Curabitur eget massa mauris. Sed semper ultrices ante, in cursus enim vehicula at. Praesent.');
+INSERT INTO StoryVote VALUES ("dominic", 1, 1);
+INSERT INTO StoryVote VALUES ("alicia", 1, 0);
+INSERT INTO StoryVote VALUES ("dominic", 2, 1);
+INSERT INTO StoryVote VALUES ("abril", 3, 0);
 
-INSERT INTO news VALUES (NULL,
-  'Quisque a dapibus magna, non scelerisque',
-  1508247278,
-  'transports,vehicles',
-  'dominic',
-  'Etiam massa magna, condimentum eu facilisis sit amet, dictum ac purus. Curabitur semper nisl vel libero pulvinar ultricies. Proin dignissim dolor nec scelerisque bibendum. Maecenas a sem euismod, iaculis erat id, convallis arcu. Ut mollis, justo vitae suscipit imperdiet, eros dui laoreet enim, fermentum posuere felis arcu vel urna. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Proin blandit ex sit amet suscipit commodo. Duis molestie ligula eu urna tincidunt tincidunt. Mauris posuere aliquet pellentesque. Fusce molestie libero arcu, ut porta massa iaculis sit amet. Fusce varius nisl vitae fermentum fringilla. Pellentesque a cursus lectus.',
-  'Duis condimentum metus et ex tincidunt, faucibus aliquet ligula porttitor. In vitae posuere massa. Donec fermentum magna sit amet suscipit pulvinar. Cras in elit sapien. Vivamus nunc sem, finibus ac suscipit ullamcorper, hendrerit vitae urna. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Quisque eget tincidunt orci. Mauris congue ipsum non purus tristique, at venenatis elit pellentesque. Etiam congue euismod molestie. Mauris ex orci, lobortis a faucibus sed, sagittis eget neque.
+INSERT INTO CommentVote VALUES ("zachary", 1, 1);
+INSERT INTO CommentVote VALUES ("zachary", 2, 0);
+INSERT INTO CommentVote VALUES ("abril", 2, 1); 
+INSERT INTO CommentVote VALUES ("zachary", 3, 0);
 
-Mauris tincidunt orci congue turpis viverra pulvinar. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Quisque rhoncus lorem eget.');
-*//*
-INSERT INTO comments VALUES (NULL,
-  4,
-  'dominic',
-  1508247532,
-  'Aliquam maximus commodo dui, ut viverra urna vulputate et. Donec posuere vitae sem sed vehicula. Sed in erat eu diam fringilla sodales. Aenean lacinia vulputate nisl, dignissim dignissim nisl. Nam at nibh mollis, facilisis nibh sit amet, mattis urna. Maecenas.'
-);
-
-INSERT INTO comments VALUES (NULL,
-  4,
-  'abril',
-  1508247632,
-  'Duis scelerisque purus fermentum turpis euismod congue. Phasellus sit amet sem mollis, imperdiet quam porta, volutpat purus. In et sodales urna, sed cursus lectus. Vivamus a massa vitae nisl lobortis laoreet nec tristique magna. Mauris egestas ipsum eu sem lacinia.'
-);
-
-INSERT INTO comments VALUES (NULL,
-  3,
-  'alicia',
-  1508247132,
-  'Phasellus at neque nec nunc scelerisque eleifend eu eu risus. Praesent in nibh viverra, posuere ligula condimentum, accumsan tellus. Vivamus varius sem a mauris finibus, ac iaculis risus scelerisque. Nullam fermentum leo dui, at fermentum tellus consequat id. Pellentesque eleifend.'
-);d*/
+COMMIT;
