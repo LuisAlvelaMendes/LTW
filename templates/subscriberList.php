@@ -3,7 +3,7 @@
 
   function draw_subscriberList($subscribedChannelsNames){
     foreach( $subscribedChannelsNames as $channelName) {
-      echo '<p>' . $channelName['name'] . '</p>';
+      echo '<p>' . $channelName['channel'] . '</p>';
     }
   }
   

@@ -1,7 +1,7 @@
 <?php 
     include_once('../templates/tpl_common.php');
-    include_once('../templates/draw_subscriberList.php');
-    include_once('../templates/db_getSubscribedChannelList.php');
+    include_once('../templates/subscriberList.php');
+    include_once('../database/db_getSubscribedChannelList.php');
 ?>
 
 <!DOCTYPE html>
@@ -31,7 +31,10 @@
     
     <aside id="subscriptions">
         <!--lista de subs do usr se nao estiver logged alargar o espaço das story -->
-        <?php ?>
+        <?php 
+            $subscribedChannelNames = getSubscribedChannels("abril");
+            draw_subscriberList($subscribedChannelNames);
+        ?>
     </aside>
     
     <section id="storys">
