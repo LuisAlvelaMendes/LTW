@@ -5,9 +5,11 @@ PRAGMA foreign_keys = ON;
 
 drop table if exists channel;
 drop table if exists story;
-drop table if exists user;
+drop table if exists utilizer;
 drop table if exists userSubscriptions;
 drop table if exists comment;
+drop table if exists storyVote;
+drop table if exists commentVote;
 
 CREATE TABLE channel (
   name VARCHAR PRIMARY KEY,
@@ -19,41 +21,41 @@ CREATE TABLE story (
   title VARCHAR,
   published INTEGER, -- date when the story was published in epoch format
   channel VARCHAR REFERENCES channel, -- comma separated tags
-  author VARCHAR REFERENCES user, -- who wrote the article
+  author VARCHAR REFERENCES utilizer, -- who wrote the article
   points INTEGER DEFAULT 0,
   fulltext VARCHAR
 );
 
-CREATE TABLE user (
+CREATE TABLE utilizer (
   username VARCHAR PRIMARY KEY,
   password VARCHAR,
   points INTEGER DEFAULT 0,
-  created INTEGER -- date when the user was created in epoch format
+  created INTEGER -- date when the utilizer was created in epoch format
 );
 
 CREATE TABLE comment (
   id INTEGER PRIMARY KEY,
   story_id INTEGER REFERENCES story,
-  comment_id NULL INTEGER REFERENCES comment,
-  username VARCHAR REFERENCES user,
+  comment_id INTEGER REFERENCES comment,
+  username VARCHAR REFERENCES utilizer,
   published INTEGER, -- date when comment was published in epoch format
   points INTEGER DEFAULT 0,
   text VARCHAR
 );
 
 CREATE TABLE userSubscriptions (
-  username VARCHAR REFERENCES user,
+  username VARCHAR REFERENCES utilizer,
   channel VARCHAR REFERENCES channel
 );
 
 CREATE TABLE storyVote (
-  username VARCHAR REFERENCES user,
+  username VARCHAR REFERENCES utilizer,
   story_id INTEGER REFERENCES story,
   type INTEGER CHECK (type = 0 OR type = 1)
 );
 
 CREATE TABLE commentVote (
-  username VARCHAR REFERENCES user,
+  username VARCHAR REFERENCES utilizer,
   comment_id INTEGER REFERENCES comment,
   type INTEGER CHECK (type = 0 OR type = 1)
 );
@@ -65,10 +67,11 @@ CREATE TABLE commentVote (
 
 -- All passwords are 1234 in SHA-1 format
 
-INSERT INTO user (username, password, created) VALUES ("dominic", "7110eda4d09e062aa5e4a390b0a572ac0d2c0220", 1507901651);
-INSERT INTO user (username, password, created) VALUES ("zachary", "7110eda4d09e062aa5e4a390b0a572ac0d2c0220", 1508074451);
-INSERT INTO user (username, password, created) VALUES ("alicia", "7110eda4d09e062aa5e4a390b0a572ac0d2c0220", 1508160851);
-INSERT INTO user (username, password, created) VALUES ("abril", "7110eda4d09e062aa5e4a390b0a572ac0d2c0220", 1508247278);
+INSERT INTO utilizer (username, password, created) VALUES ("dominic", "7110eda4d09e062aa5e4a390b0a572ac0d2c0220", 1507901651);
+INSERT INTO utilizer (username, password, created) VALUES ("zachary", "7110eda4d09e062aa5e4a390b0a572ac0d2c0220", 1508074451);
+INSERT INTO utilizer (username, password, created) VALUES ("alicia", "7110eda4d09e062aa5e4a390b0a572ac0d2c0220", 1508160851);
+INSERT INTO utilizer (username, password, created) VALUES ("abril", "7110eda4d09e062aa5e4a390b0a572ac0d2c0220", 1508247278);
+
 /*
 INSERT INTO news VALUES (NULL,
   'Lorem ipsum dolor sit amet, consectetur',
