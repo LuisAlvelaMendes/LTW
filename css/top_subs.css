@@ -1,0 +1,35 @@
+#top_ch {
+    background-color: lightgray;
+}
+
+#top_ch ul{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+
+    margin: 0;
+}
+
+#top_ch ul li {
+    list-style-type: none;
+    text-align: center;
+
+    color: white;
+}
+
+#top_ch ul li:not(:last-child) {
+    border-right: 2px solid red;
+}
+
+#top_ch ul li:nth-child(2n+1) {
+    grid-row: 1 / 2;
+}
+
+#top_ch ul li:nth-child(2n) {
+    grid-row: 2 / 3;
+}
+
+#top_ch ul li a {
+    text-decoration: none;
+    color: white;
+}

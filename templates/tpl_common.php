@@ -26,9 +26,9 @@
     <section id = "info_bar">
         <input type="radio" name="point" value="1">UP
         <input type="radio" name="point" value="-1">DOWN
-        <?php if(isset($channel)) echo $channel ?>
-        <?php echo(date("H:i:s")) ?>
-        <?php echo($username) ?>
+        <?php if(isset($channel)) echo($channel) ;
+            echo(date("H:i:s"));
+            echo($username); ?>
     </section>
 <?php } ?>
 
