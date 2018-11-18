@@ -28,7 +28,7 @@ CREATE TABLE Story (
 
 CREATE TABLE Utilizer (
   username VARCHAR PRIMARY KEY,
-  password VARCHAR,
+  password VARCHAR NOT NULL,
   points INTEGER DEFAULT 0,
   created INTEGER -- date when the utilizer was created in epoch format
 );

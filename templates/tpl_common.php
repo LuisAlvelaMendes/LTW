@@ -1,10 +1,16 @@
+<?php include_once("../templates/tpl_auth.php"); ?>
+
 <?php function draw_header($username, $channel_name) { ?>
     <!DOCTYPE html>
     <html>
         <head>
+            <title>Lorem ipsum dolor sit amet</title>
             <meta charset="utf-8" />
             <link rel="stylesheet" href="../css/header.css">
+            <link rel="stylesheet" href="../css/modal_login.css">
+            <script src="../scripts/login_modal.js" async></script>
         </head>
+
         <body>
             <header>
                 <h1><?=$channel_name?></h1>
@@ -15,7 +21,7 @@
                     </nav>
                 <? } else { ?>
                     <nav id="signup">
-                        <a href="../actions/action_login.php">Login</a>                 <!-- FALTA TESTAR COM A ACTION-->
+                        <a id="login">Login</a> <?php draw_login() ?>
                         <a href="../actions/action_register.php">Register</a>           <!-- FALTA TESTAR COM A ACTION-->
                     </nav>
                 <? } ?>

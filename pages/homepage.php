@@ -1,33 +1,20 @@
-<?php 
+<?php
+    include_once('../includes/session.php');
     include_once('../templates/tpl_common.php');
-    include_once('../templates/subscriberList.php');
-    include_once('../database/db_getSubscribedChannelList.php');
+    include_once('../templates/tpl_topsubs.php');
+    include_once('../templates/tpl_subList.php');
+    include_once('../database/db_channel.php');
+    $channellist = array('pol', 'sci', 'fit', 'ocd', 'hrt');
+    $numsubs = array('550', '420', '330', '210', '150');
+    $channelid = array('68', '72', '44', '32', '69');
 ?>
 
 <!DOCTYPE html>
 <html lang="en-US">
-    <head>
-        <title>Lorem ipsum dolor sit amet</title>
-        <link rel="stylesheet" href="../css/top_subs.css">
-        <meta charset="utf-8">
-    </head>
-
-    <?php draw_header('SIMAWATT', 'NOT REDDIT') ?>
     
-    <nav id="top_ch">
-        <ul>
-            <li><a href="">Vestibolum</a></li>
-            <li>Num_subs1</li>
-            <li><a href="">Praesent</a></li>
-            <li>Num_subs2</li>
-            <li><a href="">Donec</a></li>
-            <li>Num_subs3</li>
-            <li><a href="">Phasellus</a></li>
-            <li>Num_subs4</li>
-            <li><a href="">Phasellus</a></li>
-            <li>Num_subs5</li>
-        </ul>
-    </nav> 
+    <?php draw_header($_SESSION['username'], 'NOT REDDIT') ?>
+    
+    <?php draw_topsubs($channellist, $numsubs, $channelid) ?>
     
     <aside id="subscriptions">
         <!--lista de subs do usr se nao estiver logged alargar o espaço das story -->

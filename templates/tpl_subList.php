@@ -1,5 +1,5 @@
 <?php
-  include_once("../database/db_getSubscribedChannelList.php");
+  include_once("../database/db_channel.php");
 
   function draw_subscriberList($subscribedChannelsNames){
     foreach( $subscribedChannelsNames as $channelName) {

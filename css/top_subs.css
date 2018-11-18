@@ -1,35 +1,30 @@
 #top_ch {
+   display: flex;
+   flex-direction: row;
+}
+
+#top_ch button {
+    display: block;
+    flex: 1;
+    
     background-color: lightgray;
+
+    border: none;
 }
 
-#top_ch ul{
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-    grid-template-rows: 1fr 1fr;
-
-    margin: 0;
+#top_ch button:hover {
+    background-color: gray;
 }
 
-#top_ch ul li {
-    list-style-type: none;
-    text-align: center;
-
-    color: white;
+#top_ch button:not(:last-child) {
+    border-right: 2px solid white;
 }
 
-#top_ch ul li:not(:last-child) {
-    border-right: 2px solid red;
+#top_ch button h1 {
+    font-size: 1.55em;
 }
 
-#top_ch ul li:nth-child(2n+1) {
-    grid-row: 1 / 2;
-}
-
-#top_ch ul li:nth-child(2n) {
-    grid-row: 2 / 3;
-}
-
-#top_ch ul li a {
-    text-decoration: none;
+#top_ch button h2 {
+    font-size: 0.8em;
     color: white;
 }
