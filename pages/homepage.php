@@ -20,14 +20,6 @@
 <html lang="en-US">
 	<?php draw_topsubs($channellist, $numsubs, $channelid) ?>
 	
-	<aside id="subscriptions">
-		<!--lista de subs do usr se nao estiver logged alargar o espaço das story -->
-		<?php 
-			$subscribedChannelNames = getSubscribedChannels("abril");
-			draw_subscriberList($subscribedChannelNames);
-		?>
-	</aside>
-	
 	<section id="storys">
 		<article>
 			<header>
