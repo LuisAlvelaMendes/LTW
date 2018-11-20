@@ -1,5 +1,7 @@
 body {
    margin: 0 auto;
+
+   background-color: #ececec;
 }
 
 body > header{
@@ -7,8 +9,8 @@ body > header{
     grid-template-columns: 1fr auto;
     grid-template-rows: auto auto;
 
-    background-color: lightblue;
-    color: black;
+    background-color: #f95d34;
+    color: white;
 }
 
 body > header h1 {
@@ -24,6 +26,8 @@ body > header #signup {
 
 	grid-column: 2;
 	grid-row: 2;
+
+	font-size: 18px;
 }
 
 body > header > #signup > a:first-child {
@@ -45,6 +49,6 @@ footer {
 	left: 0;
 	bottom: 0;
 	width: 100%;
-	background-color: lightblue;
-	color: black;
+	background-color: #f95d34;
+	color: white;
 }

@@ -1,5 +1,5 @@
 .dropbtn {
-	background-color: lightblue;
+	background-color: #f95d34;
 	border: none;
 	color: white;
 
@@ -9,7 +9,7 @@
 }
 
 .dropbtn:hover, .dropbtn:focus {
-	background-color:blue;
+	background-color:#d84a20;
 	z-index: 1;
 }
 
@@ -22,7 +22,9 @@
 	display: none;
 	position: absolute;
 	
-	background-color: gray;
+	background-color: #262626;
+	color: white;
+
 	min-width: 160px;
 	overflow: auto;
 	box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
@@ -31,7 +33,7 @@
 }
 
 .dropdown-content > a {
-	color: black;
+	color: white;
 	padding: 12px 16px;
 	text-decoration: none;
 	display: block;
@@ -39,8 +41,12 @@
 	border-bottom: 1px solid lightgray;
 }
 
+.dropdow-content > a:last-child {
+	border: none;
+}
+
 .dropdown > a:hover {
-	background-color: gray;
+	background-color: #4c4c4c;
 	z-index: 1;
 }
 

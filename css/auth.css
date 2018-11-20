@@ -18,7 +18,9 @@
 	display: block;
 	
 	border: none;
-	border-bottom: 2px solid gray;
+	border-bottom: 2px solid #666666;
+
+	background-color: #ececec;
 }
 
 #login input[type=submit] {
@@ -44,13 +46,13 @@
 
 	margin-top: 1.2em;
 
-	background-color: gray;
+	background-color: #666666;
 	color: white;
 
 	border: none;
 }
 
 #login button:hover {
-	background-color: lightgrey;
-	color: black;
+	background-color: #7f7f7f;
+	color: white;
 }
