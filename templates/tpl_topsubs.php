@@ -1,7 +1,5 @@
 <?php function draw_topsubs($channellist, $numsubs, $channelid) { ?>
-    <head>
-        <link rel="stylesheet" href="../css/top_subs.css">
-    </head>
+    <link rel="stylesheet" href="../css/top_subs.css">
 
     <section id="top_ch">
         <? for($i=0; $i < 5; $i++) { ?>

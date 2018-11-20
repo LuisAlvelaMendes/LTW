@@ -9,6 +9,6 @@
         $_SESSION['username'] = $username;
         header('Location: ../pages/homepage.php');
     } else {
-        header('Location: ../pages/homepage.php');
+        header('Location: ../pages/login.php?log=wrg');
     }
 ?>
