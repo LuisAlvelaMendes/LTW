@@ -27,6 +27,16 @@
 			</header>
 <?php } ?>
 
+<?php function draw_info_bar($username, $channel) { ?>
+	<section id = "info_bar">
+		<input type="radio" name="point" value="1">UP
+		<input type="radio" name="point" value="-1">DOWN
+		<?php echo ('DATE') ?>
+		<?= $channel ?>
+		<?= $username ?>
+	</section>
+<?php } ?>
+
 <?php function draw_footer() { ?>
 	</body>
 	<footer> 
