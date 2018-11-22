@@ -11,6 +11,10 @@
    border: 2px solid #a5a5a5;
 }
 
+#storyCard:focus {
+    outline: none;
+}
+
 #storyCard h1 {
     text-align: left;
 }

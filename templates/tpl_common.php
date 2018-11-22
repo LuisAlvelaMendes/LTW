@@ -31,9 +31,11 @@
 	<section id = "info_bar">
 		<input type="radio" name="point" value="1">UP
 		<input type="radio" name="point" value="-1">DOWN
-		<?php echo ('DATE') ?>
-		<?= $channel ?>
-		<?= $username ?>
+		<div>
+			<h6 id="date"><?='DATE'?></h6>
+			<a id="channel" href=""><?=$channel?></a>
+		</div>
+		<a id="profile" href=""><?=$username?></a>
 	</section>
 <?php } ?>
 

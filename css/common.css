@@ -47,6 +47,36 @@ body > header #signup > a:first-child {
  padding-left: 0;
 }
 
+#info_bar {
+	background-color: white;
+    border: none;
+    border-radius: 13px;
+    
+    margin: 2px 0.5em 0em 0.5em;
+	padding: 0.3em;
+}
+
+#date {
+	padding-left: 1em;
+	display: inline;
+}
+
+#channel {
+	padding-right: 1em;
+	color: black;
+	text-decoration: none;
+}
+
+#profile {
+	float: right;
+	
+	padding-left: 0em;
+	padding-right: 0.5em;
+
+	color: black;
+	text-decoration: none;
+}
+
 footer {
  position: absolute;
 
