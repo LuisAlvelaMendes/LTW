@@ -18,10 +18,10 @@
 
 	draw_topsubs($channellist, $numsubs, $channelid);
 
-	draw_storyCard();
-	draw_storyCard();
-	draw_storyCard();
-	draw_storyCard();
+	draw_storyCard('Portugal');
+	draw_storyCard('Lorem Ipsum');
+	draw_storyCard('Portugal');
+	draw_storyCard('Lorem Ipsum');
 	
 	draw_footer();
 ?>

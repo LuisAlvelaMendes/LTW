@@ -28,7 +28,7 @@
 				<label for="Repeat password">Password</label>
 				<input type="password" placeholder="Repeat Password" name="password2" required>
 
-				<button type="submit">Login</button>
+				<button type="submit">Register</button>
 		</form>
 	</section>
 <? } ?>

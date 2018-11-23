@@ -1,13 +1,20 @@
-<?php include_once('../templates/tpl_common.php') ?>
+<?php 
+	include_once('../templates/tpl_common.php');
+	include_once('../database/db_story.php');
+?>
 
-<?php function draw_storyCard() { ?>
+<?php function draw_storyCard($channel) { ?>
 	<link rel="stylesheet" href="../css/storyCard.css">
 
-	<button id="storyCard">
-		<h1>Interdum et malesuada fames ac</h1>
-		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris pharetra orci vel turpis sollicitudin porttitor. Quisque in oltricies orci. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Fusce scelerisque odio at magna dictum gravida. Integer eu turpis tellus. Nolla facilisis tellus vitae orci oltrices facilisis at id metus. Phasellus sit amet efficitur leo, in consequat purus. Sed eget porttitor nisl. Pellentesque gravida lobortis auctor. Mauris polvinar erat lectus, eu volputate purus hendrerit sed. Maecenas felis felis, tincidunt finibus mi ac, lacinia efficitur orci. Vivamus fermentum mauris sed efficitur lobortis</p>
+	<?php 
+		$mostRecent = getMostRecentStoryFromChannel($channel);
+	?>
+
+	<button id="storyCard" onclick="window.location.href='../pages/story.php?id=<?=$mostRecent[0]['id']?>'">
+		<h1> <?=$mostRecent[0]['title']?> </h1>
+		<p> <?=$mostRecent[0]['fulltext']?> </p>
 		<p>&bull; &bull; &bull;</p>
 	</button>
 	
-	<?php draw_info_bar("sollicitudin", "sodales") ?>
+	<?php draw_info_bar($mostRecent[0]['author'], $channel, $mostRecent[0]['published']) ?>
 <? } ?>

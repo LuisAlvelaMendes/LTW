@@ -27,12 +27,19 @@
 			</header>
 <?php } ?>
 
-<?php function draw_info_bar($username, $channel) { ?>
+<?php function convert_epoch($epoch) {
+	$dt = new DateTime("@$epoch");
+	return $dt;
+}
+?>
+
+<?php function draw_info_bar($username, $channel, $data) { ?>
 	<section id = "info_bar">
 		<input type="radio" name="point" value="1">UP
 		<input type="radio" name="point" value="-1">DOWN
 		<div>
-			<h6 id="date"><?='DATE'?></h6>
+			<?php $data = convert_epoch($data) ?>
+			<h6 id="date"><?=$data->format('Y-m-d')?></h6>
 			<a id="channel" href=""><?=$channel?></a>
 		</div>
 		<a id="profile" href=""><?=$username?></a>
