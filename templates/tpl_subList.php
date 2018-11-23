@@ -12,10 +12,14 @@
 
     <section id="myDropdown" class="dropdown-content">
       <?php 
-      $subscribedChannelsNames = getSubscribedChannels("abril");
-      foreach( $subscribedChannelsNames as $channelName) { ?>
-        <a href=""><?=$channelName['channel']?></a>
-      <? } ?>
+      $subscribedChannelsNames = getSubscribedChannels($_SESSION['username']);
+      if(empty($subscribedChannelsNames)) { ?>
+        <a id="Empty">Empty</a>
+      <?php } else {
+        foreach( $subscribedChannelsNames as $channelName) { ?>
+          <a href=""><?=$channelName['channel']?></a>
+        <?php }
+      } ?>
     </section>    
   </section>
 <?php } ?>

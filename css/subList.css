@@ -39,15 +39,17 @@
 	display: block;
 	z-index: 1;
 	border-bottom: 1px solid lightgray;
+	cursor: pointer;
+}
+
+#Empty {
+	font-style: italic;
+	border-bottom: none;
+	cursor: default;
 }
 
 .dropdow-content > a:last-child {
-	border: none;
-}
-
-.dropdown > a:hover {
-	background-color: #4c4c4c;
-	z-index: 1;
+	border-bottom: none;
 }
 
 .show {
