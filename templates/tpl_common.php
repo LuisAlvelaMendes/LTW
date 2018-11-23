@@ -27,6 +27,14 @@
 			</header>
 <?php } ?>
 
+<?php function draw_story_text($story_title, $fulltext) { ?>
+		<section>
+			<h1><?=$story_title?></h1>
+			<p><?=$fulltext?></p>
+		</section>
+<?php } ?>
+
+
 <?php function convert_epoch($epoch) {
 	$dt = new DateTime("@$epoch");
 	return $dt;
@@ -45,6 +53,8 @@
 		<a id="profile" href=""><?=$username?></a>
 	</section>
 <?php } ?>
+
+
 
 <?php function draw_footer() { ?>
 	</body>

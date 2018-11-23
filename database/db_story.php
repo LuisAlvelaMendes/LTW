@@ -22,4 +22,16 @@
 
         return $recentStory;
     }
+
+    function getStoryMainInfoById($storyId){
+        $db = Database::instance()->db();
+
+        $correspondingStory = $db->prepare('SELECT channel, title, fulltext, published, author FROM Story WHERE id = ?');
+            
+        $correspondingStory->execute(array($storyId));
+        $correspondingStory = $correspondingStory->fetchAll();
+
+        return $correspondingStory;
+    }
+
 ?>
