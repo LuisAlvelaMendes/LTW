@@ -43,14 +43,20 @@
 
 <?php function draw_info_bar($username, $channel, $data) { ?>
 	<section id = "info_bar">
-		<input type="radio" name="point" value="1">UP
-		<input type="radio" name="point" value="-1">DOWN
-		<div>
+		<div id="start">
+			<img src="https://dummyimage.com/20x20/524f52/d12222&text=ʌ" alt="upvote">
+			<img src="https://dummyimage.com/20x20/524f52/d12222&text=v" alt="downvote">
+		</div>
+		
+		<div id="middle">
 			<?php $data = convert_epoch($data) ?>
 			<h6 id="date"><?=$data->format('Y-m-d')?></h6>
 			<a id="channel" href=""><?=$channel?></a>
 		</div>
-		<a id="profile" href=""><?=$username?></a>
+
+		<div id="end">
+			<a id="profile" href=""><?=$username?></a>
+		</div>
 	</section>
 <?php } ?>
 
