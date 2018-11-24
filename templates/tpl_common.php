@@ -55,6 +55,24 @@
 <?php } ?>
 
 
+<?php function draw_comments_section($comments, $channel) { ?>
+	
+	<h3> Comment Section: </h3>
+	
+	<section id = "comments">
+		<? for($i=0; $i < sizeof($comments); $i++) { ?>
+			<div>
+				<p><?=$comments[$i]['text']?><p>
+				
+				<div>
+					<?php draw_info_bar($comments[$i]['username'], $channel, $comments[$i]['published']); ?>
+				</div>
+			</div>
+		<? } ?>
+	</section>
+<?php } ?>
+
+
 
 <?php function draw_footer() { ?>
 	</body>
