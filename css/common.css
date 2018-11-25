@@ -8,12 +8,12 @@ body {
 }
 
 body > header{
-	 display: grid;
-	 grid-template-columns: 1fr auto;
-	 grid-template-rows: auto auto;
+	display: grid;
+	grid-template-columns: 1fr auto;
+	grid-template-rows: auto auto;
 
-	 background-color: #f95d34;
-	 color: white;
+	background-color: #f95d34;
+	color: white;
 }
 
 body > header h1 {
@@ -62,7 +62,7 @@ body > header #signup > a:first-child {
 	padding-bottom: 0;
 }
 
-#date {
+#info_bar #date {
 	color: black;
 	text-decoration: none;
 	font-size: 13px;
@@ -70,16 +70,18 @@ body > header #signup > a:first-child {
 	display: inline;
 }
 
-#channel {
+#info_bar #channel {
 	color: black;
 	text-decoration: none;
-	
+	cursor: pointer;
+
 	display: inline;
 }
 
-#profile {
+#info_bar #profile {
 	color: black;
 	text-decoration: none;
+	cursor: pointer;
 
 	display:inline;
 	padding-right: 0.5em;

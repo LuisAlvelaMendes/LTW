@@ -1,9 +1,11 @@
 <?php
 	include_once('../includes/session.php');
+
 	include_once('../templates/tpl_common.php');
 	include_once('../templates/tpl_topsubs.php');
-	include_once('../templates/tpl_storyCard.php');
+	include_once('../templates/tpl_story.php');
 	include_once('../templates/tpl_subList.php');
+
 	include_once('../database/db_channel.php');
 	
 	$channellist = array('pol', 'sci', 'fit', 'ocd', 'hrt');
@@ -17,11 +19,12 @@
 	}
 
 	draw_topsubs($channellist, $numsubs, $channelid);
-
-	draw_storyCard('Portugal');
-	draw_storyCard('Lorem Ipsum');
-	draw_storyCard('Portugal');
-	draw_storyCard('Lorem Ipsum');
 	
+  $mostRecent = getMostRecentStoryFromChannel('Portugal');
+  draw_storyCard($mostRecent[0]);
+
+  $mostRecent = getMostRecentStoryFromChannel('Lorem Ipsum');
+  draw_storyCard($mostRecent[0]);
+
 	draw_footer();
 ?>

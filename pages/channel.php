@@ -1,21 +1,26 @@
 <?php 
-    include_once('../includes/session.php');
-    include_once('../templates/tpl_common.php');
+  include_once('../includes/session.php');
+	include_once('../templates/tpl_common.php');
+	include_once('../templates/tpl_story.php');
+	include_once('../database/db_story.php');
+
+	$channel=$_GET['name'];
+
+	if(!isset($_SESSION['username'])) {
+		draw_header(null, $channel);
+	} else {
+		draw_header($_SESSION['username'], $channel);
+	}
+
+	$stories=getStoriesFromChannel($channel);
+
+	foreach($stories as $story){
+		draw_storyCard($story);
+	}
+
+	draw_footer();
 ?>
 
-<!DOCTYPE html>
-<html lang="en-US">
-    <head>
-        <title>Lorem ipsum dolor sit amet</title>
-        <link rel="stylesheet" href="../css/top_subs.css">
-        <meta charset="utf-8">
-    </head>
 
-   <?php if(!isset($_SESSION['username'])) {
-		draw_header(null, 'NOT REDDIT');
-	} else {
-		draw_header($_SESSION['username'], 'NOT REDDIT');
-	} ?>
-    
-    <?php draw_footer() ?>
-</html>
+  
+

@@ -12,19 +12,19 @@
 	<body>
 		<header>
 			<h1><?=$channel_name?></h1>
-		<?php if($username != NULL) { ?>
-			<nav id="signup">
-				<a href=""><?= $username ?></li></a>	<!-- SE O USER CLICAR NO NOME VAI AO SEU PROFILE -->
-				<a href="../actions/action_logout.php">Logout</a>
-				<?php draw_subscriberList() ?>
-			</nav>
-		<? } else { ?>
-			<nav id="signup">
-				<a href="../pages/login.php">Login</a>
-				<a href="../pages/register.php">Register</a>
-			</nav>
+			<?php if($username != NULL) { ?>
+				<nav id="signup">
+					<a href=""><?= $username ?></li></a>	<!-- SE O USER CLICAR NO NOME VAI AO SEU PROFILE -->
+					<a href="../actions/action_logout.php">Logout</a>
+					<?php draw_subscriberList() ?>
+				</nav>
+			<? } else { ?>
+				<nav id="signup">
+					<a href="../pages/login.php">Login</a>
+					<a href="../pages/register.php">Register</a>
+				</nav>
 			<? } ?>
-			</header>
+		</header>
 <?php } ?>
 
 <?php function draw_story_text($story_title, $fulltext) { ?>
@@ -51,11 +51,11 @@
 		<div id="middle">
 			<?php $data = convert_epoch($data) ?>
 			<h6 id="date"><?=$data->format('Y-m-d')?></h6>
-			<a id="channel" href=""><?=$channel?></a>
+			<a id="channel" onclick="window.location.href='../pages/channel.php?name=<?=$channel?>'"><?=$channel?></a>
 		</div>
 
 		<div id="end">
-			<a id="profile" href=""><?=$username?></a>
+			<a id="profile" onclick="window.location.href='../pages/profile.php?name=<?=$username?>'"><?=$username?></a>
 		</div>
 	</section>
 <?php } ?>
