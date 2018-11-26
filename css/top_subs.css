@@ -8,8 +8,7 @@
     flex: 1;
     
     background-color: #666666;
-    color: white;
-
+    
     border: none;
 }
 
@@ -23,10 +22,15 @@
 
 #top_ch button h1 {
     font-size: 1.55em;
+    color: white;
+
+    margin-top: 0.5em;
     margin-bottom: 0;
 }
 
 #top_ch button h2 {
     font-size: 0.88em;
     color: #a0a0a0;
+
+    margin-bottom: 0.5em;
 }

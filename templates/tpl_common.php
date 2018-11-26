@@ -1,4 +1,4 @@
-<?php include_once('tpl_subList.php') ?>
+<?php include_once('tpl_sub.php') ?>
 
 <?php function draw_header($username, $channel_name) { ?>
 	<!DOCTYPE html>
@@ -38,8 +38,7 @@
 <?php function convert_epoch($epoch) {
 	$dt = new DateTime("@$epoch");
 	return $dt;
-}
-?>
+} ?>
 
 <?php function draw_info_bar($username, $channel, $data) { ?>
 	<section id = "info_bar">
@@ -60,7 +59,6 @@
 	</section>
 <?php } ?>
 
-
 <?php function draw_comments_section($comments, $channel) { ?>
 	
 	<h3> Comment Section: </h3>
@@ -77,8 +75,6 @@
 		<? } ?>
 	</section>
 <?php } ?>
-
-
 
 <?php function draw_footer() { ?>
 	</body>

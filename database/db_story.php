@@ -1,37 +1,36 @@
 <?php
-    include_once('../includes/database.php');
+	include_once('../includes/database.php');
 
-    function getStoriesFromChannel($channel){
-        $db = Database::instance()->db();
+	function getStoriesFromChannel($channel){
+		$db = Database::instance()->db();
 
-        $storiesFromChannel = $db->prepare('SELECT title, fulltext, published, author FROM Story WHERE channel = ?');
-            
-        $storiesFromChannel->execute(array($channel));
-        $storiesFromChannel = $storiesFromChannel->fetchAll();
+		$storiesFromChannel = $db->prepare('SELECT id, title, fulltext, published, channel, author FROM Story WHERE channel = ?');
+				
+		$storiesFromChannel->execute(array($channel));
+		$storiesFromChannel = $storiesFromChannel->fetchAll();
 
-        return $storiesFromChannel;
-    }
+		return $storiesFromChannel;
+	}
 
-    function getMostRecentStoryFromChannel($channel){
-        $db = Database::instance()->db();
+	function getMostRecentStoryFromChannel($channel){
+		$db = Database::instance()->db();
 
-        $recentStory = $db->prepare('SELECT id, title, fulltext, MAX(published) AS "published", author FROM Story  WHERE channel = ?');
-            
-        $recentStory->execute(array($channel));
-        $recentStory = $recentStory->fetchAll();
+		$recentStory = $db->prepare('SELECT id, title, fulltext, MAX(published) AS "published", channel, author FROM Story  WHERE channel = ?');
+				
+		$recentStory->execute(array($channel));
+		$recentStory = $recentStory->fetchAll();
 
-        return $recentStory;
-    }
+		return $recentStory;
+	}
 
-    function getStoryMainInfoById($storyId){
-        $db = Database::instance()->db();
+	function getStoryMainInfoById($storyId){
+		$db = Database::instance()->db();
 
-        $correspondingStory = $db->prepare('SELECT channel, title, fulltext, published, author FROM Story WHERE id = ?');
-            
-        $correspondingStory->execute(array($storyId));
-        $correspondingStory = $correspondingStory->fetchAll();
+		$correspondingStory = $db->prepare('SELECT channel, title, fulltext, published, author FROM Story WHERE id = ?');
+				
+		$correspondingStory->execute(array($storyId));
+		$correspondingStory = $correspondingStory->fetchAll();
 
-        return $correspondingStory;
-    }
-
+		return $correspondingStory;
+	}
 ?>
