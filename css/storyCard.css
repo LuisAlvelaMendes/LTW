@@ -7,19 +7,19 @@
     padding: 1em;
 }
 
-#storyCard:hover {
-   border: 2px solid #a5a5a5;
-}
-
 #storyCard:focus {
     outline: none;
 }
 
-#storyCard h1 {
+ #storyCard:hover {
+   border: 2px solid #a5a5a5;
+}
+
+ #storyCard > h1 {
     text-align: left;
 }
 
-#storyCard p {
+ #storyCard > p {
     overflow: hidden;
     
     line-height: 16px;
@@ -29,11 +29,11 @@
     font-size: 15px;
 }
 
-#storyCard p:last-child{
+ #storyCard > p:last-child{
     text-align: center;
     font-size: 173%;
     font-weight: bolder;
-
+    
     margin-top: 0;
     margin-bottom: 0;
-}
+} 

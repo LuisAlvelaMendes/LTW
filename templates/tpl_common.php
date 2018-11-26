@@ -1,6 +1,6 @@
 <?php include_once('tpl_sub.php') ?>
 
-<?php function draw_header($username, $channel_name) { ?>
+<?php function draw_header($username, $channel) { ?>
 	<!DOCTYPE html>
 	<html>
 		<head>
@@ -9,31 +9,38 @@
 			<link rel="stylesheet" href="../css/common.css">
 		</head>
 
-	<body>
-		<header>
-			<h1><?=$channel_name?></h1>
-			<?php if($username != NULL) { ?>
-				<nav id="signup">
-					<a href=""><?= $username ?></li></a>	<!-- SE O USER CLICAR NO NOME VAI AO SEU PROFILE -->
-					<a href="../actions/action_logout.php">Logout</a>
-					<?php draw_subscriberList() ?>
-				</nav>
-			<? } else { ?>
-				<nav id="signup">
-					<a href="../pages/login.php">Login</a>
-					<a href="../pages/register.php">Register</a>
-				</nav>
-			<? } ?>
-		</header>
+		<body>
+			<header>
+				<?php if($channel === "NOT REDDIT") { ?>
+					<h1><?=$channel?></h1>
+				<?php } else { ?>
+					<h1 id="channel" onclick="window.location.href='../pages/channel.php?name=<?=$channel?>'"><?=$channel?></h1>
+				<?php } ?>
+
+				<?php if($username != NULL) { ?>
+					<nav id="signup">
+						<a href=""><?= $username ?></li></a>	<!-- SE O USER CLICAR NO NOME VAI AO SEU PROFILE -->
+						<a href="../actions/action_logout.php">Logout</a>
+						<?php draw_subscriberList() ?>
+					</nav>
+				<?php } else { ?>
+					<nav id="signup">
+						<a href="../pages/login.php">Login</a>
+						<a href="../pages/register.php">Register</a>
+					</nav>
+				<?php } ?>
+			</header>
 <?php } ?>
 
 <?php function draw_story_text($story_title, $fulltext) { ?>
-		<section>
-			<h1><?=$story_title?></h1>
-			<p><?=$fulltext?></p>
-		</section>
-<?php } ?>
+	<link rel="stylesheet" href="../css/story.css">
 
+	<section id="storyText">
+		<h1><?=$story_title?></h1>
+		<p><?=$fulltext?></p>
+	</section>
+
+<?php } ?>
 
 <?php function convert_epoch($epoch) {
 	$dt = new DateTime("@$epoch");
@@ -60,19 +67,15 @@
 <?php } ?>
 
 <?php function draw_comments_section($comments, $channel) { ?>
+	<link rel="stylesheet" href="../css/story.css">
+
+	<h3 id="comments"> Comment Section: </h3>
 	
-	<h3> Comment Section: </h3>
-	
-	<section id = "comments">
-		<? for($i=0; $i < sizeof($comments); $i++) { ?>
-			<div>
-				<p><?=$comments[$i]['text']?><p>
-				
-				<div>
-					<?php draw_info_bar($comments[$i]['username'], $channel, $comments[$i]['published']); ?>
-				</div>
-			</div>
-		<? } ?>
+	<section>
+		<?php for($i=0; $i < sizeof($comments); $i++) { ?>
+				<p id="usrComment"><?=$comments[$i]['text']?></p>
+				<?php draw_info_bar($comments[$i]['username'], $channel, $comments[$i]['published']); ?>
+		<?php } ?>
 	</section>
 <?php } ?>
 

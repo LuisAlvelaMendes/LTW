@@ -18,7 +18,7 @@
         <a id="Empty">Empty</a>
       <?php } else {
         foreach( $subscribedChannelsNames as $channelName) { ?>
-          <a href=""><?=$channelName['channel']?></a>
+          <a onclick="window.location.href='../pages/channel.php?name=<?=$channelName['channel']?>'"><?=$channelName['channel']?></a>
         <?php }
       } ?>
     </section>    
