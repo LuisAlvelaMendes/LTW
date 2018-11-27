@@ -9,6 +9,7 @@
         $_SESSION['username'] = $username;
         header('Location: ../pages/homepage.php');
     } else {
-        header('Location: ../pages/login.php?log=wrg');
+        $_SESSION['messages'][] = array('type' => 'error', 'content' => 'Login failed!');
+        header('Location: ../pages/login.php');
     }
 ?>

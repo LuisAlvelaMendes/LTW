@@ -12,9 +12,9 @@
 		<body>
 			<header>
 				<?php if($channel === "NOT REDDIT") { ?>
-					<h1><?=$channel?></h1>
+					<h1 onclick="window.location.href='../pages/homepage.php'"><?=$channel?></h1>
 				<?php } else { ?>
-					<h1 id="channel" onclick="window.location.href='../pages/channel.php?name=<?=$channel?>'"><?=$channel?></h1>
+					<h1 onclick="window.location.href='../pages/channel.php?name=<?=$channel?>'"><?=$channel?></h1>
 				<?php } ?>
 
 				<?php if($username != NULL) { ?>
@@ -30,6 +30,15 @@
 					</nav>
 				<?php } ?>
 			</header>
+
+			<?php if(isset($_SESSION['messages'])) { ?>
+				<section id="messages">
+					<?php foreach ($_SESSION['messages'] as $message) { ?>
+						<div class="<?=$message['type']?>"><?=$message['content']?></div>
+					<?php } ?>
+				</section>
+				<?php unset($_SESSION['messages']); 
+			} ?>
 <?php } ?>
 
 <?php function draw_story_text($story_title, $fulltext) { ?>
