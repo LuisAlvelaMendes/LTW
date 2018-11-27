@@ -25,6 +25,23 @@
   </section>
 <?php } ?>
 
+<?php function draw_subscriberList() { ?>
+  <aside id="subscriptions">
+      <?php 
+      $subscribedChannelsNames = getSubscribedChannels($_SESSION['username']);
+
+      var_dump($subscribedChannelsNames);
+
+      if(empty($subscribedChannelsNames)) { ?>
+        <a id="Empty">Empty</a>
+      <?php } else {
+        foreach( $subscribedChannelsNames as $channelName) { ?>
+          <a onclick="window.location.href='../pages/channel.php?name=<?=$channelName['channel']?>'"><?=$channelName['channel']?></a>
+        <?php }
+      } ?>  
+  </aside>
+<?php } ?>
+
 <?php function draw_topsubs($channellist, $numsubs, $channelid) { ?>
     <link rel="stylesheet" href="../css/top_subs.css">
 
