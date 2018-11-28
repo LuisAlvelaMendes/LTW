@@ -12,9 +12,9 @@
 		<body>
 			<header>
 				<?php if($channel === "NOT REDDIT") { ?>
-					<h1 onclick="window.location.href='../pages/homepage.php'"><?=$channel?></h1>
+					<a id="title" onclick="window.location.href='../pages/homepage.php'"><?=$channel?></a>
 				<?php } else { ?>
-					<h1 onclick="window.location.href='../pages/channel.php?name=<?=$channel?>'"><?=$channel?></h1>
+					<a id ="title" onclick="window.location.href='../pages/channel.php?name=<?=$channel?>'"><?=$channel?></a>
 				<?php } ?>
 
 				<?php if($username != NULL) { ?>
@@ -51,12 +51,37 @@
 
 <?php } ?>
 
-<?php function convert_epoch($epoch) {
-	$dt = new DateTime("@$epoch");
-	return $dt;
+<?php function time_elapsed($date) {
+	$now = new DateTime;
+	$ago = new DateTime($date);
+
+	$diff = $now->diff($ago);
+	$diff->w = floor($diff->d / 7);
+
+	$diff->d -= $diff->w * 7;
+	$string = array(
+		'y' => 'y',
+		'm' => 'm',
+		'w' => 'w',
+		'd' => 'd',
+		'h' => 'h',
+		'i' => 'min',
+		's' => 's',
+	);
+
+	foreach ($string as $k => &$v) {
+		if ($diff->$k) {
+			$v = $diff->$k . '' . $v . ($diff->$k > 1 ? 's' : '');
+		} else {
+			unset($string[$k]);
+		}
+	}
+
+	$string = array_slice($string, 0, 1);
+	return $string ? implode(', ', $string) . '' : 'just now';
 } ?>
 
-<?php function draw_info_bar($username, $channel, $data) { ?>
+<?php function draw_info_bar($username, $channel, $date) { ?>
 	<section id = "info_bar">
 		<div id="start">
 			<img src="https://dummyimage.com/20x20/524f52/d12222&text=ʌ" alt="upvote">
@@ -64,8 +89,7 @@
 		</div>
 		
 		<div id="middle">
-			<?php $data = convert_epoch($data) ?>
-			<h6 id="date"><?=$data->format('Y-m-d')?></h6>
+			<h6 id="date"><?=time_elapsed('@' . $date)?></h6>
 			<a id="channel" onclick="window.location.href='../pages/channel.php?name=<?=$channel?>'"><?=$channel?></a>
 		</div>
 

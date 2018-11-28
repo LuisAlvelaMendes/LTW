@@ -14,7 +14,7 @@
 			<button type="submit">Login</button>
 		</form>
 	</section>
-<? } ?>
+<?php } ?>
 
 <?php function draw_register() { ?>
 	<link rel="stylesheet" href="../css/auth.css"> 
@@ -33,4 +33,4 @@
 			<button type="submit">Register</button>
 		</form>
 	</section>
-<? } ?>
+<?php } ?>

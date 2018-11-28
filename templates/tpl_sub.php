@@ -25,13 +25,11 @@
   </section>
 <?php } ?>
 
-<?php function draw_subscriberList() { ?>
+<?php function draw_subscriberList1() { ?>
   <aside id="subscriptions">
       <?php 
       $subscribedChannelsNames = getSubscribedChannels($_SESSION['username']);
-
       var_dump($subscribedChannelsNames);
-
       if(empty($subscribedChannelsNames)) { ?>
         <a id="Empty">Empty</a>
       <?php } else {
@@ -53,4 +51,4 @@
         </button>
         <? } ?>
     </section> 
-<? } ?>
+<?php } ?>

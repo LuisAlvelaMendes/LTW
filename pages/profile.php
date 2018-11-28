@@ -9,7 +9,7 @@
         draw_header($_SESSION['username'], 'NOT REDDIT');
     }
 
-    draw_subscriberList();
+    draw_subscriberList1();
 
     draw_footer();
 ?> 

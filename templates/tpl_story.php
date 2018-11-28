@@ -3,8 +3,14 @@
 	include_once('../database/db_story.php');
 ?>
 
-<?php function draw_storyCard($story) { ?>
+<?php function draw_storyCard($story, $displayChannel) { ?>
 	<link rel="stylesheet" href="../css/storyCard.css">
+
+	<?php if($displayChannel) {
+		$channel = $story['channel'];
+	} else {
+		$channel = null;
+	} ?>
 
 	<button id="storyCard" onclick="window.location.href='../pages/story.php?id=<?=$story['id']?>'">
 		<h1> <?=$story['title']?> </h1>
@@ -12,5 +18,5 @@
 		<p>&bull; &bull; &bull;</p>
 	</button>
 	
-	<?php draw_info_bar($story['author'], $story['channel'], $story['published']) ?>
-<? } ?>
+	<?php draw_info_bar($story['author'], $channel, $story['published']) ?>
+<?php } ?>
