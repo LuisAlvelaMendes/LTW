@@ -7,7 +7,7 @@
 
 	include_once('../database/db_story.php');
 	include_once('../database/db_channel.php');
-	
+
 	$channellist = array('pol', 'sci', 'fit', 'ocd', 'hrt');
 	$numsubs = array('550', '420', '330', '210', '150');
 	$channelid = array('68', '72', '44', '32', '69');
@@ -19,12 +19,12 @@
 	}
 
 	draw_topsubs($channellist, $numsubs, $channelid);
-	
-  $mostRecent = getMostRecentStoryFromChannel('Portugal');
-  draw_storyCard($mostRecent[0]);
 
-  $mostRecent = getMostRecentStoryFromChannel('Lorem Ipsum');
-  draw_storyCard($mostRecent[0]);
+	$mostRecent = getMostRecentStoryFromChannel('Portugal');
+	draw_storyCard($mostRecent[0], true);
+
+	$mostRecent = getMostRecentStoryFromChannel('Lorem Ipsum');
+	draw_storyCard($mostRecent[0], true);
 
 	draw_footer();
 ?>

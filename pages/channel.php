@@ -17,7 +17,7 @@
 	$stories=getStoriesFromChannel($channel);
 
 	foreach($stories as $story){
-		draw_storyCard($story);
+		draw_storyCard($story, false);
 	}
 
 	draw_footer();

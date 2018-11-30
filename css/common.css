@@ -16,11 +16,17 @@ body > header{
 	color: white;
 }
 
-body > header h1 {
- padding-left: 1em;
- 
- grid-column: 1;
- grid-row: 1;
+body > header #title {
+	padding-top: 1em;
+	padding-left: 1em;
+
+	font-size: 30px;
+	font-weight: bold;
+
+	grid-column: 1;
+	grid-row: 1;
+
+	cursor: pointer;
 }
 
 body > header #signup {
@@ -45,6 +51,22 @@ body > header > #signup > a {
 
 body > header #signup > a:first-child {
  padding-left: 0;
+}
+
+body > #messages div {
+	max-width: 25em;
+	margin: 2em auto; 
+	padding: 1em;
+
+	text-align: center;
+}
+body > #messages .error {
+	color: black;
+	background-color: lightcoral;
+}
+body > #messages .success {
+	color: black;
+	background-color: lightgreen;
 }
 
 #info_bar {
