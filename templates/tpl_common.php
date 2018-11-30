@@ -19,7 +19,7 @@
 
 				<?php if($username != NULL) { ?>
 					<nav id="signup">
-						<a href=""><?= $username ?></li></a>	<!-- SE O USER CLICAR NO NOME VAI AO SEU PROFILE -->
+						<a id="profile" onclick="window.location.href='../pages/profile.php?name=<?=$username?>'"><?= $username ?></li></a>
 						<a href="../actions/action_logout.php">Logout</a>
 						<?php draw_subscriberList() ?>
 					</nav>
@@ -63,6 +63,11 @@
 	</section>
 
 <?php } ?>
+
+<?php function convert_epoch($epoch){
+	$dt = new DateTime("@$epoch");
+	return $dt;
+} ?>
 
 <?php function time_elapsed($date) {
 	$now = new DateTime;
