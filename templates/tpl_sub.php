@@ -25,6 +25,25 @@
   </section>
 <?php } ?>
 
+<?php function draw_subscribersAside($username) { ?>
+  <link rel="stylesheet" href="../css/story.css">
+
+  <aside id="subscriptions">
+      <h3> User's Subscribed Channels: </h3>
+      
+      <?php 
+      $subscribedChannelsNames = getSubscribedChannels($username);
+
+      if(empty($subscribedChannelsNames)) { ?>
+        <p> User has not subscribed to a channel ..</p>
+      <?php } else {
+        foreach( $subscribedChannelsNames as $channelName) { ?>
+          <p><a onclick="window.location.href='../pages/channel.php?name=<?=$channelName['channel']?>'"><?=$channelName['channel']?></a></p>
+        <?php }
+      } ?>
+  </aside>
+<?php } ?>
+
 <?php function draw_topsubs($channellist, $numsubs, $channelid) { ?>
     <link rel="stylesheet" href="../css/top_subs.css">
 

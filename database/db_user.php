@@ -9,4 +9,13 @@
         
         return $stmt->fetch()?true:false; // return true if a line exists
     }
+
+    function getUserPublicInfo($username) {
+        $db = Database::instance()->db();
+
+        $stmt = $db->prepare('SELECT points, created FROM Utilizer WHERE username = ?');
+        $stmt->execute(array($username));
+        
+        return $stmt->fetchAll();
+    }
 ?>

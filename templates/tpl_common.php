@@ -42,6 +42,19 @@
 
 <?php } ?>
 
+<?php function draw_user_info($username, $created, $points) { ?>
+	<?php $data = convert_epoch($created) ?>
+	
+	<link rel="stylesheet" href="../css/story.css">
+
+	<section id="storyText">
+		<h1>The user is: <?=$username?></h1>
+		<p>Account created in: <?=$data->format('Y-m-d')?></p>
+		<p>Points: <?=$points?></p>
+	</section>
+
+<?php } ?>
+
 <?php function convert_epoch($epoch) {
 	$dt = new DateTime("@$epoch");
 	return $dt;

@@ -6,6 +6,13 @@
     padding: 1em;
 }
 
+aside {
+    background-color: white;
+    border-radius: 5px;
+    margin:1em;
+    width:15em;
+}
+
 #storyText > h1 {
     text-align: left;
     font-size: 30px;

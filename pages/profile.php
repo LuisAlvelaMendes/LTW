@@ -1,29 +1,21 @@
 <?php 
     include_once('../includes/session.php');
     include_once('../templates/tpl_common.php');
-?>
+    include_once('../templates/tpl_sub.php');
+    include_once('../database/db_user.php');
 
+    if(!isset($_SESSION['username'])) {
+        draw_header(null, 'NOT REDDIT');
+    } else {
+        draw_header($_SESSION['username'], 'NOT REDDIT');
+    }
 
-<!DOCTYPE html>
-<html lang="en-US">
-    <head>
-        <title>Lorem ipsum dolor sit amet</title>
-        <meta charset="utf-8">
-    </head>
-    
-    <?php if(!isset($_SESSION['username'])) {
-		draw_header(null, 'NOT REDDIT');
-	} else {
-		draw_header($_SESSION['username'], 'NOT REDDIT');
-	} ?>
-    
-    <aside id="subscriptions">
-        <!--lista de subs do usr se nao estiver logged alargar o espaço das story -->
-    </aside>
-   
-    <section id="profile_info">
-        <span class="user"></span>
-    </section>
+    $usernameOfProfile = $_GET['name'];
+    $userInfo = getUserPublicInfo($usernameOfProfile);
 
-     <?php draw_footer() ?>
-</html>
+    draw_subscribersAside($usernameOfProfile);
+
+    draw_user_info($usernameOfProfile, $userInfo[0]['created'], $userInfo[0]['points']);
+
+    draw_footer();
+?> 
