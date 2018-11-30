@@ -12,7 +12,7 @@
 		draw_header(null, $channel);
 	} else {
 		draw_header($_SESSION['username'], $channel);
-		draw_storyInput($channel);
+		draw_addStory($channel);
 	}
 
 	$stories=getStoriesFromChannel($channel);

@@ -1,4 +1,6 @@
-<?php include_once('tpl_sub.php') ?>
+<?php include_once('tpl_sub.php');
+	include_once('tpl_story.php');
+?>
 
 <?php function draw_header($username, $channel) { ?>
 	<!DOCTYPE html>
@@ -117,11 +119,15 @@
 	</section>
 <?php } ?>
 
-<?php function draw_comments_section($comments, $channel) { ?>
+<?php function draw_comments_section($comments, $channel, $storyId) { ?>
 	<link rel="stylesheet" href="../css/story.css">
 
 	<h3 id="comments"> Comment Section: </h3>
 	
+	<?php if(isset($_SESSION['username'])) {
+		draw_addComment($storyId);
+	} ?>
+
 	<section>
 		<?php for($i=0; $i < sizeof($comments); $i++) { ?>
 				<p id="usrComment"><?=$comments[$i]['text']?></p>

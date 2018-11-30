@@ -19,7 +19,7 @@
 
 	draw_story_text($storyMainInfo[0]['title'], $storyMainInfo[0]['fulltext']);
 	draw_info_bar($storyMainInfo[0]['author'], false, $storyMainInfo[0]['published']);
-	draw_comments_section($storyComments, $storyMainInfo[0]['channel']);
+	draw_comments_section($storyComments, $storyMainInfo[0]['channel'], $storyId);
     
 	draw_footer();
 ?>

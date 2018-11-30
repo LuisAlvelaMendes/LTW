@@ -22,7 +22,7 @@
 	<?php draw_info_bar($story['author'], $channel, $story['published']) ?>
 <?php } ?>
 
-<?php function draw_storyInput($channel) { ?>
+<?php function draw_addStory($channel) { ?>
 	<form action='../actions/action_addStory.php' method='post'>
 		<label for='title'>Title</label>
 		<input type='text' placeholder='Enter the Story Title' name='title' required>
