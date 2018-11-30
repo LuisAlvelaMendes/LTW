@@ -119,7 +119,7 @@
 	</section>
 <?php } ?>
 
-<?php function draw_comments_section($comments, $channel, $storyId) { ?>
+<?php function draw_comments_section($comments, $storyId) { ?>
 	<link rel="stylesheet" href="../css/story.css">
 
 	<h3 id="comments"> Comment Section: </h3>
@@ -131,7 +131,7 @@
 	<section>
 		<?php for($i=0; $i < sizeof($comments); $i++) { ?>
 				<p id="usrComment"><?=$comments[$i]['text']?></p>
-				<?php draw_info_bar($comments[$i]['username'], $channel, $comments[$i]['published']); ?>
+				<?php draw_info_bar($comments[$i]['username'], null, $comments[$i]['published']); ?>
 		<?php } ?>
 	</section>
 <?php } ?>
