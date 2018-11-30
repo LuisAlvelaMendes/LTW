@@ -20,6 +20,8 @@
 
 	draw_topsubs($channellist, $numsubs, $channelid);
 
+	draw_createChannel();
+
 	$mostRecent = getMostRecentStoryFromChannel('Portugal');
 	draw_storyCard($mostRecent[0], true);
 

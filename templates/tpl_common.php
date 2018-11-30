@@ -101,6 +101,15 @@
 	return $string ? implode(', ', $string) . '' : 'just now';
 } ?>
 
+
+<?php function draw_createChannel() { ?>
+	<form action='../actions/action_createChannel.php' method='post'>
+		<label for='title'>Channel</label>
+		<input type='text' placeholder='Enter the channel name' name='name' required>
+		<button type='submit'>Create Channel</button>
+	</form>
+<?php } ?>
+
 <?php function draw_info_bar($username, $channel, $date) { ?>
 	<section id = "info_bar">
 		<div id="start">
