@@ -33,3 +33,12 @@
 		<button type='submit'>Submit</button>
 	</form>
 <?php } ?>
+
+<?php function draw_addComment($story) { ?>
+	<form action='../actions/action_addComment.php' method='post'>
+		<textarea name = 'text' placeholder='Enter your comment' rows='4' column='50'></textarea>
+		
+		<input type='hidden' name='story' value="<?=$story?>">
+		<button type='submit'>Add</button>
+	</form>
+<?php } ?>

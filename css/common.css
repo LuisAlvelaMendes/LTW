@@ -20,6 +20,8 @@ body > header #title {
 	padding-top: 1em;
 	padding-left: 1em;
 
+	text-decoration: none;
+	color: white;
 	font-size: 30px;
 	font-weight: bold;
 
