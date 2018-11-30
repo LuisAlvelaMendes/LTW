@@ -45,8 +45,8 @@
 	<link rel="stylesheet" href="../css/story.css">
 
 	<section id="storyText">
-		<h1><?=$story_title?></h1>
-		<p><?=$fulltext?></p>
+		<h1><?=htmlspecialchars($story_title)?></h1>
+		<p><?=htmlspecialchars($fulltext)?></p>
 	</section>
 
 <?php } ?>
