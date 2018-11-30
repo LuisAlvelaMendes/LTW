@@ -31,8 +31,9 @@
     function addUser($username, $password) {
         $db = Database::instance()->db();
 
-        $stmt = $db->prepare('INSERT INTO utilizer (username, password, created) VALUES (?, ?, 1)');
-        $stmt->execute(array($username, sha1($password)));
+        $stmt = $db->prepare('INSERT INTO utilizer (username, password, created) VALUES (?, ?, ?)');
+        $stmt->execute(array($username, sha1($password), time()));
+
     }
 
 ?>
