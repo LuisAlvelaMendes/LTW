@@ -43,6 +43,10 @@ body > header > #signup > a:first-child {
  border-right: 1px solid white;
 }
 
+body > header > #signup > #profile {
+	cursor: pointer;
+}
+
 body > header > #signup > a {
  padding: 0 1em;
  color: white;

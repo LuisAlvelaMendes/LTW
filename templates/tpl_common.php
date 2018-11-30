@@ -19,7 +19,7 @@
 
 				<?php if($username != NULL) { ?>
 					<nav id="signup">
-						<a id="profile" onclick="window.location.href='../pages/profile.php?name=<?=$username?>'"><?= $username ?></li></a>
+						<a id="profile" onclick="window.location.href='../pages/profile.php?name=<?=$username?>'"><?= $username ?></a>
 						<a href="../actions/action_logout.php">Logout</a>
 						<?php draw_subscriberList() ?>
 					</nav>
@@ -89,7 +89,7 @@
 
 	foreach ($string as $k => &$v) {
 		if ($diff->$k) {
-			$v = $diff->$k . '' . $v . ($diff->$k > 1 ? 's' : '');
+			$v = $diff->$k . '' . $v . ($diff->$k > 1 ? '' : '');
 		} else {
 			unset($string[$k]);
 		}

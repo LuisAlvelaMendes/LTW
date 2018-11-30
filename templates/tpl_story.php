@@ -20,3 +20,16 @@
 	
 	<?php draw_info_bar($story['author'], $channel, $story['published']) ?>
 <?php } ?>
+
+<?php function draw_storyInput($channel) { ?>
+	<form action='../actions/action_addStory.php' method='post'>
+		<label for='title'>Title</label>
+		<input type='text' placeholder='Enter the Story Title' name='title' required>
+		
+		<textarea name='fulltext' placeholder='Enter your story text' rows='4' column='50' required></textarea>
+		
+		<input type="hidden" name="channel" value="<?=$channel?>">
+
+		<button type='submit'>Submit</button>
+	</form>
+<?php } ?>
