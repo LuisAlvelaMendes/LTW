@@ -20,6 +20,8 @@ body > header #title {
 	padding-top: 1em;
 	padding-left: 1em;
 
+	text-decoration: none;
+	color: white;
 	font-size: 30px;
 	font-weight: bold;
 
@@ -41,6 +43,10 @@ body > header #signup {
 
 body > header > #signup > a:first-child {
  border-right: 1px solid white;
+}
+
+body > header > #signup > #profile {
+	cursor: pointer;
 }
 
 body > header > #signup > a {
