@@ -33,4 +33,13 @@
 
 		return $correspondingStory;
 	}
+
+	function addComment($storyId, $text){
+		$db = Database::instance()->db();
+
+		$stmt = $db->prepare('INSERT INTO comment (story_id, parent_comment, username, published, text) VALUES (?, null, ?, ?, ?)');
+		$stmt->execute(array($storyId, $_SESSION['username'], time(), $text));
+
+		
+	}
 ?>

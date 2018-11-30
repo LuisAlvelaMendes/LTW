@@ -130,7 +130,7 @@
 
 	<section>
 		<?php for($i=0; $i < sizeof($comments); $i++) { ?>
-				<p id="usrComment"><?=$comments[$i]['text']?></p>
+				<p id="usrComment"><?=htmlspecialchars($comments[$i]['text'])?></p>
 				<?php draw_info_bar($comments[$i]['username'], null, $comments[$i]['published']); ?>
 		<?php } ?>
 	</section>
