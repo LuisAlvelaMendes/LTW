@@ -3,7 +3,7 @@
     include_once('../database/db_changePass.php');
     include_once('../database/db_user.php');
 
-    $username = $_POST['username'];
+    $username = $_SESSION['username'];
     $oldpassword = $_POST['oldpassword'];
     $newpassword = $_POST['newpassword'];
 

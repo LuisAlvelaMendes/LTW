@@ -11,8 +11,6 @@
 
 	<section id="edit">
 		<form action="../actions/action_edit.php" method="post">
-			<label for="username">Username</label>
-			<input type="text" placeholder="Enter Username" name="username" required autofocus>
 		
             <label for="oldpassword">Old Password</label>
 			<input type="password" placeholder="Enter Old Password" name="oldpassword" required>
