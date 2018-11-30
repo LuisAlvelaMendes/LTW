@@ -64,9 +64,6 @@
 
 <?php } ?>
 
-<?php function convert_epoch($epoch) {
-	$dt = new DateTime("@$epoch");
-	return $dt;
 <?php function time_elapsed($date) {
 	$now = new DateTime;
 	$ago = new DateTime($date);
