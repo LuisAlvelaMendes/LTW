@@ -101,12 +101,11 @@
 	return $string ? implode(', ', $string) . '' : 'just now';
 } ?>
 
-
 <?php function draw_createChannel() { ?>
+	<link rel="stylesheet" href="../css/channel.css">
 	<form action='../actions/action_createChannel.php' method='post'>
-		<label for='title'>Channel</label>
-		<input type='text' placeholder='Enter the channel name' name='name' required>
-		<button type='submit'>Create Channel</button>
+		<input id="createChannelText" type='text' placeholder='Enter the channel name' name='name' required>
+		<button id="createChannelButton" type='submit'>Create Channel</button>
 	</form>
 <?php } ?>
 
@@ -116,7 +115,7 @@
 
 		<input type="hidden" name="channel" value="<?=$channel?>">
 
-		<button class="subscription" type='Subscribe'>Subscribe</button>
+		<button class="subscription" type='submit'>Subscribe</button>
 	</form>
 <?php } ?>
 
@@ -126,7 +125,7 @@
 
 		<input type="hidden" name="channel" value="<?=$channel?>">
 
-		<button class="subscription" type='Unsubscribe'>Unsubscribe</button>
+		<button class="subscription" type='submit'>Unsubscribe</button>
 	</form>
 <?php } ?>
 

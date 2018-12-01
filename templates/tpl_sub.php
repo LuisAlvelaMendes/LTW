@@ -34,7 +34,7 @@
       $subscribedChannelsNames = getSubscribedChannels($username);
 
       if(empty($subscribedChannelsNames)) { ?>
-        <p> User has not subscribed to a channel ..</p>
+        <p> User has not subscribed to any channel .</p>
       <?php } else {
         foreach( $subscribedChannelsNames as $channelName) { ?>
           <p><a onclick="window.location.href='../pages/channel.php?name=<?=$channelName['channel']?>'"><?=$channelName['channel']?></a></p>

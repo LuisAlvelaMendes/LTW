@@ -6,8 +6,8 @@
     $name = $_POST['name'];
 
     // Don't allow certain characters
-    if ( !preg_match ("/^[a-zA-Z0-9]+$/", $username)) {
-        $_SESSION['messages'][] = array('type' => 'error', 'content' => 'Channels can only contain letters and numbers!');
+    if ( !preg_match ("/^[a-z A-Z0-9]+$/", $name)) {
+        $_SESSION['messages'][] = array('type' => 'error', 'content' => 'Channels names can only contain letters, numbers or spaces!');
         die(header('Location: ../pages/homepage.php'));
     }
 
