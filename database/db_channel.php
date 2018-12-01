@@ -19,6 +19,30 @@
 
 	}
 
+	function subscribeChannel($channel) {		
+		$db = Database::instance()->db();
+
+		$stmt = $db->prepare('INSERT INTO UserSubscriptions VALUES (?, ?)');
+		$stmt->execute(array($_SESSION['username'], $channel));
+	}
+
+	function unsubscribeChannel($channel) {		
+		$db = Database::instance()->db();
+
+		$stmt = $db->prepare('DELETE FROM UserSubscriptions WHERE username = ? AND channel = ?');
+		$stmt->execute(array($_SESSION['username'], $channel));
+	}
+
+	function channelSubscribed($channel) {
+		$db = Database::instance()->db();
+
+		$stmt = $db->prepare('SELECT * FROM UserSubscriptions WHERE username = ? AND channel = ?');
+		$stmt->execute(array($_SESSION['username'], $channel));
+
+		return $stmt->fetch()?true:false; // return true if user subscribed to channel
+
+	}
+
 	function getSubscribedChannels($username){
 		$db = Database::instance()->db();
 

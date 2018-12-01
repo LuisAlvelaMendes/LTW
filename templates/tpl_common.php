@@ -110,6 +110,24 @@
 	</form>
 <?php } ?>
 
+<?php function draw_subscribeButton($channel) { ?>
+	<form action='../actions/action_subscribeChannel.php' method='post'>
+
+		<input type="hidden" name="channel" value="<?=$channel?>">
+
+		<button type='Subscribe'>Subscribe</button>
+	</form>
+<?php } ?>
+
+<?php function draw_unsubscribeButton($channel) { ?>
+	<form action='../actions/action_unsubscribeChannel.php' method='post'>
+
+		<input type="hidden" name="channel" value="<?=$channel?>">
+
+		<button type='Unsubscribe'>Unsubscribe</button>
+	</form>
+<?php } ?>
+
 <?php function draw_info_bar($username, $channel, $date) { ?>
 	<section id = "info_bar">
 		<div id="start">
