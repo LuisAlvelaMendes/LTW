@@ -14,13 +14,13 @@
 
 	if(!isset($_SESSION['username'])) {
 		draw_header(null, 'NOT REDDIT');
+		draw_topsubs($channellist, $numsubs, $channelid);
 	} else {
 		draw_header($_SESSION['username'], 'NOT REDDIT');
+		draw_topsubs($channellist, $numsubs, $channelid);
+		draw_createChannel();
 	}
 
-	draw_topsubs($channellist, $numsubs, $channelid);
-
-	draw_createChannel();
 
 	$mostRecent = getMostRecentStoryFromChannel('Portugal');
 	draw_storyCard($mostRecent[0], true);

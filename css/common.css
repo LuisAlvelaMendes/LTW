@@ -127,6 +127,55 @@ body > #messages .success {
 	display:inline;
 	padding-right: 0.5em;
 }
+.button {
+    position: relative;
+    background-color: #f95d34;
+    border: none;
+    color: white;
+    padding: 18px 34px;
+    font-size: 18px;
+    
+}
+
+.button:hover
+{
+    background-color: #f81109;
+}
+
+#subscribe, #unsubscribe {
+    left: 1070px;
+    top: -20px;
+}
+
+#createStory {
+    left: 870px;
+    top: 36.5px;
+}
+
+#createChannelText{
+    position: relative;
+    top: 9px;
+    left: 800px;
+    font-size: 14px;  
+    padding: 12px 24px;
+}
+
+#createChannelButton{
+    position: relative;
+    top: 10px;
+    left: 810px;
+    background-color: #f95d34;
+    border: none;
+    color: white;
+    padding: 16px 34px;
+    font-size: 18px;  
+    margin-bottom: 10px;
+}
+
+#createChannelButton:hover
+{
+    background-color: #f81109;
+}
 
 footer {
 	padding: 0.2em;

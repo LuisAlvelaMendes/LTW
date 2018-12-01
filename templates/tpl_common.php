@@ -110,22 +110,22 @@
 <?php } ?>
 
 <?php function draw_subscribeButton($channel) { ?>
-	<link rel="stylesheet" href="../css/channel.css">
+	<link rel="stylesheet" href="../css/common.css">
 	<form action='../actions/action_subscribeChannel.php' method='post'>
 
 		<input type="hidden" name="channel" value="<?=$channel?>">
 
-		<button class="subscription" type='submit'>Subscribe</button>
+		<button id = "subscribe" class = "button" type='submit'>Subscribe</button>
 	</form>
 <?php } ?>
 
 <?php function draw_unsubscribeButton($channel) { ?>
-	<link rel="stylesheet" href="../css/channel.css">
+	<link rel="stylesheet" href="../css/common.css">
 	<form action='../actions/action_unsubscribeChannel.php' method='post'>
 
 		<input type="hidden" name="channel" value="<?=$channel?>">
 
-		<button class="subscription" type='submit'>Unsubscribe</button>
+		<button id = "unsubscribe" class = "button" type='submit'>Unsubscribe</button>
 	</form>
 <?php } ?>
 

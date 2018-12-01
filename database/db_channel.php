@@ -60,6 +60,5 @@
 
 		$stmt = $db->prepare('INSERT INTO story (title, published, channel, author, fulltext) VALUES (?, ?, ?, ?, ?)');
 		$stmt->execute(array($title, time(), $channel, $_SESSION['username'], $fulltext));
-
 	}
 ?>

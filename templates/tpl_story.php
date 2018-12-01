@@ -22,17 +22,23 @@
 	<?php draw_info_bar($story['author'], $channel, $story['published']) ?>
 <?php } ?>
 
-<?php function draw_addStory($channel) { ?>
-	<form action='../actions/action_addStory.php' method='post'>
-		<label for='title'>Title</label>
-		<input type='text' placeholder='Enter the Story Title' name='title' required>
-		
+<?php function draw_addStory($channel) { ?>		
+	<input type="hidden" name="channel" value="<?=$channel?>">
+
+	<button id = "createStory" class = "button" onclick="window.location.href='../pages/create_story.php?name=<?=$channel?>'">Create Story</button>
+<?php } ?>
+
+<?php function draw_textareas($channel) { ?>	
+	<form action='../actions/action_addStory.php' method='post'>	
+		<label id = "create_story_label" for='title'>Title</label>
+		<input id = "create_story_title" type='text' placeholder='Enter the Story Title' name='title' required>
 		<textarea name='fulltext' placeholder='Enter your story text' rows='4' column='50' required></textarea>
-		
+
 		<input type="hidden" name="channel" value="<?=$channel?>">
 
-		<button type='submit'>Submit</button>
+		<button type='submit' class = "button">Submit</button>
 	</form>
+
 <?php } ?>
 
 <?php function draw_addComment($story) { ?>
