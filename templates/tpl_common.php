@@ -111,20 +111,22 @@
 <?php } ?>
 
 <?php function draw_subscribeButton($channel) { ?>
+	<link rel="stylesheet" href="../css/channel.css">
 	<form action='../actions/action_subscribeChannel.php' method='post'>
 
 		<input type="hidden" name="channel" value="<?=$channel?>">
 
-		<button type='Subscribe'>Subscribe</button>
+		<button class="subscription" type='Subscribe'>Subscribe</button>
 	</form>
 <?php } ?>
 
 <?php function draw_unsubscribeButton($channel) { ?>
+	<link rel="stylesheet" href="../css/channel.css">
 	<form action='../actions/action_unsubscribeChannel.php' method='post'>
 
 		<input type="hidden" name="channel" value="<?=$channel?>">
 
-		<button type='Unsubscribe'>Unsubscribe</button>
+		<button class="subscription" type='Unsubscribe'>Unsubscribe</button>
 	</form>
 <?php } ?>
 

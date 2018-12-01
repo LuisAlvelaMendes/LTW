@@ -20,9 +20,7 @@
 			draw_unsubscribeButton($channel);
 		else
 			draw_subscribeButton($channel);
-	}
-
-	
+	}	
 
 	$stories=getStoriesFromChannel($channel);
 

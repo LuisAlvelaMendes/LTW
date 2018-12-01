@@ -36,10 +36,11 @@
 <?php } ?>
 
 <?php function draw_addComment($story) { ?>
+	<link rel="stylesheet" href="../css/storyCard.css">
+
 	<form action='../actions/action_addComment.php' method='post'>
-		<textarea name = 'text' placeholder='Enter your comment' rows='4' column='50'></textarea>
-		
+		<textarea name = 'text' placeholder='Enter your comment'></textarea>
 		<input type='hidden' name='story' value="<?=$story?>">
-		<button type='submit'>Add</button>
+		<button type='submit'>Submit</button>
 	</form>
 <?php } ?>
