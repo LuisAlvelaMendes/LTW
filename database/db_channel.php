@@ -40,7 +40,6 @@
 		$stmt->execute(array($_SESSION['username'], $channel));
 
 		return $stmt->fetch()?true:false; // return true if user subscribed to channel
-
 	}
 
 	function getSubscribedChannels($username){
@@ -52,6 +51,17 @@
 		$subscribedChannelsNames = $subscribedChannelsQuery->fetchAll();
 
 		return $subscribedChannelsNames;
+	}
+
+	function getAllChannels(){
+		$db = Database::instance()->db();
+
+		$allChannels = $db->prepare('SELECT name FROM Channel');
+				
+		$allChannels->execute();
+		$allChannelNames = $allChannels->fetchAll();
+
+		return $allChannelNames;
 	}
 
 	function addStory($title, $channel, $fulltext)

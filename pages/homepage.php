@@ -21,12 +21,12 @@
 		draw_createChannel();
 	}
 
+	$allChannels = getAllChannels();
 
-	$mostRecent = getMostRecentStoryFromChannel('Portugal');
-	draw_storyCard($mostRecent[0], true);
-
-	$mostRecent = getMostRecentStoryFromChannel('Lorem Ipsum');
-	draw_storyCard($mostRecent[0], true);
+	foreach($allChannels as $channel){
+		$mostRecent = getMostRecentStoryFromChannel($channel['name']);
+		draw_storyCard($mostRecent[0], true);
+	}
 
 	draw_footer();
 ?>
