@@ -44,20 +44,21 @@
 		$db = Database::instance()->db();
 
 		$stmt = $db->prepare('SELECT type FROM StoryVote WHERE story_id = ? AND username = ?');
-		$stmt->execute(array($storyId));
+		$stmt->execute(array($storyId, $username));
 
 		$currentlySavedType = $stmt->fetchAll();
 
 		if(empty($currentlySavedType)){
+			addUsersVote($username, $storyId, $voteType);
 			return false;
 		}
 
 		else {
-			if($currentlySavedType['type'] == $voteType){
+			if($currentlySavedType[0]['type'] == $voteType){
 				return true;
 			}
 
-			if($currentlySavedType['type'] != $voteType){
+			if($currentlySavedType[0]['type'] != $voteType){
 				changeUsersVote($voteType, $storyId, $username);
 				return false;
 			}
@@ -67,21 +68,27 @@
 	function changeUsersVote($voteType, $storyId, $username){
 		$db = Database::instance()->db();
 		$stmt = $db->prepare('UPDATE StoryVote SET type = ? WHERE story_id = ? AND username = ?');
-		$stmt->execute();
+		$stmt->execute(array($voteType, $storyId, $username));
+	}
+
+	function addUsersVote($username, $storyId, $voteType){
+		$db = Database::instance()->db();
+		$stmt = $db->prepare('INSERT INTO StoryVote VALUES(?, ?, ?)');
+		$stmt->execute(array($username, $storyId, $voteType));
 	}
 
 	function voteStory($storyId, $type){
 
 		$db = Database::instance()->db();
 
-		if($type == "up"){
+		if($type == "1"){
 			$stmt = $db->prepare('UPDATE Story SET points = points + 1 WHERE id = ?');
-			$stmt->execute();
+			$stmt->execute(array($storyId));
 		}
 
-		if($type == "down"){
+		if($type == "0"){
 			$stmt = $db->prepare('UPDATE Story SET points = points - 1 WHERE id = ?');
-			$stmt->execute();
+			$stmt->execute(array($storyId));
 		}
 	}
 

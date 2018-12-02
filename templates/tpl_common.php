@@ -136,7 +136,7 @@
 
 			<form id="uparrow" action='../actions/action_voteStory.php' method='post'>
 				<input type="image" src="https://dummyimage.com/20x20/524f52/d12222&text=ʌ">
-				<input type="hidden" name="type" value="up">
+				<input type="hidden" name="type" value="1">
 				<input type="hidden" name="story" value="<?=$storyId?>">
 				<input type="hidden" name="username" value="<?=$_SESSION['username']?>">
 			</form>
@@ -145,7 +145,7 @@
 				<input type="image" src="https://dummyimage.com/20x20/524f52/d12222&text=v">
 				<input type="hidden" name="story" value="<?=$storyId?>">
 				<input type="hidden" name="username" value="<?=$_SESSION['username']?>">
-				<input type="hidden" name="type" value="down">
+				<input type="hidden" name="type" value="0">
 			</form>
 
 			<h6 id="points"> Points: <?=$points?> </h6>
@@ -162,22 +162,24 @@
 	</section>
 <?php } ?>
 
-<?php function draw_info_bar_comment($commentId, $username, $channel, $date, $points) { ?>
+<?php function draw_info_bar_comment($storyId, $commentId, $username, $channel, $date, $points) { ?>
 	<section id = "info_bar">
 		<div id="start">
 
 			<form id="uparrow" action='../actions/action_voteComment.php' method='post'>
 				<input type="image" src="https://dummyimage.com/20x20/524f52/d12222&text=ʌ">
 				<input type="hidden" name="story" value="<?=$storyId?>">
-				<input type="hidden" name="type" value="up">
+				<input type="hidden" name="type" value="1">
 				<input type="hidden" name="username" value="<?=$_SESSION['username']?>">
+				<input type="hidden" name="comment" value="<?=$commentId?>">
 			</form>
 
 			<form id="downarrow" action='../actions/action_voteComment.php' method='post'>
 				<input type="image" src="https://dummyimage.com/20x20/524f52/d12222&text=v">
 				<input type="hidden" name="story" value="<?=$storyId?>">
 				<input type="hidden" name="username" value="<?=$_SESSION['username']?>">
-				<input type="hidden" name="type" value="down">
+				<input type="hidden" name="type" value="0">
+				<input type="hidden" name="comment" value="<?=$commentId?>">
 			</form>
 			
 			<h6 id="points"> Points: <?=$points?> </h6>
@@ -206,7 +208,7 @@
 	<section>
 		<?php for($i=0; $i < sizeof($comments); $i++) { ?>
 				<p id="usrComment"><?=htmlspecialchars($comments[$i]['text'])?></p>
-				<?php draw_info_bar_comment($comments[$i]['id'], $comments[$i]['username'], null, $comments[$i]['published'], $comments[$i]['points']); ?>
+				<?php draw_info_bar_comment($storyId, $comments[$i]['id'], $comments[$i]['username'], null, $comments[$i]['published'], $comments[$i]['points']); ?>
 		<?php } ?>
 	</section>
 <?php } ?>

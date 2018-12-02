@@ -12,4 +12,6 @@ if(!checkIfStoryWasVotedOnByUser($story, $username, $voteType)){
     header("Location: ../pages/story.php?id=$story");
 }
 
+header("Location: ../pages/story.php?id=$story");
+
 ?>
