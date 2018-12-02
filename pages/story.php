@@ -18,7 +18,7 @@
   	}
 
 	draw_story_text($storyMainInfo[0]['title'], $storyMainInfo[0]['fulltext']);
-	draw_info_bar($storyMainInfo[0]['author'], false, $storyMainInfo[0]['published']);
+	draw_info_bar_story($storyId, $storyMainInfo[0]['author'], false, $storyMainInfo[0]['published'], $storyMainInfo[0]['points']);
 	draw_comments_section($storyComments, $storyId);
     
 	draw_footer();

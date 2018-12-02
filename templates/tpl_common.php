@@ -1,4 +1,5 @@
-<?php include_once('tpl_sub.php');
+<?php 
+	include_once('tpl_sub.php');
 	include_once('tpl_story.php');
 ?>
 
@@ -129,11 +130,57 @@
 	</form>
 <?php } ?>
 
-<?php function draw_info_bar($username, $channel, $date) { ?>
+<?php function draw_info_bar_story($storyId, $username, $channel, $date, $points) { ?>
 	<section id = "info_bar">
 		<div id="start">
-			<img src="https://dummyimage.com/20x20/524f52/d12222&text=ʌ" alt="upvote">
-			<img src="https://dummyimage.com/20x20/524f52/d12222&text=v" alt="downvote">
+
+			<form id="uparrow" action='../actions/action_voteStory.php' method='post'>
+				<input type="image" src="https://dummyimage.com/20x20/524f52/d12222&text=ʌ">
+				<input type="hidden" name="type" value="up">
+				<input type="hidden" name="story" value="<?=$storyId?>">
+				<input type="hidden" name="username" value="<?=$_SESSION['username']?>">
+			</form>
+
+			<form id="downarrow" action='../actions/action_voteStory.php' method='post'>
+				<input type="image" src="https://dummyimage.com/20x20/524f52/d12222&text=v">
+				<input type="hidden" name="story" value="<?=$storyId?>">
+				<input type="hidden" name="username" value="<?=$_SESSION['username']?>">
+				<input type="hidden" name="type" value="down">
+			</form>
+
+			<h6 id="points"> Points: <?=$points?> </h6>
+		</div>
+		
+		<div id="middle">
+			<h6 id="date"><?=time_elapsed('@' . $date)?></h6>
+			<a id="channel" onclick="window.location.href='../pages/channel.php?name=<?=$channel?>'"><?=$channel?></a>
+		</div>
+
+		<div id="end">
+			<a id="profile" onclick="window.location.href='../pages/profile.php?name=<?=$username?>'"><?=$username?></a>
+		</div>
+	</section>
+<?php } ?>
+
+<?php function draw_info_bar_comment($commentId, $username, $channel, $date, $points) { ?>
+	<section id = "info_bar">
+		<div id="start">
+
+			<form id="uparrow" action='../actions/action_voteComment.php' method='post'>
+				<input type="image" src="https://dummyimage.com/20x20/524f52/d12222&text=ʌ">
+				<input type="hidden" name="story" value="<?=$storyId?>">
+				<input type="hidden" name="type" value="up">
+				<input type="hidden" name="username" value="<?=$_SESSION['username']?>">
+			</form>
+
+			<form id="downarrow" action='../actions/action_voteComment.php' method='post'>
+				<input type="image" src="https://dummyimage.com/20x20/524f52/d12222&text=v">
+				<input type="hidden" name="story" value="<?=$storyId?>">
+				<input type="hidden" name="username" value="<?=$_SESSION['username']?>">
+				<input type="hidden" name="type" value="down">
+			</form>
+			
+			<h6 id="points"> Points: <?=$points?> </h6>
 		</div>
 		
 		<div id="middle">
@@ -159,7 +206,7 @@
 	<section>
 		<?php for($i=0; $i < sizeof($comments); $i++) { ?>
 				<p id="usrComment"><?=htmlspecialchars($comments[$i]['text'])?></p>
-				<?php draw_info_bar($comments[$i]['username'], null, $comments[$i]['published']); ?>
+				<?php draw_info_bar_comment($comments[$i]['id'], $comments[$i]['username'], null, $comments[$i]['published'], $comments[$i]['points']); ?>
 		<?php } ?>
 	</section>
 <?php } ?>

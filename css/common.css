@@ -101,6 +101,21 @@ body > #messages .success {
 	padding-bottom: 0;
 }
 
+#info_bar #uparrow{
+	display: inline;
+}
+
+#info_bar #downarrow{
+	display: inline;
+}
+
+#info_bar #points{
+	color: black;
+	font-size: 15px;
+
+	display: inline;
+}
+
 #info_bar #date {
 	color: black;
 	text-decoration: none;

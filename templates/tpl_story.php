@@ -19,7 +19,7 @@
 		<p>&bull; &bull; &bull;</p>
 	</button>
 	
-	<?php draw_info_bar($story['author'], $channel, $story['published']) ?>
+	<?php draw_info_bar_story($story['id'], $story['author'], $channel, $story['published'], $story['points']) ?>
 <?php } ?>
 
 <?php function draw_addStory($channel) { ?>		
