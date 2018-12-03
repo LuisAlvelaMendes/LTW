@@ -92,7 +92,7 @@
 
 	foreach ($string as $k => &$v) {
 		if ($diff->$k) {
-			$v = $diff->$k . '' . $v . ($diff->$k > 1 ? '' : '');
+			$v = $diff->$k . ' ' . $v;
 		} else {
 			unset($string[$k]);
 		}
@@ -141,6 +141,8 @@
 				<input type="hidden" name="username" value="<?=$_SESSION['username']?>">
 			</form>
 
+			<h6 id="points"><?=$points?></h6>
+
 			<form id="downarrow" action='../actions/action_voteStory.php' method='post'>
 				<input type="image" src="https://dummyimage.com/20x20/524f52/d12222&text=v">
 				<input type="hidden" name="story" value="<?=$storyId?>">
@@ -148,16 +150,15 @@
 				<input type="hidden" name="type" value="0">
 			</form>
 
-			<h6 id="points"> Points: <?=$points?> </h6>
 		</div>
 		
 		<div id="middle">
 			<h6 id="date"><?=time_elapsed('@' . $date)?></h6>
-			<a id="channel" onclick="window.location.href='../pages/channel.php?name=<?=$channel?>'"><?=$channel?></a>
+			<a id="channel" href="../pages/channel.php?name=<?=$channel?>"><?=$channel?></a>
 		</div>
 
 		<div id="end">
-			<a id="profile" onclick="window.location.href='../pages/profile.php?name=<?=$username?>'"><?=$username?></a>
+			<a id="profile" href="../pages/profile.php?name=<?=$username?>"><?=$username?></a>
 		</div>
 	</section>
 <?php } ?>
@@ -165,7 +166,6 @@
 <?php function draw_info_bar_comment($storyId, $commentId, $username, $channel, $date, $points) { ?>
 	<section id = "info_bar">
 		<div id="start">
-
 			<form id="uparrow" action='../actions/action_voteComment.php' method='post'>
 				<input type="image" src="https://dummyimage.com/20x20/524f52/d12222&text=ʌ">
 				<input type="hidden" name="story" value="<?=$storyId?>">
@@ -173,6 +173,8 @@
 				<input type="hidden" name="username" value="<?=$_SESSION['username']?>">
 				<input type="hidden" name="comment" value="<?=$commentId?>">
 			</form>
+			
+			<h6 id="points"><?=$points?></h6>
 
 			<form id="downarrow" action='../actions/action_voteComment.php' method='post'>
 				<input type="image" src="https://dummyimage.com/20x20/524f52/d12222&text=v">
@@ -181,8 +183,6 @@
 				<input type="hidden" name="type" value="0">
 				<input type="hidden" name="comment" value="<?=$commentId?>">
 			</form>
-			
-			<h6 id="points"> Points: <?=$points?> </h6>
 		</div>
 		
 		<div id="middle">
