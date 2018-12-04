@@ -22,7 +22,7 @@
 			draw_subscribeButton($channel);
 	}	
 
-	$stories=getStoriesFromChannel($channel);
+	$stories=getStoriesFromChannelByDate($channel);
 
 	foreach($stories as $story){
 		draw_storyCard($story, false);
