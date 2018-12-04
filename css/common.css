@@ -23,6 +23,7 @@ body > header{
 
 	background-color: var(--panel-color) ;
 	color: white;
+	font-family: Verdana, sans-serif;
 }
 
 body > header #title {
@@ -31,8 +32,7 @@ body > header #title {
 
 	text-decoration: none;
 	color: white;
-	font-size: 30px;
-	font-weight: bold;
+	font-size: 32px;
 
 	grid-column: 1;
 	grid-row: 1;
@@ -42,12 +42,12 @@ body > header #title {
 
 body > header #signup {
 	padding-right: 2em;
-	padding-bottom: 5px; 
+	padding-bottom: 15px; 
 
 	grid-column: 2;
 	grid-row: 2;
 
-	font-size: 18px;
+	font-size: 15px;
 }
 
 body > header > #signup > a:first-child {
@@ -94,11 +94,11 @@ body > #messages .success {
 	display: flex;
 	flex-direction: row;
 	justify-content: space-between;
-	align-content: baseline;
 
-	margin: 2px 0.5em 0em 0.5em;
+	margin: 2px 0.5em 15px 0.5em;
 	padding: 0.3em;
 	padding-bottom: 0;
+	font-family: Arial, sans-serif;
 }
 
 #info_bar #uparrow{
@@ -114,12 +114,13 @@ body > #messages .success {
 	font-size: 15px;
 
 	display: inline;
+	padding-bottom: 15px;
 }
 
 #info_bar #date {
 	color: black;
-	text-decoration: none;
 	font-size: 15px;
+	font-weight: 100;
 
 	display: inline;
 }
@@ -149,11 +150,9 @@ body > #messages .success {
     color: white;
     padding: 18px 34px;
     font-size: 18px;
-    
 }
 
-.button:hover
-{
+.button:hover {
     background-color: #f81109;
 }
 
@@ -175,7 +174,7 @@ body > #messages .success {
     padding: 12px 24px;
 }
 
-#createChannelButton{
+#createChannelButton {
     position: relative;
     top: 10px;
     left: 810px;
@@ -187,8 +186,7 @@ body > #messages .success {
     margin-bottom: 10px;
 }
 
-#createChannelButton:hover
-{
+#createChannelButton:hover {
     background-color: #f81109;
 }
 
@@ -199,4 +197,5 @@ footer {
 
 	background-color: var(--panel-color);
 	color: white;
+	font-family: Verdana, sans-serif;
 }

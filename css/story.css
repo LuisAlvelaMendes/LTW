@@ -9,6 +9,8 @@
 #storyText > h1 {
     text-align: left;
     font-size: 30px;
+    font-weight: 180;
+    font-family: Verdana, sans-serif;
 
     margin-top: 0.6em;
 }
@@ -17,6 +19,7 @@
     text-align: justify;
     font-size: 17px;
     line-height: 25px;
+    font-family: Arial, sans-serif;
 
     margin-left: 0.2em;
     margin-right: 2.5em;
