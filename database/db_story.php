@@ -59,16 +59,16 @@
 			}
 
 			if($currentlySavedType[0]['type'] != $voteType){
-				changeUsersVote($voteType, $storyId, $username);
+				changeUsersVote($storyId, $username);
 				return false;
 			}
 		}
 	}
 
-	function changeUsersVote($voteType, $storyId, $username){
+	function changeUsersVote($storyId, $username){
 		$db = Database::instance()->db();
-		$stmt = $db->prepare('UPDATE StoryVote SET type = ? WHERE story_id = ? AND username = ?');
-		$stmt->execute(array($voteType, $storyId, $username));
+		$stmt = $db->prepare('DELETE FROM StoryVote WHERE story_id = ? AND username = ?');
+		$stmt->execute(array($storyId, $username));
 	}
 
 	function addUsersVote($username, $storyId, $voteType){

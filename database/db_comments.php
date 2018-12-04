@@ -31,16 +31,16 @@
 			}
 
 			if($currentlySavedType[0]['type'] != $voteType){
-				changeUsersVoteComment($voteType, $commentId, $username);
+				changeUsersVoteComment($commentId, $username);
 				return false;
 			}
 		}
 	}
 
-	function changeUsersVoteComment($voteType, $commentId, $username){
+	function changeUsersVoteComment($commentId, $username){
 		$db = Database::instance()->db();
-		$stmt = $db->prepare('UPDATE CommentVote SET type = ? WHERE comment_id = ? AND username = ?');
-		$stmt->execute(array($voteType, $commentId, $username));
+		$stmt = $db->prepare('DELETE FROM CommentVote WHERE comment_id = ? AND username = ?');
+		$stmt->execute(array($commentId, $username));
     }
     
     function addUsersVoteComment($username, $commentId, $voteType){

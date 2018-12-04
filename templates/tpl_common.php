@@ -134,6 +134,7 @@
 	<section id = "info_bar">
 		<div id="start">
 
+		<?php if(isset($_SESSION['username'])){ ?>
 			<form id="uparrow" action='../actions/action_voteStory.php' method='post'>
 				<input type="image" src="https://dummyimage.com/20x20/524f52/d12222&text=ʌ">
 				<input type="hidden" name="type" value="1">
@@ -147,6 +148,7 @@
 				<input type="hidden" name="username" value="<?=$_SESSION['username']?>">
 				<input type="hidden" name="type" value="0">
 			</form>
+		<?php } ?>
 
 			<h6 id="points"> Points: <?=$points?> </h6>
 		</div>
@@ -166,6 +168,7 @@
 	<section id = "info_bar">
 		<div id="start">
 
+		<?php if(isset($_SESSION['username'])){ ?>
 			<form id="uparrow" action='../actions/action_voteComment.php' method='post'>
 				<input type="image" src="https://dummyimage.com/20x20/524f52/d12222&text=ʌ">
 				<input type="hidden" name="story" value="<?=$storyId?>">
@@ -181,6 +184,7 @@
 				<input type="hidden" name="type" value="0">
 				<input type="hidden" name="comment" value="<?=$commentId?>">
 			</form>
+		<?php } ?>
 			
 			<h6 id="points"> Points: <?=$points?> </h6>
 		</div>
