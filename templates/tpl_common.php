@@ -188,8 +188,7 @@
 				<input type="hidden" name="comment" value="<?=$commentId?>">
 			</form>
 		<?php } ?>
-			
-			<h6 id="points"> Points: <?=$points?> </h6>
+
 		</div>
 		
 		<div id="middle">
@@ -214,8 +213,8 @@
 
 	<section>
 		<?php for($i=0; $i < sizeof($comments); $i++) { ?>
-				<p id="usrComment"><?=htmlspecialchars($comments[$i]['text'])?></p>
-				<?php draw_info_bar_comment($storyId, $comments[$i]['id'], $comments[$i]['username'], null, $comments[$i]['published'], $comments[$i]['points']); ?>
+			<p id="usrComment"><?=htmlspecialchars($comments[$i]['text'])?></p>
+			<?php draw_info_bar_comment($storyId, $comments[$i]['id'], $comments[$i]['username'], null, $comments[$i]['published'], $comments[$i]['points']); ?>
 		<?php } ?>
 	</section>
 <?php } ?>
