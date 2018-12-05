@@ -155,7 +155,7 @@
 		</div>
 		
 		<div id="middle">
-			<h6 id="date"><?=time_elapsed('@' . $date)?></h6>
+			
 			<a id="channel" href="../pages/channel.php?name=<?=$channel?>"><?=$channel?></a>
 		</div>
 
@@ -192,30 +192,13 @@
 		</div>
 		
 		<div id="middle">
-			<h6 id="date"><?=time_elapsed('@' . $date)?></h6>
+			
 			<a id="channel" onclick="window.location.href='../pages/channel.php?name=<?=$channel?>'"><?=$channel?></a>
 		</div>
 
 		<div id="end">
 			<a id="profile" onclick="window.location.href='../pages/profile.php?name=<?=$username?>'"><?=$username?></a>
 		</div>
-	</section>
-<?php } ?>
-
-<?php function draw_comments_section($comments, $storyId) { ?>
-	<link rel="stylesheet" href="../css/story.css">
-
-	<h3 id="comments"> Comment Section: </h3>
-	
-	<?php if(isset($_SESSION['username'])) {
-		draw_addComment($storyId);
-	} ?>
-
-	<section>
-		<?php for($i=0; $i < sizeof($comments); $i++) { ?>
-			<p id="usrComment"><?=htmlspecialchars($comments[$i]['text'])?></p>
-			<?php draw_info_bar_comment($storyId, $comments[$i]['id'], $comments[$i]['username'], null, $comments[$i]['published'], $comments[$i]['points']); ?>
-		<?php } ?>
 	</section>
 <?php } ?>
 

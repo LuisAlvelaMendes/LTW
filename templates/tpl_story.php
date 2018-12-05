@@ -1,4 +1,6 @@
 <?php 
+	include_once('../includes/session.php');
+
 	include_once('../templates/tpl_common.php');
 	include_once('../database/db_story.php');
 ?>
@@ -22,13 +24,13 @@
 	<?php draw_info_bar_story($story['id'], $story['author'], $channel, $story['published'], $story['points']) ?>
 <?php } ?>
 
-<?php function draw_addStory($channel) { ?>		
+<?php function draw_addStory($channel) { ?>
 	<input type="hidden" name="channel" value="<?=$channel?>">
 
 	<button id = "createStory" class = "button" onclick="window.location.href='../pages/create_story.php?name=<?=$channel?>'">Create Story</button>
 <?php } ?>
 
-<?php function draw_textareas($channel) { ?>	
+<?php function draw_textareas($channel) { ?>
 	<form action='../actions/action_addStory.php' method='post'>	
 		<label id = "create_story_label" for='title'>Title</label>
 		<input id = "create_story_title" type='text' placeholder='Enter the Story Title' name='title' required>
@@ -41,12 +43,27 @@
 
 <?php } ?>
 
-<?php function draw_addComment($story) { ?>
-	<link rel="stylesheet" href="../css/storyCard.css">
+<?php function draw_comment_section($storyId) { ?>
+	<link rel="stylesheet" href="../css/story.css">
+	<script src="../scripts/addComment.js" defer></script>
 
-	<form action='../actions/action_addComment.php' method='post'>
-		<textarea name = 'text' placeholder='Enter your comment'></textarea>
-		<input type='hidden' name='story' value="<?=$story?>">
-		<button type='submit'>Submit</button>
-	</form>
+	<h3 id="comments"> Comment Section: </h3>
+	
+	<?php if(!isset($_SESSION['username'])) { ?>
+		<form>
+			<textarea name="comment" placeholder="Add your comment"></textarea>
+			<input type="hidden" name="username" value="<?=$_SESSION['username']?>">
+			<input type="hidden" name="story" value="<?=$storyId?>">
+			<input type="submit" value="Add" disabled>
+		</form>
+	<?php } else {?>
+		<form>
+			<textarea name="comment" placeholder="Add your comment"></textarea>
+			<input type="hidden" name="username" value="<?=$_SESSION['username']?>">
+			<input type="hidden" name="story" value="<?=$storyId?>">
+			<input type="submit" value="Add">
+		</form>
+	<?php } ?>
+
+		<div id="chat"></div>
 <?php } ?>

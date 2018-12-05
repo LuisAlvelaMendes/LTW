@@ -1,13 +1,30 @@
 <?php
+	include_once('../database/db_story.php');
 
-include_once('../includes/session.php');
-include_once('../database/db_story.php');
+  // Current time
+  $timestamp = time();
 
-$story = $_POST['story'];
-$text = $_POST['text'];
+  // Get last_id
+  $last_id = $_GET['last_id'];
+	$story_id = $_GET['story_id'];
 
-addComment($story, $text);
-header("Location: ../pages/story.php?id=$story");
+  if (isset($_GET['text'])) {
+    // GET username and text
+    $username = $_GET['username'];
+		$text = $_GET['text'];
 
+		addComment($story_id, $username, $timestamp, $text);
+  }
 
+  // Retrieve new messages
+  $messages = getNewComments($story_id, $last_id);
+
+  // Add a time field to each message
+  foreach ($messages as $index => $message) {
+    $time = date('h:i:s', $message['date']);
+    $messages[$index]['time'] = $time;
+  }
+
+  // JSON encode
+  echo json_encode($messages);
 ?>

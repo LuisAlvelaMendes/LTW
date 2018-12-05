@@ -4,8 +4,8 @@
 ?>
 
 <?php function draw_subscriberList() { ?>
-  <script src="../scripts/dropmenu.js" async></script>
   <link rel="stylesheet" href="../css/subList.css">
+  <script src="../scripts/dropmenu.js" async></script>
   
   <section class="dropdown">
     <button onclick="myFunction()" class="dropbtn">&#9660;</button>

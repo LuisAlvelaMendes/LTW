@@ -61,10 +61,19 @@
 		return $correspondingStory;
 	}
 
-	function addComment($storyId, $text){
+	function addComment($story_id, $username, $timestamp, $text) {
 		$db = Database::instance()->db();
-		$stmt = $db->prepare('INSERT INTO comment (story_id, parent_comment, username, published, text) VALUES (?, null, ?, ?, ?)');
-		$stmt->execute(array($storyId, $_SESSION['username'], time(), $text));
+		$stmt = $db->prepare('INSERT INTO comment (story_id, parent_comment, username, date, text) VALUES (?, null, ?, ?, ?)');
+  		$stmt->execute(array($story_id, $username, $timestamp, $text));
+	}
+
+	function getNewComments($story_id, $last_id) {
+		$db = Database::instance()->db();
+		$stmt = $db->prepare("SELECT * FROM Comment WHERE id > ? AND story_id = ? ORDER BY date ASC");
+		$stmt->execute(array($last_id, $story_id));
+		$comments = $stmt->fetchAll();
+
+		return $comments;
 	}
 
 	function checkIfStoryWasVotedOnByUser($storyId, $username, $voteType){ //will return false if it wasn't, or it was but with the opposite type of vote
