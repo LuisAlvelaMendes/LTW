@@ -1,6 +1,7 @@
 <?php 
 	include_once('../includes/session.php');
 	
+	include_once('../templates/tpl_channel.php');
 	include_once('../templates/tpl_common.php');
 	include_once('../templates/tpl_story.php');
 	
@@ -22,7 +23,16 @@
 			draw_subscribeButton($channel);
 	}	
 
-	$stories=getStoriesFromChannelByDate($channel);
+	//draw_sort();
+
+	if(!isset($_GET['sort']))
+		$function = "getStoriesFromChannelByDate";
+	else{
+		$sort=$_GET['sort'];
+		$function = "getStoriesFromChannelBy$sort";
+	}
+
+	$stories=$function($channel);
 
 	foreach($stories as $story){
 		draw_storyCard($story, false);
