@@ -91,8 +91,24 @@ CREATE TRIGGER insertComment
 AFTER INSERT ON CommentVote
 BEGIN
     UPDATE Comment
-    SET points = ((SELECT COUNT(type) FROM StoryVote WHERE type == 1) - (SELECT COUNT(type) FROM StoryVote WHERE type == 0))
+    SET points = (
+              SELECT
+              (SELECT COUNT(*) FROM CommentVote WHERE type == 1 AND comment_id = NEW.comment_id) 
+            - (SELECT COUNT(*) FROM CommentVote WHERE type == 0 AND comment_id = NEW.comment_id) AS Result
+            )
     WHERE id = NEW.comment_id;
+END;
+
+CREATE TRIGGER changeComment
+AFTER DELETE ON CommentVote
+BEGIN
+    UPDATE Comment
+    SET points = (
+              SELECT
+              (SELECT COUNT(*) FROM CommentVote WHERE type == 1 AND comment_id = OLD.comment_id) 
+            - (SELECT COUNT(*) FROM CommentVote WHERE type == 0 AND comment_id = OLD.comment_id) AS Result
+            )
+    WHERE id = OLD.comment_id;
 END;
 
 PRAGMA foreign_keys = ON;

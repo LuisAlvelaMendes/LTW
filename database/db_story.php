@@ -101,6 +101,29 @@
 		}
 	}
 
+	function checkIfStoryVoteDisplay($storyId, $username, $voteType){ //will return false if it wasn't, or it was but with the opposite type of vote
+		$db = Database::instance()->db();
+
+		$stmt = $db->prepare('SELECT type FROM StoryVote WHERE story_id = ? AND username = ?');
+		$stmt->execute(array($storyId, $username));
+
+		$currentlySavedType = $stmt->fetchAll();
+
+		if(empty($currentlySavedType)){
+			return false;
+		}
+
+		else {
+			if($currentlySavedType[0]['type'] == $voteType){
+				return true;
+			}
+
+			if($currentlySavedType[0]['type'] != $voteType){
+				return false;
+			}
+		}
+	}
+
 	function changeUsersVote($storyId, $username){
 		$db = Database::instance()->db();
 		$stmt = $db->prepare('DELETE FROM StoryVote WHERE story_id = ? AND username = ?');
