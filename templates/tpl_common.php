@@ -164,7 +164,6 @@
 		</div>
 		
 		<div id="middle">
-			
 			<a id="channel" onclick="window.location.href='../pages/channel.php?name=<?=$channel?>'"><?=$channel?></a>
 		</div>
 

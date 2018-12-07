@@ -27,20 +27,20 @@
 <?php function draw_subscribersAside($username) { ?>
   <link rel="stylesheet" href="../css/story.css">
 
-  <aside id="subscriptions">
+  <section id="subscriptions">
       <h3> User's Subscribed Channels: </h3>
       
       <?php 
       $subscribedChannelsNames = getSubscribedChannels($username);
 
       if(empty($subscribedChannelsNames)) { ?>
-        <p> User has not subscribed to any channel .</p>
+        <p> User has not subscribed to any channel..</p>
       <?php } else {
         foreach( $subscribedChannelsNames as $channelName) { ?>
           <p><a onclick="window.location.href='../pages/channel.php?name=<?=$channelName['channel']?>'"><?=$channelName['channel']?></a></p>
         <?php }
       } ?>
-  </aside>
+  </section>
 <?php } ?>
 
 <?php function draw_topsubs($channellist, $numsubs, $channelid) { ?>

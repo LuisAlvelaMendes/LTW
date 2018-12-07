@@ -8,7 +8,6 @@ $username = $_POST['username'];
 $voteType = $_POST['type'];
 
 if(!checkIfStoryWasVotedOnByUser($story, $username, $voteType)){
-    voteStory($story, $voteType);
     header("Location: ../pages/story.php?id=$story");
 }
 

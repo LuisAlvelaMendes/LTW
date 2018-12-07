@@ -63,6 +63,38 @@ CREATE TABLE CommentVote (
   PRIMARY KEY (username, comment_id)
 );
 
+CREATE TRIGGER insertVote 
+AFTER INSERT ON StoryVote
+BEGIN
+    UPDATE Story
+    SET points = (
+                  SELECT
+                  (SELECT COUNT(*) FROM StoryVote WHERE type == 1 AND story_id = NEW.story_id) 
+                - (SELECT COUNT(*) FROM StoryVote WHERE type == 0 AND story_id = NEW.story_id) AS Result
+                )
+    WHERE id = NEW.story_id;
+END;
+
+CREATE TRIGGER changeVote 
+AFTER DELETE ON StoryVote
+BEGIN
+    UPDATE Story
+    SET points = (
+                  SELECT
+                  (SELECT COUNT(*) FROM StoryVote WHERE type == 1 AND story_id = OLD.story_id) 
+                - (SELECT COUNT(*) FROM StoryVote WHERE type == 0 AND story_id = OLD.story_id) AS Result
+                )
+    WHERE id = OLD.story_id;
+END;
+
+CREATE TRIGGER insertComment
+AFTER INSERT ON CommentVote
+BEGIN
+    UPDATE Comment
+    SET points = ((SELECT COUNT(type) FROM StoryVote WHERE type == 1) - (SELECT COUNT(type) FROM StoryVote WHERE type == 0))
+    WHERE id = NEW.comment_id;
+END;
+
 PRAGMA foreign_keys = ON;
 
 INSERT INTO Channel (name) VALUES ("Portugal");

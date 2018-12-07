@@ -113,19 +113,4 @@
 		$stmt->execute(array($username, $storyId, $voteType));
 	}
 
-	function voteStory($storyId, $type){
-
-		$db = Database::instance()->db();
-
-		if($type == "1"){
-			$stmt = $db->prepare('UPDATE Story SET points = points + 1 WHERE id = ?');
-			$stmt->execute(array($storyId));
-		}
-
-		if($type == "0"){
-			$stmt = $db->prepare('UPDATE Story SET points = points - 1 WHERE id = ?');
-			$stmt->execute(array($storyId));
-		}
-	}
-
 ?>

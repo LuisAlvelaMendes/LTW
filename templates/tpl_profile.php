@@ -22,3 +22,22 @@
 		</form>
 	</section>
 <?php } ?>
+
+<?php function draw_posted_stories($username) { ?>
+	<link rel="stylesheet" href="../css/story.css">
+
+	<section id="subscriptions">
+		<h3> User's Posted Stories: </h3>
+		
+		<?php 
+		$postedStoriesId = getAllStoriesPosted($username);
+
+		if(empty($postedStoriesId)) { ?>
+		<p> User has not posted any story..</p>
+		<?php } else {
+		foreach($postedStoriesId as $story) { ?>
+			<p><a onclick="window.location.href='../pages/story.php?id=<?=$story['id']?>'"><?=$story['title']?></a></p>
+		<?php }
+		} ?>
+	</section>
+<?php } ?>
