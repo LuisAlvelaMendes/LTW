@@ -1,4 +1,7 @@
-<?php include_once('../includes/session.php') ?>
+<?php 
+	include_once('../includes/session.php'); 
+	include_once('../templates/tpl_common.php');
+?>
 
 <?php function draw_edit_profile_button() { ?>
 	<link rel="stylesheet" href="../css/auth.css"> 
@@ -37,6 +40,25 @@
 		<?php } else {
 		foreach($postedStoriesId as $story) { ?>
 			<p><a onclick="window.location.href='../pages/story.php?id=<?=$story['id']?>'"><?=$story['title']?></a></p>
+		<?php }
+		} ?>
+	</section>
+<?php } ?>
+
+<?php function draw_posted_comments($username) { ?>
+	<link rel="stylesheet" href="../css/story.css">
+
+	<section id="subscriptions">
+		<h3> User's Posted Comments: </h3>
+		
+		<?php 
+		$postedComments = getAllCommentsPosted($username);
+
+		if(empty($postedComments)) { ?>
+		<p> User has not posted any comment..</p>
+		<?php } else {
+		foreach($postedComments as $comment) { ?>
+			<p><a onclick="window.location.href='../pages/story.php?id=<?=$comment['story_id']?>'"> <?=$comment['text']?> </a></p>
 		<?php }
 		} ?>
 	</section>

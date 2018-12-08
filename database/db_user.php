@@ -47,7 +47,7 @@
     function getAllCommentsPosted($username) {
         $db = Database::instance()->db();
 
-        $stmt = $db->prepare('SELECT id FROM Comment WHERE username = ?');
+        $stmt = $db->prepare('SELECT story_id, date, points, text FROM Comment WHERE username = ?');
         $stmt->execute(array($username));
 
         return $stmt->fetchAll();

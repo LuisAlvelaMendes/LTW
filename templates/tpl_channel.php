@@ -30,6 +30,11 @@
 	</section>
 <?php } ?>
 
+<?php function draw_search() { ?>
+	<input id="country" name="country" type="text">
+
+<?php } ?>
+
 <?php function draw_createChannel() { ?>
 	<link rel="stylesheet" href="../css/channel.css">
 	<form action='../actions/action_createChannel.php' method='post'>

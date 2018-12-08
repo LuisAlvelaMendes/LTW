@@ -1,6 +1,7 @@
 <?php 
 	include_once('tpl_sub.php');
 	include_once('tpl_story.php');
+	include_once('../database/db_story.php');
 ?>
 
 <?php function draw_header($username, $channel) { ?>
@@ -102,17 +103,21 @@
 	return $string ? implode(', ', $string) . '' : 'just now';
 } ?>
 
-<?php function draw_search() { ?>
-	<button id="searchButton" class="button" type='submit' onclick="window.location.href='../pages/search.php'">Search</button>
-<?php } ?>
-
 <?php function draw_info_bar_story($storyId, $username, $channel, $date, $points) { ?>
 	<section id = "info_bar">
 		<div id="start">
 
 		<?php if(isset($_SESSION['username'])){ ?>
 			<form id="uparrow" action='../actions/action_voteStory.php' method='post'>
-				<input type="image" src="https://i.imgur.com/DV6Wkiu.png">
+
+				<?php if(!checkIfStoryVoteDisplay($storyId, $_SESSION['username'], 1)){ ?>
+					<input type="image" src="../images/UpvoteGrey.png">
+				<?php } ?>
+
+				<?php if(checkIfStoryVoteDisplay($storyId, $_SESSION['username'], 1)){ ?>
+					<input type="image" src="../images/Upvote.png">
+				<?php } ?>
+
 				<input type="hidden" name="type" value="1">
 				<input type="hidden" name="story" value="<?=$storyId?>">
 				<input type="hidden" name="username" value="<?=$_SESSION['username']?>">
@@ -121,7 +126,15 @@
 			<h6 id="points"><?=$points?></h6>
 
 			<form id="downarrow" action='../actions/action_voteStory.php' method='post'>
-				<input type="image" src="https://i.imgur.com/oMpyvp1.png">
+
+				<?php if(!checkIfStoryVoteDisplay($storyId, $_SESSION['username'], 0)){ ?>
+					<input type="image" src="../images/DownvoteGrey.png">
+				<?php } ?>
+
+				<?php if(checkIfStoryVoteDisplay($storyId, $_SESSION['username'], 0)){ ?>
+					<input type="image" src="../images/Downvote.png">
+				<?php } ?>
+
 				<input type="hidden" name="story" value="<?=$storyId?>">
 				<input type="hidden" name="username" value="<?=$_SESSION['username']?>">
 				<input type="hidden" name="type" value="0">
@@ -147,7 +160,15 @@
 
 		<?php if(isset($_SESSION['username'])){ ?>
 			<form id="uparrow" action='../actions/action_voteComment.php' method='post'>
-				<input type="image" src="https://i.imgur.com/DV6Wkiu.png">
+
+				<?php if(!checkIfStoryVoteDisplay($storyId, $_SESSION['username'], 1)){ ?>
+					<input type="image" src="../images/UpvoteGrey.png">
+				<?php } ?>
+
+				<?php if(checkIfStoryVoteDisplay($storyId, $_SESSION['username'], 1)){ ?>
+					<input type="image" src="../images/Upvote.png">
+				<?php } ?>
+
 				<input type="hidden" name="story" value="<?=$storyId?>">
 				<input type="hidden" name="type" value="1">
 				<input type="hidden" name="username" value="<?=$_SESSION['username']?>">
@@ -157,7 +178,15 @@
 			<h6 id="points"><?=$points?></h6>
 
 			<form id="downarrow" action='../actions/action_voteComment.php' method='post'>
-				<input type="image" src="https://i.imgur.com/oMpyvp1.png">
+			
+				<?php if(!checkIfStoryVoteDisplay($storyId, $_SESSION['username'], 0)){ ?>
+					<input type="image" src="../images/DownvoteGrey.png">
+				<?php } ?>
+
+				<?php if(checkIfStoryVoteDisplay($storyId, $_SESSION['username'], 0)){ ?>
+					<input type="image" src="../images/Downvote.png">
+				<?php } ?>
+				
 				<input type="hidden" name="story" value="<?=$storyId?>">
 				<input type="hidden" name="username" value="<?=$_SESSION['username']?>">
 				<input type="hidden" name="type" value="0">

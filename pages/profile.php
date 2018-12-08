@@ -22,6 +22,8 @@
     draw_subscribersAside($usernameOfProfile);
     
     draw_posted_stories($usernameOfProfile);
+    
+    draw_posted_comments($usernameOfProfile);
 
     draw_user_info($usernameOfProfile, $userInfo[0]['created'], $userInfo[0]['points']);
 
