@@ -1,0 +1,24 @@
+button{
+	margin: 1em 0.5em 0em 0.5em;
+    width: 100%;
+}
+
+button:focus {
+	outline: none;
+}
+
+ button:hover {
+	border: 2px solid #a5a5a5;
+}
+
+.story{
+    background-color: #528dc3;
+}
+
+.channel{
+    background-color: #cc3c3c;
+}
+
+.comment{
+    background-color: #339c12;
+}
