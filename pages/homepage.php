@@ -22,6 +22,8 @@
 		draw_createChannel();
 	}
 
+	draw_search();
+
 	$allChannels = getAllChannels();
 
 	foreach($allChannels as $channel){
