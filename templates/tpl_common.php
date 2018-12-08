@@ -103,6 +103,10 @@
 	return $string ? implode(', ', $string) . '' : 'just now';
 } ?>
 
+<?php function draw_search() { ?>
+	<button id="searchButton" class="button" type='submit' onclick="window.location.href='../pages/search.php'">Search</button>
+<?php } ?>
+
 <?php function draw_info_bar_story($storyId, $username, $channel, $date, $points) { ?>
 	<section id = "info_bar">
 		<div id="start">
