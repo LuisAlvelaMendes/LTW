@@ -209,7 +209,7 @@
 <?php function draw_footer() { ?>
 	</body>
 	<footer> 
-		<p>&copy; TRABALHO LTW LUÍS, RICARDO, SIMÃO</p>	<!-- FALTA DECIDIR O QUE METER NO FOOTER-->
+		<p>&copy; TRABALHO LTW LUÍS, RICARDO, SIMÃO</p>	
 	</footer>
 	</html>
 <?php } ?>

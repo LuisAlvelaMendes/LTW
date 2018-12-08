@@ -111,6 +111,40 @@ BEGIN
     WHERE id = OLD.comment_id;
 END;
 
+CREATE TRIGGER userPointsStoryUpdate
+AFTER UPDATE ON Story
+BEGIN
+    UPDATE Utilizer
+    SET points = (
+            SELECT
+            (SELECT COALESCE (SUM(Story.points), 0) FROM Story
+            WHERE author = OLD.author)
+          +
+            (SELECT COALESCE (SUM(Comment.points), 0) FROM Comment 
+            WHERE username = OLD.author) 
+              
+            AS Result
+          )
+    WHERE username = OLD.author;
+END;
+
+CREATE TRIGGER userPointsCommentUpdate
+AFTER UPDATE ON Comment
+BEGIN
+    UPDATE Utilizer
+        SET points = (
+            SELECT
+            (SELECT COALESCE (SUM(Story.points), 0) FROM Story
+            WHERE author = OLD.username)
+          +
+            (SELECT COALESCE (SUM(Comment.points), 0) FROM Comment 
+            WHERE username = OLD.username) 
+              
+            AS Result
+          )
+    WHERE username = OLD.username;
+END;
+
 PRAGMA foreign_keys = ON;
 
 INSERT INTO Channel (name) VALUES ("Portugal");
