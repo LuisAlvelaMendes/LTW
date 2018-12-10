@@ -5,7 +5,6 @@
   $timestamp = time();
 
   // Get last_id
-  $last_id = $_GET['last_id'];
 	$story_id = $_GET['story_id'];
 
   if (isset($_GET['text'])) {
@@ -13,11 +12,13 @@
     $username = $_GET['username'];
 		$text = $_GET['text'];
 
+    $text = htmlspecialchars($text);
+
 		addComment($story_id, $username, $timestamp, $text);
   }
 
   // Retrieve new messages
-  $messages = getNewComments($story_id, $last_id);
+  $messages = getNewComments($story_id);
 
   // Add a time field to each message
   foreach ($messages as $index => $message) {

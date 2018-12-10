@@ -4,7 +4,7 @@
 let last_id = -1;
 let story_id = document.querySelector('input[name=story]').value;
 
-let chat = document.querySelector('#chat');
+let comment_section = document.querySelector('#comment_section');
 let form = document.querySelector('form');
 
 form.addEventListener('submit', addComment);
@@ -15,7 +15,7 @@ refresh();
 // Ask for new messages
 function refresh() {
   let request = new XMLHttpRequest();
-  request.open('get', '../actions/action_addComment.php?' + encodeForAjax({'last_id': last_id, 'story_id' : story_id}), true);
+  request.open('get', '../actions/action_addComment.php?' + encodeForAjax({'story_id' : story_id}), true);
   request.addEventListener('load', newComment);
   request.send();
 }
@@ -30,7 +30,7 @@ function addComment(event) {
 
   // Send message
   let request = new XMLHttpRequest();
-  request.open('get', '../actions/action_addComment.php?' + encodeForAjax({'last_id': last_id, 'username': username, 'text': comment, 'story_id' : story_id}), true);
+  request.open('get', '../actions/action_addComment.php?' + encodeForAjax({'username': username, 'text': comment, 'story_id' : story_id}), true);
   request.addEventListener('load', newComment);
   request.send();
 
@@ -39,6 +39,8 @@ function addComment(event) {
 
 // Called when messages are received
 function newComment() {
+  comment_section.innerHTML = "";
+
   let comments = JSON.parse(this.responseText);
 
   comments.forEach(function(data){
@@ -47,14 +49,11 @@ function newComment() {
     last_id = data.id;
 		
 
-    comment.classList.add('comment');
-    comment.innerHTML =
-      '<span class="time">' + data.time + '</span>' +
-      '<span class="username">' + data.username + ':</span>' +
-      '<span class="message">' + data.text + '</span>';
+    comment.classList.add('usrComment');
+    comment.innerHTML = "<p id='comment'>" + data.text + '</p>';
 
-    chat.append(comment);
-    chat.scrollTop = chat.scrollTopMax;
+    comment_section.append(comment);
+    comment_section.scrollTop = comment_section.scrollTopMax;
   });
 }
 

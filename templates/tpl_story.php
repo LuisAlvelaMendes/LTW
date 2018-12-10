@@ -65,5 +65,5 @@
 		</form>
 	<?php } ?>
 
-		<div id="chat"></div>
+	<section id="comment_section"></section>
 <?php } ?>

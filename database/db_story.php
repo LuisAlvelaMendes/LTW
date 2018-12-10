@@ -67,10 +67,10 @@
   		$stmt->execute(array($story_id, $username, $timestamp, $text));
 	}
 
-	function getNewComments($story_id, $last_id) {
+	function getNewComments($story_id) {
 		$db = Database::instance()->db();
-		$stmt = $db->prepare("SELECT * FROM Comment WHERE id > ? AND story_id = ? ORDER BY date ASC");
-		$stmt->execute(array($last_id, $story_id));
+		$stmt = $db->prepare("SELECT * FROM Comment WHERE story_id = ? ORDER BY date DESC");
+		$stmt->execute(array($story_id));
 		$comments = $stmt->fetchAll();
 
 		return $comments;
