@@ -15,8 +15,8 @@
 	} ?>
 
 	<button id="storyCard" onclick="window.location.href='../pages/story.php?id=<?=$story['id']?>'">
-		<h1> <?=htmlspecialchars($story['title'])?> </h1>
-		<p> <?=htmlspecialchars($story['fulltext'])?> </p>
+		<h1> <?=$story['title']?> </h1>
+		<p> <?=$story['fulltext']?> </p>
 
 		<p>&bull; &bull; &bull;</p>
 	</button>

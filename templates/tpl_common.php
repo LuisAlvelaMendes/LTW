@@ -49,8 +49,8 @@
 	<link rel="stylesheet" href="../css/story.css">
 
 	<section id="storyText">
-		<h1><?=htmlspecialchars($story_title)?></h1>
-		<p><?=htmlspecialchars($fulltext)?></p>
+		<h1><?=$story_title?></h1>
+		<p><?=$fulltext?></p>
 	</section>
 
 <?php } ?>
@@ -104,7 +104,9 @@
 } ?>
 
 <?php function draw_search() { ?>
-	<button id="searchButton" class="button" type='submit' onclick="window.location.href='../pages/search.php'">Search</button>
+	<form>
+		<button id="searchButton" class="button" type='submit' onclick="window.location.href='../pages/search.php'">Search</button>
+	</form>
 <?php } ?>
 
 <?php function draw_info_bar_story($storyId, $username, $channel, $date, $points) { ?>

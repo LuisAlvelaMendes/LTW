@@ -7,7 +7,7 @@
     $channel = $_POST['channel'];
     $fulltext = $_POST['fulltext'];
 
-    addStory($title, $channel, $fulltext);
+    addStory(htmlspecialchars($title), $channel, htmlspecialchars($fulltext));
     header("Location: ../pages/channel.php?name=$channel");
 
 ?>

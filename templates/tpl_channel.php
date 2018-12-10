@@ -18,8 +18,8 @@
 		<?php foreach($stories as $story) { ?>
 
 			<button id="storyCard" class="storyCards" onclick="window.location.href='../pages/story.php?id=<?=$story['id']?>'">
-				<h1> <?=htmlspecialchars($story['title'])?> </h1>
-				<p> <?=htmlspecialchars($story['fulltext'])?> </p>
+				<h1> <?=$story['title']?> </h1>
+				<p> <?=$story['fulltext']?> </p>
 				<?php draw_info_bar_story($story['id'], $story['author'], null, $story['published'], $story['points']) ?>
 
 				<p>&bull; &bull; &bull;</p>
@@ -31,7 +31,7 @@
 <?php } ?>
 
 <?php function draw_createChannel() { ?>
-	<link rel="stylesheet" href="../css/channel.css">
+	<link rel="stylesheet" href="../css/common.css">
 	<form action='../actions/action_createChannel.php' method='post'>
 		<input id="createChannelText" type='text' placeholder='Enter the channel name' name='name' required>
 		<button id="createChannelButton" type='submit'>Create Channel</button>
