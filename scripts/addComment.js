@@ -1,4 +1,4 @@
-'use strict';
+'use_strict';
 
 let story_id = document.querySelector('input[name=story]').value;
 
@@ -41,15 +41,27 @@ function newComment() {
 
   let comments = JSON.parse(this.responseText);
 
-  for(var text in comments) {
-    let comment = document.createElement('div');
+  for(var comment in comments) {
+    let commentComplete = document.createElement('div');
+    var usrComment = draw_comment(comments[comment]);
+    var infoBar = draw_infobar(comments[comment]);
 
-    comment.setAttribute('id', 'comment');
-    comment.innerHTML = "<p id = 'usrComment'>" + comments[text].text + "</p>";
+    commentComplete.innerHTML += usrComment;
+    commentComplete.innerHTML += infoBar;
 
-    comment_section.append(comment);
+    comment_section.append(commentComplete);
     comment_section.scrollTop = comment_section.scrollTopMax;
   }
+}
+
+function draw_comment(comment){
+  var template = document.getElementById('tpl_comment').innerHTML;
+  return Mustache.render(template, {text : comment.text});
+}
+
+function draw_infobar(comment) {
+  var template = document.getElementById('tpl_info_bar_comment').innerHTML;
+  return Mustache.render(template, {storyId : comment.id, username : comment.username,  published : comment.date, points : comment.points});
 }
 
 function encodeForAjax(data) {

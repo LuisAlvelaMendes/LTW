@@ -150,7 +150,7 @@
 		</div>
 		
 		<div id="middle">
-			
+			<a id="date"><?=$date?></a>
 			<a id="channel" href="../pages/channel.php?name=<?=$channel?>"><?=$channel?></a>
 		</div>
 
@@ -203,6 +203,7 @@
 		</div>
 		
 		<div id="middle">
+			<a id="date"><?=$date?></a>
 			<a id="channel" onclick="window.location.href='../pages/channel.php?name=<?=$channel?>'"><?=$channel?></a>
 		</div>
 

@@ -3,6 +3,7 @@
 
 	include_once('../templates/tpl_common.php');
 	include_once('../templates/tpl_story.php');
+	include_once('../templates/tpl_mustache.php');
 
 	include_once('../database/db_story.php');
 	include_once('../database/db_comments.php');
