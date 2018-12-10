@@ -1,7 +1,5 @@
 'use strict';
 
-// Id of last message received
-let last_id = -1;
 let story_id = document.querySelector('input[name=story]').value;
 
 let comment_section = document.querySelector('#comment_section');
@@ -22,7 +20,7 @@ function refresh() {
 
 // Send message
 function addComment(event) {
-  let comment = document.querySelector('textarea[name=comment]').value;
+  let text_comment = document.querySelector('textarea[name=comment]').value;
   let username = document.querySelector('input[name=username]').value;
 
   // Delete sent message
@@ -30,7 +28,7 @@ function addComment(event) {
 
   // Send message
   let request = new XMLHttpRequest();
-  request.open('get', '../actions/action_addComment.php?' + encodeForAjax({'username': username, 'text': comment, 'story_id' : story_id}), true);
+  request.open('get', '../actions/action_addComment.php?' + encodeForAjax({'username': username, 'text': text_comment, 'story_id' : story_id}), true);
   request.addEventListener('load', newComment);
   request.send();
 
@@ -43,18 +41,15 @@ function newComment() {
 
   let comments = JSON.parse(this.responseText);
 
-  comments.forEach(function(data){
+  for(var text in comments) {
     let comment = document.createElement('div');
 
-    last_id = data.id;
-		
-
-    comment.classList.add('usrComment');
-    comment.innerHTML = "<p id='comment'>" + data.text + '</p>';
+    comment.setAttribute('id', 'comment');
+    comment.innerHTML = "<p id = 'usrComment'>" + comments[text].text + "</p>";
 
     comment_section.append(comment);
     comment_section.scrollTop = comment_section.scrollTopMax;
-  });
+  }
 }
 
 function encodeForAjax(data) {

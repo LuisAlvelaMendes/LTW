@@ -21,23 +21,23 @@ function addStories()
     list.innerHTML=""; //Deletes stories
 
     for(story in stories) {
-        let button = document.createElement("button");
-        button.setAttribute('id', 'storyCard');
-        button.setAttribute('class', 'storyCards');
-        button.setAttribute('onclick', "window.location.href='../pages/story.php?id=" + stories[story].id + "'");
-        button.innerHTML = '<h1>' + stories[story].title + '</h1><p>' + stories[story].fulltext + '   </p>' 
-        
+        let storyComplete = document.createElement('div');
+        var storyCard = drawStoryCard(stories[story]); 
         var infoBar = drawInfo(stories[story]);
-        button.innerHTML += infoBar;
-        button.innerHTML += '<p>&bull; &bull; &bull;</p>';
 
-        list.appendChild(button);
+        storyComplete.innerHTML += storyCard;
+        storyComplete.innerHTML += infoBar;
 
+        list.append(storyComplete);
     }
 
-    function drawInfo(story)
-    {
-        var template = document.getElementById('template').innerHTML;
-        return Mustache.render(template,{storyId : story.id, username: story.author, channel: story.channel, published: story.published, points: story.points});
+    function drawStoryCard(story) {
+        var template = document.getElementById('tpl_story_card').innerHTML;
+        return Mustache.render(template, {storyId : story.id, title : story.title, text : story.fulltext});
+    }
+
+    function drawInfo(story) {
+        var template = document.getElementById('tpl_info_bar_story').innerHTML;
+        return Mustache.render(template, {storyId : story.id, username : story.author,  published : story.published, points : story.points});
     }
 }  
