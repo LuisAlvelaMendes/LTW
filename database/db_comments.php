@@ -49,19 +49,4 @@
 		$stmt->execute(array($username, $commentId, $voteType));
 	}
 
-	function voteComment($commentId, $type){
-
-		$db = Database::instance()->db();
-
-		if($type == "1"){
-			$stmt = $db->prepare('UPDATE Comment SET points = points + 1 WHERE id = ?');
-			$stmt->execute(array($commentId));
-		}
-
-		if($type == "0"){
-			$stmt = $db->prepare('UPDATE Comment SET points = points - 1 WHERE id = ?');
-			$stmt->execute(array($commentId));
-		}
-	}
-
 ?>
