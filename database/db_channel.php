@@ -42,7 +42,7 @@
 		return $stmt->fetch()?true:false; // return true if user subscribed to channel
 	}
 
-	function getSubscribedChannels($username){
+	function getSubscribedChannels($username) {
 		$db = Database::instance()->db();
 
 		$subscribedChannelsQuery = $db->prepare('SELECT channel FROM UserSubscriptions WHERE username = ?');
@@ -53,7 +53,7 @@
 		return $subscribedChannelsNames;
 	}
 
-	function getAllChannels(){
+	function getAllChannels() {
 		$db = Database::instance()->db();
 
 		$allChannels = $db->prepare('SELECT name FROM Channel');
@@ -64,8 +64,7 @@
 		return $allChannelNames;
 	}
 
-	function addStory($title, $channel, $fulltext)
-	{
+	function addStory($title, $channel, $fulltext) {
 		$db = Database::instance()->db();
 
 		$stmt = $db->prepare('INSERT INTO story (title, published, channel, author, fulltext) VALUES (?, ?, ?, ?, ?)');

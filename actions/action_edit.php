@@ -7,7 +7,7 @@
     $oldpassword = $_POST['oldpassword'];
     $newpassword = $_POST['newpassword'];
 
-    if(!checkUserPassword($username, $oldpassword)){
+    if (!checkUserPassword($username, $oldpassword)) {
         $_SESSION['messages'][] = array('type' => 'error', 'content' => 'Old password is wrong!');
         header("Location: ../pages/profile.php?name=$username");
     }
