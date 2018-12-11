@@ -7,11 +7,9 @@
     $username = $_POST['username'];
     $voteType = $_POST['type'];
 
-    if (!checkIfCommentWasVotedOnByUser($comment, $username, $voteType)) {
-        voteComment($comment, $voteType);
+   if (!checkIfCommentWasVotedOnByUser($comment, $username, $voteType)) {
         header("Location: ../pages/story.php?id=$story");
     }
-
-if(!checkIfCommentWasVotedOnByUser($comment, $username, $voteType)){
+    
     header("Location: ../pages/story.php?id=$story");
 ?>

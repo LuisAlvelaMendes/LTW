@@ -46,35 +46,37 @@
 </script>
 
 <script id="tpl_info_bar_comment" type="x-tmpl-mustache" >
-    <section id = "info_bar">
-        <div id="start">
+<section id = "info_bar">
+		<div id="start">
 
-            <?php if(isset($_SESSION['username'])){ ?>
-                <form id="uparrow" action='../actions/action_voteComment.php' method='post'>
-                    <input type="image" src="https://i.imgur.com/DV6Wkiu.png">
-                    <input type="hidden" name="type" value="1">
-                    <input type="hidden" name="story" value="{{storyId}}">
-                    <input type="hidden" name="username" value="<?=$_SESSION['username']?>">
-                </form>
+		<?php if(isset($_SESSION['username'])){ ?>
+			<form id="uparrow" action='../actions/action_voteComment.php' method='post'>
+				<input type="image" src="../images/UpvoteGrey.png">
+				<input type="hidden" name="story" value="{{storyId}}">
+				<input type="hidden" name="type" value="1">
+				<input type="hidden" name="username" value="<?=$_SESSION['username']?>">
+				<input type="hidden" name="comment" value="{{commentId}}">
+			</form>
+			
+			<h6 id="points">{{points}}</h6>
 
-                <h6 id="points">{{points}}</h6>
+			<form id="downarrow" action='../actions/action_voteComment.php' method='post'>
+				<input type="image" src="../images/DownvoteGrey.png">
+				<input type="hidden" name="story" value="{{storyId}}">
+				<input type="hidden" name="username" value="<?=$_SESSION['username']?>">
+				<input type="hidden" name="type" value="0">
+				<input type="hidden" name="comment" value="{{commentId}}">
+			</form>
+		<?php } ?>
 
-                <form id="downarrow" action='../actions/action_voteComment.php' method='post'>
-                    <input type="image" src="https://i.imgur.com/oMpyvp1.png">
-                    <input type="hidden" name="story" value="{{storyId}}">
-                    <input type="hidden" name="username" value="<?=$_SESSION['username']?>">
-                    <input type="hidden" name="type" value="0">
-                </form>
-            <?php } ?>
+		</div>
+		
+		<div id="middle">
+			<a id="date">{{published}}</a>
+		</div>
 
-        </div>
-    
-        <div id="middle">
-			<a> {{published}} </a>
-        </div>
-
-        <div id="end">
-            <a id="profile" href="../pages/profile.php?name={{username}}">{{username}}</a>
-        </div>
-    </section>
+		<div id="end">
+			<a id="profile" onclick="window.location.href='../pages/profile.php?name={{username}}'">{{username}}</a>
+		</div>
+	</section>
 </script>

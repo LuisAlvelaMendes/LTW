@@ -61,7 +61,7 @@ function draw_comment(comment){
 
 function draw_infobar(comment) {
   var template = document.getElementById('tpl_info_bar_comment').innerHTML;
-  return Mustache.render(template, {storyId : comment.id, username : comment.username,  published : comment.date, points : comment.points});
+  return Mustache.render(template, {storyId : comment.story_id, commentId : comment.id, username : comment.username,  published : comment.date, points : comment.points});
 }
 
 function encodeForAjax(data) {
