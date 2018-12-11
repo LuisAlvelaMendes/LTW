@@ -46,7 +46,7 @@
 <?php function draw_comment_section($storyId) { ?>
 	<link rel="stylesheet" href="../css/story.css">
 	<script src="../scripts/addComment.js" defer></script>
-	<script src="../scripts/mustache.js" async></script>
+	<script src="../includes/mustache.js" async></script>
 
 	<h3 id="comments"> Comment Section: </h3>
 	

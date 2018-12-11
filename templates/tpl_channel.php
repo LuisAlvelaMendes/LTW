@@ -3,7 +3,7 @@
 <?php function drawStories($stories, $channel) { ?>
 	<link rel="stylesheet" href="../css/storyCard.css">
 	<script src="../scripts/sortStories.js" async></script>
-	<script src="../scripts/mustache.js" async></script>
+	<script src="../includes/mustache.js" async></script>
 
 	<input id="channel_name" type="hidden" name="channel" value="<?=$channel?>">
 

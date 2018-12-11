@@ -1,5 +1,5 @@
 <script id="tpl_story_card" type="x-tmpl-mustache">
-    <button id="storyCard" onclick="window.location.href='../pages/story.php?id={{stotyId}}'">
+    <button id="storyCard" onclick="window.location.href='../pages/story.php?id={{storyId}}'">
 		<h1> {{title}} </h1>
 		<p> {{text}} </p>
 
