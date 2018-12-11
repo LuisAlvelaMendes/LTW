@@ -1,5 +1,4 @@
 <?php
-
     include_once('../includes/session.php');
     include_once('../database/db_channel.php');
 
@@ -11,13 +10,11 @@
         die(header('Location: ../pages/homepage.php'));
     }
 
-    if(channelExists($name))
-    {
+    if (channelExists($name)) {
         $_SESSION['messages'][] = array('type' => 'error', 'content' => 'Channel with same name already exists!');
         header("Location: ../pages/homepage.php");
     }
 
     createChannel($name);
     header("Location: ../pages/channel.php?name=$name");
-
 ?>

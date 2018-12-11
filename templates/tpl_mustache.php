@@ -50,7 +50,7 @@
         <div id="start">
 
             <?php if(isset($_SESSION['username'])){ ?>
-                <form id="uparrow" action='../actions/action_voteStory.php' method='post'>
+                <form id="uparrow" action='../actions/action_voteComment.php' method='post'>
                     <input type="image" src="https://i.imgur.com/DV6Wkiu.png">
                     <input type="hidden" name="type" value="1">
                     <input type="hidden" name="story" value="{{storyId}}">
@@ -59,7 +59,7 @@
 
                 <h6 id="points">{{points}}</h6>
 
-                <form id="downarrow" action='../actions/action_voteStory.php' method='post'>
+                <form id="downarrow" action='../actions/action_voteComment.php' method='post'>
                     <input type="image" src="https://i.imgur.com/oMpyvp1.png">
                     <input type="hidden" name="story" value="{{storyId}}">
                     <input type="hidden" name="username" value="<?=$_SESSION['username']?>">

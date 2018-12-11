@@ -1,7 +1,7 @@
 <?php
 	include_once('../includes/database.php');
 
-	function getStoriesFromChannelByDate($channel){
+	function getStoriesFromChannelByDate($channel) {
 		$db = Database::instance()->db();
 
 		$storiesFromChannel = $db->prepare('SELECT * FROM Story WHERE channel = ? ORDER BY published DESC');
@@ -12,7 +12,7 @@
 		return $storiesFromChannel;
 	}
 
-	function getStoriesFromChannelByPoints($channel){
+	function getStoriesFromChannelByPoints($channel) {
 		$db = Database::instance()->db();
 
 		$storiesFromChannel = $db->prepare('SELECT * FROM Story WHERE channel = ? ORDER BY points DESC');
@@ -23,7 +23,7 @@
 		return $storiesFromChannel;
 	}
 
-	function getStoriesfromChannelByComments($channel){
+	function getStoriesfromChannelByComments($channel) {
 		$db = Database::instance()->db();
 
 		$storiesFromChannel = $db->prepare('SELECT * FROM(
@@ -39,7 +39,7 @@
 
 	}
 
-	function getMostRecentStoryFromChannel($channel){
+	function getMostRecentStoryFromChannel($channel) {
 		$db = Database::instance()->db();
 
 		$recentStory = $db->prepare('SELECT id, title, fulltext, MAX(published) AS "published", channel, author, points FROM Story  WHERE channel = ?');
@@ -50,7 +50,7 @@
 		return $recentStory;
 	}
 
-	function getStoryMainInfoById($storyId){
+	function getStoryMainInfoById($storyId) {
 		$db = Database::instance()->db();
 
 		$correspondingStory = $db->prepare('SELECT channel, title, fulltext, published, author, points FROM Story WHERE id = ?');
@@ -76,7 +76,8 @@
 		return $comments;
 	}
 
-	function checkIfStoryWasVotedOnByUser($storyId, $username, $voteType){ //will return false if it wasn't, or it was but with the opposite type of vote
+	//will return false if it wasn't, or it was but with the opposite type of vote
+	function checkIfStoryWasVotedOnByUser($storyId, $username, $voteType) { 
 		$db = Database::instance()->db();
 
 		$stmt = $db->prepare('SELECT type FROM StoryVote WHERE story_id = ? AND username = ?');
@@ -101,7 +102,8 @@
 		}
 	}
 
-	function checkIfStoryVoteDisplay($storyId, $username, $voteType){ //will return false if it wasn't, or it was but with the opposite type of vote
+	//will return false if it wasn't, or it was but with the opposite type of vote
+	function checkIfStoryVoteDisplay($storyId, $username, $voteType) { 
 		$db = Database::instance()->db();
 
 		$stmt = $db->prepare('SELECT type FROM StoryVote WHERE story_id = ? AND username = ?');
@@ -124,13 +126,13 @@
 		}
 	}
 
-	function changeUsersVote($storyId, $username){
+	function changeUsersVote($storyId, $username) {
 		$db = Database::instance()->db();
 		$stmt = $db->prepare('DELETE FROM StoryVote WHERE story_id = ? AND username = ?');
 		$stmt->execute(array($storyId, $username));
 	}
 
-	function addUsersVote($username, $storyId, $voteType){
+	function addUsersVote($username, $storyId, $voteType) {
 		$db = Database::instance()->db();
 		$stmt = $db->prepare('INSERT INTO StoryVote VALUES(?, ?, ?)');
 		$stmt->execute(array($username, $storyId, $voteType));

@@ -9,9 +9,9 @@
 	include_once('../database/db_comments.php');
 
 	$storyId = $_GET['id'];
-
+	
 	$storyMainInfo = getStoryMainInfoById($storyId);
-
+	
 	if(!isset($_SESSION['username'])) {
 		draw_header(null, $storyMainInfo[0]['channel']);
 	} else {
