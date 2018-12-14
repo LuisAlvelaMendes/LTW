@@ -13,7 +13,7 @@
 
 	if(!isset($_SESSION['username'])) {
 		draw_header(null, 'NOT REDDIT');
-		draw_topchannelss($topchannels);
+		draw_topchannels($topchannels);
 	} else {
 		draw_header($_SESSION['username'], 'NOT REDDIT');
 		draw_topchannels($topchannels);
