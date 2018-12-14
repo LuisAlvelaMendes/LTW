@@ -12,8 +12,7 @@ drop table if exists StoryVote;
 drop table if exists CommentVote;
 
 CREATE TABLE Channel (
-  name VARCHAR PRIMARY KEY,
-  subscribers INTEGER DEFAULT 0
+  name VARCHAR PRIMARY KEY
 );
 
 CREATE TABLE Story (

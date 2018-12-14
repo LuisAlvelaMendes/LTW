@@ -64,6 +64,17 @@
 		return $allChannelNames;
 	}
 
+	function getTopChannels() {
+		$db = Database::instance()->db();
+
+		$topChannels = $db->prepare('SELECT name, count(*) as subscribers FROM Channel left join UserSubscriptions WHERE name = channel GROUP BY name LIMIT 5');
+				
+		$topChannels->execute();
+		$topChannelNames = $topChannels->fetchAll();
+
+		return $topChannelNames;
+	}
+
 	function addStory($title, $channel, $fulltext) {
 		$db = Database::instance()->db();
 
