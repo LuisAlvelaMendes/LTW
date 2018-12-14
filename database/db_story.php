@@ -137,5 +137,5 @@
 		$stmt = $db->prepare('INSERT INTO StoryVote VALUES(?, ?, ?)');
 		$stmt->execute(array($username, $storyId, $voteType));
 	}
-
+	
 ?>
