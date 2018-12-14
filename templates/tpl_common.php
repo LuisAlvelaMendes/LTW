@@ -45,12 +45,53 @@
 			} ?>
 <?php } ?>
 
+<?php function draw_references($text) { 
+
+	// References to a channel with #
+	preg_match("/#(\\w+)/", $text, $channelMatches);
+
+	if(!empty($channelMatches)){
+		$channelName = $channelMatches[1];
+
+		if($channelName != ''){
+			$replace1 = preg_replace ("/#(\\w+)/", '<a href="../pages/channel.php?name=' . $channelName . '">' . $channelName . '</a>', $text);
+		}
+	}
+
+	// References to a user with @
+	
+	if(!isset($replace1)){
+		preg_match("/@(\\w+)/", $text, $userMatches);
+	}
+
+	else{
+		preg_match("/@(\\w+)/", $replace1, $userMatches);
+	}
+
+	if(!empty($userMatches)){
+		$userName = $userMatches[1];
+	
+		if($userName != ''){
+			$finaltext = preg_replace ("/@(\\w+)/", '<a href="../pages/profile.php?name=' . $userName . '">' . $userName . '</a>', $text);
+			return $finaltext;
+		}
+	}
+
+	if(!isset($replace1)){
+		return $text;
+	}
+
+	return $replace1;
+} ?>
+
 <?php function draw_story_text($story_title, $fulltext) { ?>
 	<link rel="stylesheet" href="../css/story.css">
 
+	<?php $newtext = draw_references($fulltext); ?>
+
 	<section id="storyText">
 		<h1><?=$story_title?></h1>
-		<p><?=$fulltext?></p>
+		<p><?=$newtext?></p>
 	</section>
 
 <?php } ?>
