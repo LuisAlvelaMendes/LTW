@@ -104,9 +104,8 @@
 } ?>
 
 <?php function draw_search() { ?>
-	<form>
-		<button id="searchButton" class="button" type='submit' onclick="window.location.href='../pages/search.php'">Search</button>
-	</form>
+	<link rel="stylesheet" href="../css/common.css">
+	<button id="searchButton" class="button" type='submit' onclick="window.location.href='../pages/search.php'">Search</button>
 <?php } ?>
 
 <?php function draw_info_bar_story($storyId, $username, $channel, $date, $points) { ?>

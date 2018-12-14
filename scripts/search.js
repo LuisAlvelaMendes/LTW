@@ -1,8 +1,13 @@
 let text = document.getElementById("search");
-text.addEventListener("keyup", inputChanged);
+text.addEventListener("keydown", inputChanged);
 
 // Handler for change event on text input
 function inputChanged(event) {
+
+    if (event.keyCode != 13)
+        return;
+
+    console.log(event.keyCode);
 
     let input = text.value;
     let list = document.getElementById("matches");
@@ -12,42 +17,35 @@ function inputChanged(event) {
     let searchStories = document.getElementById("searchStories").checked;
     let searchComments = document.getElementById("searchComments").checked;
 
-    if(input.length >= 3)
-    {
-        if(searchStories)
-        {
-            let request1 = new XMLHttpRequest();
-            request1.addEventListener("load",storiesReceived);
-            request1.open("get", "../database/db_getmatches_stories.php?value=" + input, true);
-            request1.send();
-        }
 
-        if(searchChannels)
-        {
-            let request2 = new XMLHttpRequest();
-            request2.addEventListener("load", channelsReceived);
-            request2.open("get", "../database/db_getmatches_channels.php?value=" + input, true);
-            request2.send();  
-        }
-        
-        if(searchComments)
-        {
-            let request3 = new XMLHttpRequest();
-            request3.addEventListener("load", commentsReceived);
-            request3.open("get", "../database/db_getmatches_comments.php?value=" + input, true);
-            request3.send();    
-        }
+    if (searchChannels) {
+        let request1 = new XMLHttpRequest();
+        request1.addEventListener("load", channelsReceived);
+        request1.open("get", "../database/db_getmatches_channels.php?value=" + input, true);
+        request1.send();
     }
-    
+
+    if (searchStories) {
+        let request2 = new XMLHttpRequest();
+        request2.addEventListener("load", storiesReceived);
+        request2.open("get", "../database/db_getmatches_stories.php?value=" + input, true);
+        request2.send();
+    }
+
+    if (searchComments) {
+        let request3 = new XMLHttpRequest();
+        request3.addEventListener("load", commentsReceived);
+        request3.open("get", "../database/db_getmatches_comments.php?value=" + input, true);
+        request3.send();
+    }
+
 }
 
 // Handler for stories received
-function storiesReceived()
-{
+function storiesReceived() {
     let matches = JSON.parse(this.responseText);
     let list = document.getElementById("matches");
-    for(key in matches)
-    {
+    for (key in matches) {
         let match = matches[key];
         let button = document.createElement("button");
         button.setAttribute('class', 'story');
@@ -59,12 +57,10 @@ function storiesReceived()
 }
 
 // Handler for channels received
-function channelsReceived()
-{
+function channelsReceived() {
     let matches = JSON.parse(this.responseText);
     let list = document.getElementById("matches");
-    for(key in matches)
-    {
+    for (key in matches) {
         let match = matches[key];
         let button = document.createElement("button");
         button.setAttribute('class', 'channel');
@@ -76,26 +72,20 @@ function channelsReceived()
 }
 
 // Handler for comments received
-function commentsReceived()
-{
+function commentsReceived() {
     let matches = JSON.parse(this.responseText);
     let list = document.getElementById("matches");
-    for(key in matches)
-    {
+    for (key in matches) {
         let match = matches[key];
         let button = document.createElement("button");
         button.setAttribute('class', 'comment');
         button.setAttribute('onclick', "window.location.href='../pages/story.php?id=" + match.story_id + "'");
-        if(match.text.length > 50)
-            match.text = match.text.substring(0,50) + " ...";
+        if (match.text.length > 50)
+            match.text = match.text.substring(0, 50) + " ...";
         button.innerHTML = '<p> Comment </p><h1>' + match.text + '</h1><h4>From: ' + match.username + '</h4>';
 
         console.log(match.text.length);
 
         list.appendChild(button);
     }
-}
-
-function ajaxStop() {
-    console.log("f");
 }
