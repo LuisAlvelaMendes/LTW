@@ -24,22 +24,9 @@
 			draw_subscribeButton($channel);
 	}	
 
-	//draw_search();
-
-	if(!isset($_GET['sort']))
-		$function = "getStoriesFromChannelByDate";
-	else{
-		$sort=$_GET['sort'];
-		$function = "getStoriesFromChannelBy$sort";
-	}
-
-	$stories=$function($channel);
+	$stories= getStoriesFromChannel($channel);
 
 	drawStories($stories, $channel);
-
-/*	foreach($stories as $story){
-		draw_storyCard($story, false);
-	}*/
 
 	draw_footer();
 ?>

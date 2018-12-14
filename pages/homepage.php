@@ -1,7 +1,6 @@
 <?php
 	include_once('../includes/session.php');
 
-	include_once('../templates/tpl_channel.php');
 	include_once('../templates/tpl_common.php');
 	include_once('../templates/tpl_sub.php');
 	include_once('../templates/tpl_story.php');
@@ -13,20 +12,30 @@
 
 	if(!isset($_SESSION['username'])) {
 		draw_header(null, 'NOT REDDIT');
-		draw_topchannels($topchannels);
 	} else {
 		draw_header($_SESSION['username'], 'NOT REDDIT');
-		draw_topchannels($topchannels);
-		draw_createChannel();
 	}
 
-	draw_search();
+	draw_topchannels($topchannels);
 
-	$allChannels = getAllChannels();
+	draw_homepage_buttons();
 
-	foreach($allChannels as $channel){
-		$mostRecent = getMostRecentStoryFromChannel($channel['name']);
-		draw_storyCard($mostRecent[0], true);
+	
+	if(!isset($_SESSION['username'])) {
+		$allChannels = getAllChannels();
+
+		foreach($allChannels as $channel){
+			$mostRecent = getMostRecentStoryFromChannel($channel['name']);
+			draw_storyCard($mostRecent[0], true);
+		}
+
+	} 
+	else {
+		$stories = getStoriesFromSubscribedChannels($_SESSION['username']);
+
+		foreach($stories as $story){
+			draw_storyCard($story, true);
+		}
 	}
 
 	draw_footer();

@@ -30,14 +30,6 @@
 	</section>
 <?php } ?>
 
-<?php function draw_createChannel() { ?>
-	<link rel="stylesheet" href="../css/common.css">
-	<form action='../actions/action_createChannel.php' method='post'>
-		<input id="createChannelText" type='text' placeholder='Enter the channel name' name='name' required>
-		<button id="createChannelButton" type='submit'>Create Channel</button>
-	</form>
-<?php } ?>
-
 <?php function draw_subscribeButton($channel) { ?>
 	<link rel="stylesheet" href="../css/common.css">
 	<form action='../actions/action_subscribeChannel.php' method='post'>

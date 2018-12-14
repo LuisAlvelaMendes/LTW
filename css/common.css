@@ -143,6 +143,7 @@ body > #messages .success {
 	display:inline;
 	padding-right: 0.5em;
 }
+
 .button {
     position: relative;
     background-color: #f95d34;
@@ -156,13 +157,16 @@ body > #messages .success {
     background-color: #f81109;
 }
 
+#homepage_buttons{
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	margin-top: 20px;
+}
+
 #subscribe, #unsubscribe {
     left: 1070px;
     top: -20px;
-}
-
-#searchButton {
-	bottom:90px;
 }
 
 #createStory {
@@ -171,27 +175,8 @@ body > #messages .success {
 }
 
 #createChannelText{
-    position: relative;
-    top: 9px;
-    left: 800px;
     font-size: 14px;  
     padding: 12px 24px;
-}
-
-#createChannelButton {
-    position: relative;
-    top: 10px;
-    left: 810px;
-    background-color: #f95d34;
-    border: none;
-    color: white;
-    padding: 16px 34px;
-    font-size: 18px;  
-    margin-bottom: 10px;
-}
-
-#createChannelButton:hover {
-    background-color: #f81109;
 }
 
 footer {

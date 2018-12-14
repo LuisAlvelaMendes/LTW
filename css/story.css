@@ -45,3 +45,11 @@
     font-size: 17px;
     line-height: 25-px;
 }
+
+#createStory
+{
+    display:grid;
+    font-family: Verdana, sans-serif;
+    justify-items: start;
+    grid-row-gap: 10px;
+}

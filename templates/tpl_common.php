@@ -191,9 +191,23 @@
 	return $string ? implode(', ', $string) . '' : 'just now';
 } ?>
 
-<?php function draw_search() { ?>
+<?php function draw_homepage_buttons() { ?>
 	<link rel="stylesheet" href="../css/common.css">
-	<button id="searchButton" class="button" type='submit' onclick="window.location.href='../pages/search.php'">Search</button>
+	<section id = "homepage_buttons">
+
+		<div id="left">
+			<button id="searchButton" class="button" type='submit' onclick="window.location.href='../pages/search.php'">Search</button>
+		</div>
+
+		<div id="right">
+			<form action='../actions/action_createChannel.php' method='post'>
+				<input id="createChannelText" type='text' placeholder='Enter the channel name' name='name' required>
+				<button id="createChannelButton" class="button" type='submit'>Create Channel</button>
+			</form>
+		</div>
+
+	</section>	
+
 <?php } ?>
 
 <?php function draw_info_bar_story($storyId, $username, $channel, $date, $points) { ?>

@@ -31,51 +31,14 @@
 <?php } ?>
 
 <?php function draw_textareas($channel) { ?>
-	<style>
-	*
-	{
-		font-family: Verdana, sans-serif;
-	}
-	#title_label
-	{
-		position: relative;
-		font-size: 30px;
-		top:30px;
-	}
-	#story_title
-	{
-		position: relative;
-		top: 75px;
-		right: 70px;
-		margin-bottom: 50px;
-		padding-top: 5px;
-	}
-	#text_label
-	{
-		position: relative;
-		font-size: 30px;
-		top: 130px;
-		right: 660px;
-	}
-	#textarea
-	{
-		position: relative;
-		top: 100px;
-		margin-bottom: 100px; 
-	}
-	#submit
-	{
-		position: relative;
-		left:50px;
-		top: 28px;
-	}
-	</style>
-	<form action='../actions/action_addStory.php' method='post'>	
+	<link rel="stylesheet" href="../css/story.css">
+
+	<form id = "createStory" action='../actions/action_addStory.php' method='post'>	
 		<label id = "title_label" for='title'>Title</label>
-		<input id = "story_title" type='text' placeholder='Enter the Story Title' name='title' size="70" required autofocus>
+		<input id = "story_title" type='text' name='title' size="70" required autofocus>
 
 		<label id = "text_label" for='text'>Text</label>
-		<textarea id = "textarea" name='fulltext' placeholder='Enter your story text' rows='10' cols="70" required ></textarea>
+		<textarea id = "textarea" name='fulltext' rows='15' cols="70" required ></textarea>
 
 		<input type="hidden" name="channel" value="<?=$channel?>">
 

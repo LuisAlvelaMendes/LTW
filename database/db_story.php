@@ -1,7 +1,7 @@
 <?php
 	include_once('../includes/database.php');
 
-	function getStoriesFromChannelByDate($channel) {
+	function getStoriesFromChannel($channel) {
 		$db = Database::instance()->db();
 
 		$storiesFromChannel = $db->prepare('SELECT * FROM Story WHERE channel = ? ORDER BY published DESC');
@@ -10,33 +10,6 @@
 		$storiesFromChannel = $storiesFromChannel->fetchAll();
 
 		return $storiesFromChannel;
-	}
-
-	function getStoriesFromChannelByPoints($channel) {
-		$db = Database::instance()->db();
-
-		$storiesFromChannel = $db->prepare('SELECT * FROM Story WHERE channel = ? ORDER BY points DESC');
-				
-		$storiesFromChannel->execute(array($channel));
-		$storiesFromChannel = $storiesFromChannel->fetchAll();
-
-		return $storiesFromChannel;
-	}
-
-	function getStoriesfromChannelByComments($channel) {
-		$db = Database::instance()->db();
-
-		$storiesFromChannel = $db->prepare('SELECT * FROM(
-											SELECT Story.id as id, Story.title as title, Story.published as published, Story.channel as channel, Story.author as author, Story.points as points, Story.fulltext as fulltext, count(*) as nComment FROM Story,Comment WHERE Story.id = story_id AND channel = :channel GROUP BY story_id  
-											UNION
-											SELECT Story.id as id, Story.title as title, Story.published as published, Story.channel as channel, Story.author as author, Story.points as points, Story.fulltext as fulltext, 0        as nComment FROM Story WHERE channel = :channel AND id NOT IN (SELECT story_id FROM Comment)) ORDER BY nComment DESC');
-
-		$storiesFromChannel->bindParam(':channel', $channel);
-		$storiesFromChannel->execute();
-		$storiesFromChannel = $storiesFromChannel->fetchAll();
-
-		return $storiesFromChannel;
-
 	}
 
 	function getMostRecentStoryFromChannel($channel) {
@@ -48,6 +21,18 @@
 		$recentStory = $recentStory->fetchAll();
 
 		return $recentStory;
+	}
+
+	function getStoriesFromSubscribedChannels($username)
+	{
+		$db = Database::instance()->db();
+		
+		$stories = $db->prepare('SELECT * FROM Story WHERE channel in (SELECT channel FROM userSubscriptions WHERE username = ?) ORDER BY published DESC');
+
+		$stories->execute(array($username));
+		$stories = $stories->fetchAll();
+
+		return $stories;
 	}
 
 	function getStoryMainInfoById($storyId) {
