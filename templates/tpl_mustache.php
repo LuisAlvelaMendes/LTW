@@ -42,7 +42,7 @@
 </script>
 
 <script id="tpl_comment" type="x-tmpl-mustache">
-    <p id="usrComment">{{text}}</p>
+    <p id="usrComment">{{{text}}}</p>
 </script>
 
 <script id="tpl_info_bar_comment" type="x-tmpl-mustache" >

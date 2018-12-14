@@ -2,6 +2,8 @@
 	include_once('tpl_sub.php');
 	include_once('tpl_story.php');
 	include_once('../database/db_story.php');
+	include_once('../database/db_user.php');
+	include_once('../database/db_channel.php');
 ?>
 
 <?php function draw_header($username, $channel) { ?>
@@ -45,12 +47,98 @@
 			} ?>
 <?php } ?>
 
+
+<?php function draw_references($text) { 
+
+	// References to a channel with #
+
+	preg_match_all("/#(\\w+)/", $text, $channelMatches);
+
+	if(!empty($channelMatches)){
+
+		$channelName = $channelMatches[1];
+
+		if($channelName != ''){
+			$replace1 = preg_replace_callback("/#(\\w+)/",  
+			
+			function($matches) {
+
+				if(channelExists($matches[1])){
+					return '<a href="../pages/channel.php?name=' . $matches[1] . '">' . $matches[1] . '</a>';
+				}
+
+				return $matches[0];
+
+			}, 
+			
+			$text);
+		}
+	}
+
+	// References to a user with @
+	
+	if(!isset($replace1)){
+		preg_match("/@(\\w+)/", $text, $userMatches);
+	}
+
+	else{
+		preg_match("/@(\\w+)/", $replace1, $userMatches);
+	}
+
+	if(!empty($userMatches)){
+		$userName = $userMatches[1];
+	
+		if($userName != ''){
+			
+			if(!isset($replace1)){
+				$finaltext = preg_replace_callback ("/@(\\w+)/", 
+				
+				function($matches){
+
+					if(usernameExists($matches[1])){
+						return '<a href="../pages/profile.php?name=' . $matches[1] . '">' . $matches[1] . '</a>';
+					}
+					
+					return $matches[0];
+				},
+				
+				$text);
+			}
+
+			else{
+				$finaltext = preg_replace_callback ("/@(\\w+)/", 
+				
+				function($matches){
+
+					if(usernameExists($matches[1])){
+						return '<a href="../pages/profile.php?name=' . $matches[1] . '">' . $matches[1] . '</a>';
+					}
+					
+					return $matches[0];
+				},
+				
+				$replace1);
+			}
+
+			return $finaltext;
+		}
+	}
+
+	if(!isset($replace1)){
+		return $text;
+	}
+
+	return $replace1;
+} ?>
+
 <?php function draw_story_text($story_title, $fulltext) { ?>
 	<link rel="stylesheet" href="../css/story.css">
 
+	<?php $newtext = draw_references($fulltext); ?>
+
 	<section id="storyText">
 		<h1><?=$story_title?></h1>
-		<p><?=$fulltext?></p>
+		<p><?=$newtext?></p>
 	</section>
 
 <?php } ?>
@@ -104,9 +192,8 @@
 } ?>
 
 <?php function draw_search() { ?>
-	<form>
-		<button id="searchButton" class="button" type='submit' onclick="window.location.href='../pages/search.php'">Search</button>
-	</form>
+	<link rel="stylesheet" href="../css/common.css">
+	<button id="searchButton" class="button" type='submit' onclick="window.location.href='../pages/search.php'">Search</button>
 <?php } ?>
 
 <?php function draw_info_bar_story($storyId, $username, $channel, $date, $points) { ?>

@@ -161,6 +161,10 @@ body > #messages .success {
     top: -20px;
 }
 
+#searchButton {
+	bottom:90px;
+}
+
 #createStory {
     left: 870px;
     top: 36.5px;

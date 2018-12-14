@@ -27,7 +27,7 @@
 <?php } ?>
 
 <?php function draw_posted_stories($username) { ?>
-	<link rel="stylesheet" href="../css/story.css">
+	<link rel="stylesheet" href="../css/profile.css">
 
 	<section id="subscriptions">
 		<h3> User's Posted Stories: </h3>
@@ -46,7 +46,6 @@
 <?php } ?>
 
 <?php function draw_posted_comments($username) { ?>
-	<link rel="stylesheet" href="../css/story.css">
 
 	<section id="subscriptions">
 		<h3> User's Posted Comments: </h3>
