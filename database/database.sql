@@ -28,6 +28,7 @@ CREATE TABLE Story (
 CREATE TABLE Utilizer (
   username VARCHAR PRIMARY KEY,
   password VARCHAR NOT NULL,
+  email VARCHAR NOT NULL,
   points INTEGER DEFAULT 0,
   created INTEGER -- date when the utilizer was created in epoch format
 );
@@ -151,10 +152,10 @@ INSERT INTO Channel (name) VALUES ("Lorem Ipsum");
 
 -- All passwords are 1234 in SHA-1 format
 
-INSERT INTO Utilizer (username, password, created, points) VALUES ("dominic", "7110eda4d09e062aa5e4a390b0a572ac0d2c0220", 1507901651, 0);
-INSERT INTO Utilizer (username, password, created, points) VALUES ("zachary", "7110eda4d09e062aa5e4a390b0a572ac0d2c0220", 1508074451, 0);
-INSERT INTO Utilizer (username, password, created, points) VALUES ("alicia", "7110eda4d09e062aa5e4a390b0a572ac0d2c0220", 1508160851, -1);
-INSERT INTO Utilizer (username, password, created, points) VALUES ("abril", "7110eda4d09e062aa5e4a390b0a572ac0d2c0220", 1508247278, 0);
+INSERT INTO Utilizer (username, password, email, created, points) VALUES ("dominic", "7110eda4d09e062aa5e4a390b0a572ac0d2c0220", "dominic@hotmail.com", 1507901651, 0);
+INSERT INTO Utilizer (username, password, email, created, points) VALUES ("zachary", "7110eda4d09e062aa5e4a390b0a572ac0d2c0220", "zachary@hotmail.com", 1508074451, 0);
+INSERT INTO Utilizer (username, password, email, created, points) VALUES ("alicia", "7110eda4d09e062aa5e4a390b0a572ac0d2c0220", "alicia@hotmail.com", 1508160851, -1);
+INSERT INTO Utilizer (username, password, email, created, points) VALUES ("abril", "7110eda4d09e062aa5e4a390b0a572ac0d2c0220", "abril@hotmail.com", 1508247278, 0);
 
 INSERT INTO Story (title, published, channel, author, points, fulltext) VALUES ("A Autoeuropa, lembram-se?", 1507901651, "Portugal", "dominic", 0, "Há cerca de um ano estava o sub inundado de posts com notícias sobre a Autoeuropa e algumas divergências entre administração e trabalhadoras, relativamente a folgas, horários e remuneração de dias como sábado e domingo. Alguns dos títulos:");
 INSERT INTO Story (title, published, channel, author, points, fulltext) VALUES ("Vida profissional de um advogado em Portugal", 1508074451, "Portugal", "abril", 1, "Estou a fazer agora um estágio num escritório enquanto acabo o quarto ano de Direito. Gostava de conhecer o testemunho de alguns advogados enquanto vou conhecendo aos poucos a prática. Como é o ambiente no vosso escritório? Quais as qualidades mais prezadas num advogado/estagiário? Que salário devo esperar quando começar exercer a sério/ estagiar na ordem? Quais os principais problemas que costumam ocorrer e quais os pontos fortes da profissão?");

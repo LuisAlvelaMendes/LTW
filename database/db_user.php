@@ -13,7 +13,7 @@
     function getUserPublicInfo($username) {
         $db = Database::instance()->db();
 
-        $stmt = $db->prepare('SELECT points, created FROM Utilizer WHERE username = ?');
+        $stmt = $db->prepare('SELECT email, points, created FROM Utilizer WHERE username = ?');
         $stmt->execute(array($username));
         
         return $stmt->fetchAll();
@@ -28,11 +28,22 @@
         return $stmt->fetch()?true:false; // return true if username exists
     }
 
-    function addUser($username, $password) {
+    function emailExists($email) {
+        $db = Database::instance()->db();
+        
+        var_dump($email);
+
+        $stmt = $db->prepare('SELECT * FROM utilizer WHERE email = ?');
+        $stmt->execute(array($email));
+    
+        return $stmt->fetch()?true:false; // return true if email exists
+    }
+
+    function addUser($username, $password, $email) {
         $db = Database::instance()->db();
 
-        $stmt = $db->prepare('INSERT INTO utilizer (username, password, created) VALUES (?, ?, ?)');
-        $stmt->execute(array($username, sha1($password), time()));
+        $stmt = $db->prepare('INSERT INTO utilizer (username, password, email, created) VALUES (?, ?, ?, ?)');
+        $stmt->execute(array($username, sha1($password), $email, time()));
     }
 
     function getAllStoriesPosted($username) {
@@ -53,4 +64,21 @@
         return $stmt->fetchAll();
     }
 
+    function changeUserPassword($username, $password) {
+        $db = Database::instance()->db();
+
+        $stmt = $db->prepare('UPDATE utilizer SET password = ? WHERE username = ?');
+        $stmt->execute(array(sha1($password), $username));
+    
+        return true;
+    }
+
+    function changeUserEmail($username, $email) {
+        $db = Database::instance()->db();
+
+        $stmt = $db->prepare('UPDATE utilizer SET email = ? WHERE username = ?');
+        $stmt->execute(array($email, $username));
+    
+        return true;
+    }
 ?>

@@ -10,16 +10,35 @@
 <?php } ?>
 
 <?php function draw_edit_profile() { ?>
-	<link rel="stylesheet" href="../css/auth.css"> 
+	<link rel="stylesheet" href="../css/edit.css"> 
 
 	<section id="edit">
-		<form action="../actions/action_edit.php" method="post">
+		<form action="../actions/action_editPass.php" method="post">
+
+			<p> Change Password: </p>
 		
             <label for="oldpassword">Old Password</label>
 			<input type="password" placeholder="Enter Old Password" name="oldpassword" required>
 
+			<br>
+
 			<label for="newpassword">New Password</label>
 			<input type="password" placeholder="Enter New Password" name="newpassword" required>
+
+			<button type="submit">Change</button>
+		</form>
+
+		<form action="../actions/action_editEmail.php" method="post">
+
+			<p> Change Email: </p>
+		
+			<label for="oldemail">Old Email</label>
+			<input type="email" placeholder="Enter Old email" name="oldemail" required>
+
+			<br>
+
+			<label for="newemail">New Email</label>
+			<input type="email" placeholder="Enter New Password" name="newemail" required>
 
 			<button type="submit">Change</button>
 		</form>
@@ -81,13 +100,14 @@
   </section>
 <?php } ?>
 
-<?php function draw_user_info($username, $created, $points) { ?>
+<?php function draw_user_info($username, $created, $points, $email) { ?>
 	<?php $data = convert_epoch($created) ?>
 	
 	<link rel="stylesheet" href="../css/story.css">
 
 	<section id="storyText">
 		<h1>The user is: <?=$username?></h1>
+		<p>Email: <?=$email?></p>
 		<p>Account created in: <?=$data->format('Y-m-d')?></p>
 		<p>Points: <?=$points?></p>
 	</section>
