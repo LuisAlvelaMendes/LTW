@@ -10,16 +10,16 @@
 
 	$storyId = $_GET['id'];
 	
-	$storyMainInfo = getStoryMainInfoById($storyId);
+	$story = getStoryMainInfoById($storyId);
 	
 	if(!isset($_SESSION['username'])) {
-		draw_header(null, $storyMainInfo[0]['channel']);
+		draw_header(null, $story[0]['channel']);
 	} else {
-		draw_header($_SESSION['username'], $storyMainInfo[0]['channel']);
+		draw_header($_SESSION['username'], $story[0]['channel']);
   	}
-
-	draw_story_text($storyMainInfo[0]['title'], $storyMainInfo[0]['fulltext']);
-	//draw_info_bar_story($storyId, $storyMainInfo[0]['author'], false, $storyMainInfo[0]['published'], $storyMainInfo[0]['points']);
+	
+	draw_story($story);
+	
 	draw_comment_section($storyId);
     
 	draw_footer();

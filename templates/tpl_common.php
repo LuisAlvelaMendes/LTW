@@ -1,9 +1,10 @@
 <?php 
-	include_once('tpl_sub.php');
 	include_once('tpl_story.php');
+
 	include_once('../database/db_story.php');
-	include_once('../database/db_user.php');
 	include_once('../database/db_channel.php');
+	include_once('../database/db_user.php'); 
+	include_once('../database/db_channel.php'); 
 ?>
 
 <?php function draw_header($username, $channel) { ?>
@@ -47,79 +48,59 @@
 			} ?>
 <?php } ?>
 
-
 <?php function draw_references($text) { 
-
 	// References to a channel with #
-
 	preg_match_all("/#(\\w+)/", $text, $channelMatches);
 
 	if(!empty($channelMatches)){
-
 		$channelName = $channelMatches[1];
-
 		if($channelName != ''){
 			$replace1 = preg_replace_callback("/#(\\w+)/",  
 			
 			function($matches) {
-
 				if(channelExists($matches[1])){
 					return '<a href="../pages/channel.php?name=' . $matches[1] . '">' . $matches[1] . '</a>';
 				}
-
 				return $matches[0];
-
 			}, 
-			
 			$text);
 		}
 	}
 
 	// References to a user with @
-	
 	if(!isset($replace1)){
 		preg_match("/@(\\w+)/", $text, $userMatches);
 	}
-
 	else{
 		preg_match("/@(\\w+)/", $replace1, $userMatches);
 	}
-
 	if(!empty($userMatches)){
 		$userName = $userMatches[1];
-	
+
 		if($userName != ''){
 			
 			if(!isset($replace1)){
 				$finaltext = preg_replace_callback ("/@(\\w+)/", 
 				
 				function($matches){
-
 					if(usernameExists($matches[1])){
 						return '<a href="../pages/profile.php?name=' . $matches[1] . '">' . $matches[1] . '</a>';
 					}
-					
 					return $matches[0];
 				},
-				
 				$text);
 			}
-
 			else{
 				$finaltext = preg_replace_callback ("/@(\\w+)/", 
-				
-				function($matches){
 
+				function($matches){
 					if(usernameExists($matches[1])){
 						return '<a href="../pages/profile.php?name=' . $matches[1] . '">' . $matches[1] . '</a>';
 					}
-					
 					return $matches[0];
 				},
-				
 				$replace1);
 			}
-
 			return $finaltext;
 		}
 	}
@@ -131,29 +112,25 @@
 	return $replace1;
 } ?>
 
-<?php function draw_story_text($story_title, $fulltext) { ?>
-	<link rel="stylesheet" href="../css/story.css">
+<?php function draw_subscriberList() { ?>
+	<link rel="stylesheet" href="../css/subList.css">
+  <script src="../scripts/dropmenu.js" async></script>
+  
+  <section id="dropdown" class="dropdown">
+    <button onclick="myFunction()" class="dropbtn">&#9660;</button>
 
-	<?php $newtext = draw_references($fulltext); ?>
-
-	<section id="storyText">
-		<h1><?=$story_title?></h1>
-		<p><?=$newtext?></p>
-	</section>
-
-<?php } ?>
-
-<?php function draw_user_info($username, $created, $points) { ?>
-	<?php $data = convert_epoch($created) ?>
-	
-	<link rel="stylesheet" href="../css/story.css">
-
-	<section id="storyText">
-		<h1>The user is: <?=$username?></h1>
-		<p>Account created in: <?=$data->format('Y-m-d')?></p>
-		<p>Points: <?=$points?></p>
-	</section>
-
+    <section id="myDropdown" class="dropdown-content">
+      <?php 
+      $subscribedChannelsNames = getSubscribedChannels($_SESSION['username']);
+      if(empty($subscribedChannelsNames)) { ?>
+        <a id="Empty">Empty</a>
+      <?php } else {
+        foreach( $subscribedChannelsNames as $channelName) { ?>
+          <a onclick="window.location.href='../pages/channel.php?name=<?=$channelName['channel']?>'"><?=$channelName['channel']?></a>
+        <?php }
+      } ?>
+    </section>    
+  </section>
 <?php } ?>
 
 <?php function convert_epoch($epoch){
@@ -191,63 +168,13 @@
 	return $string ? implode(', ', $string) . '' : 'just now';
 } ?>
 
-<?php function draw_homepage_buttons() { ?>
-	<link rel="stylesheet" href="../css/common.css">
-	<section id = "homepage_buttons">
-
-		<div id="left">
-			<button id="searchButton" class="button" type='submit' onclick="window.location.href='../pages/search.php'">Search</button>
-		</div>
-
-		<div id="right">
-			<form action='../actions/action_createChannel.php' method='post'>
-				<input id="createChannelText" type='text' placeholder='Enter the channel name' name='name' required>
-				<button id="createChannelButton" class="button" type='submit'>Create Channel</button>
-			</form>
-		</div>
-
-	</section>	
-
-<?php } ?>
-
-<?php function draw_info_bar_story($storyId, $username, $channel, $date, $points) { ?>
+<?php function draw_info_bar_story($storyId, $author, $channel, $date, $points) { ?>
 	<section id = "info_bar">
+		
 		<div id="start">
-
-		<?php if(isset($_SESSION['username'])){ ?>
-			<form id="uparrow" action='../actions/action_voteStory.php' method='post'>
-
-				<?php if(!checkIfStoryVoteDisplay($storyId, $_SESSION['username'], 1)){ ?>
-					<input type="image" src="../images/UpvoteGrey.png">
-				<?php } ?>
-
-				<?php if(checkIfStoryVoteDisplay($storyId, $_SESSION['username'], 1)){ ?>
-					<input type="image" src="../images/Upvote.png">
-				<?php } ?>
-
-				<input type="hidden" name="type" value="1">
-				<input type="hidden" name="story" value="<?=$storyId?>">
-				<input type="hidden" name="username" value="<?=$_SESSION['username']?>">
-			</form>
-
+			<input type="checkbox" class="up" data-id=<?=$storyId?> data-point="1" data-username="<?=$_SESSION['username']?>">
 			<h6 id="points"><?=$points?></h6>
-
-			<form id="downarrow" action='../actions/action_voteStory.php' method='post'>
-
-				<?php if(!checkIfStoryVoteDisplay($storyId, $_SESSION['username'], 0)){ ?>
-					<input type="image" src="../images/DownvoteGrey.png">
-				<?php } ?>
-
-				<?php if(checkIfStoryVoteDisplay($storyId, $_SESSION['username'], 0)){ ?>
-					<input type="image" src="../images/Downvote.png">
-				<?php } ?>
-
-				<input type="hidden" name="story" value="<?=$storyId?>">
-				<input type="hidden" name="username" value="<?=$_SESSION['username']?>">
-				<input type="hidden" name="type" value="0">
-			</form>
-		<?php } ?>
-
+			<input type="checkbox" class="down" data-id=<?=$storyId?> data-point="0" data-username="<?=$_SESSION['username']?>">
 		</div>
 		
 		<div id="middle">
@@ -256,8 +183,9 @@
 		</div>
 
 		<div id="end">
-			<a id="profile" href="../pages/profile.php?name=<?=$username?>"><?=$username?></a>
+			<a id="profile" href="../pages/profile.php?name=<?=$author?>"><?=$author?></a>
 		</div>
+
 	</section>
 <?php } ?>
 

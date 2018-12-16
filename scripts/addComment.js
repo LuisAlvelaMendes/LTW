@@ -1,4 +1,4 @@
-'use_strict';
+'use strict';
 
 let story_id = document.querySelector('input[name=story]').value;
 
@@ -7,26 +7,27 @@ let form = document.querySelector('form');
 
 form.addEventListener('submit', addComment);
 
-// Run refresh when starting
-refresh();
+window.setInterval(refreshComments, 10000);
 
-// Ask for new messages
-function refresh() {
+// Run refresh when starting
+refreshComments();
+
+// Ask for new comments
+function refreshComments() {
   let request = new XMLHttpRequest();
   request.open('get', '../actions/action_addComment.php?' + encodeForAjax({'story_id' : story_id}), true);
   request.addEventListener('load', newComment);
   request.send();
 }
 
-// Send message
+// Adds comment to db
 function addComment(event) {
   let text_comment = document.querySelector('textarea[name=comment]').value;
   let username = document.querySelector('input[name=username]').value;
 
-  // Delete sent message
+  // Delete comment textarea
   document.querySelector('textarea[name=comment]').value='';
 
-  // Send message
   let request = new XMLHttpRequest();
   request.open('get', '../actions/action_addComment.php?' + encodeForAjax({'username': username, 'text': text_comment, 'story_id' : story_id}), true);
   request.addEventListener('load', newComment);
@@ -35,7 +36,7 @@ function addComment(event) {
   event.preventDefault();
 }
 
-// Called when messages are received
+// New comment & Update comments on screen
 function newComment() {
   comment_section.innerHTML = "";
 

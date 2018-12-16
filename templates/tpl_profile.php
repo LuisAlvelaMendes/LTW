@@ -46,7 +46,6 @@
 <?php } ?>
 
 <?php function draw_posted_comments($username) { ?>
-
 	<section id="subscriptions">
 		<h3> User's Posted Comments: </h3>
 		
@@ -61,4 +60,36 @@
 		<?php }
 		} ?>
 	</section>
+<?php } ?>
+
+<?php function draw_subscribersAside($username) { ?>
+  <link rel="stylesheet" href="../css/story.css">
+
+  <section id="subscriptions">
+      <h3> User's Subscribed Channels: </h3>
+      
+      <?php 
+      $subscribedChannelsNames = getSubscribedChannels($username);
+
+      if(empty($subscribedChannelsNames)) { ?>
+        <p> User has not subscribed to any channel..</p>
+      <?php } else {
+        foreach( $subscribedChannelsNames as $channelName) { ?>
+          <p><a onclick="window.location.href='../pages/channel.php?name=<?=$channelName['channel']?>'"><?=$channelName['channel']?></a></p>
+        <?php }
+      } ?>
+  </section>
+<?php } ?>
+
+<?php function draw_user_info($username, $created, $points) { ?>
+	<?php $data = convert_epoch($created) ?>
+	
+	<link rel="stylesheet" href="../css/story.css">
+
+	<section id="storyText">
+		<h1>The user is: <?=$username?></h1>
+		<p>Account created in: <?=$data->format('Y-m-d')?></p>
+		<p>Points: <?=$points?></p>
+	</section>
+
 <?php } ?>

@@ -38,12 +38,10 @@
 	function getStoryMainInfoById($storyId) {
 		$db = Database::instance()->db();
 
-		$correspondingStory = $db->prepare('SELECT channel, title, fulltext, published, author, points FROM Story WHERE id = ?');
+		$correspondingStory = $db->prepare('SELECT * FROM Story WHERE id = ?');
 				
 		$correspondingStory->execute(array($storyId));
-		$correspondingStory = $correspondingStory->fetchAll();
-
-		return $correspondingStory;
+		return $correspondingStory->fetchAll();
 	}
 
 	function addComment($story_id, $username, $timestamp, $text) {
@@ -61,66 +59,62 @@
 		return $comments;
 	}
 
-	//will return false if it wasn't, or it was but with the opposite type of vote
-	function checkIfStoryWasVotedOnByUser($storyId, $username, $voteType) { 
+	function getUserVotes($storyId, $username) {
 		$db = Database::instance()->db();
+		$stmt = $db->prepare('SELECT type FROM StoryVote WHERE story_id = ? AND username = ?');
+		$stmt->execute(array($storyId, $username));
+		$vote = $stmt->fetchAll();
 
+		return $vote;
+	}
+
+	function addVote($storyId, $username, $voteType) { 
+		$db = Database::instance()->db();
 		$stmt = $db->prepare('SELECT type FROM StoryVote WHERE story_id = ? AND username = ?');
 		$stmt->execute(array($storyId, $username));
 
-		$currentlySavedType = $stmt->fetchAll();
-
-		if(empty($currentlySavedType)){
+		$currentType = $stmt->fetchAll();
+		
+		if(empty($currentType)){
 			addUsersVote($username, $storyId, $voteType);
-			return false;
-		}
-
-		else {
-			if($currentlySavedType[0]['type'] == $voteType){
-				return true;
-			}
-
-			if($currentlySavedType[0]['type'] != $voteType){
-				changeUsersVote($storyId, $username);
-				return false;
+		} else {
+			if($currentType[0]['type'] == $voteType) {
+				removeUserVote($storyId, $username);
+			} else if($currentType[0]['type'] != $voteType){
+				swapUsersVote($storyId, $username, $voteType);
 			}
 		}
-	}
 
-	//will return false if it wasn't, or it was but with the opposite type of vote
-	function checkIfStoryVoteDisplay($storyId, $username, $voteType) { 
-		$db = Database::instance()->db();
-
-		$stmt = $db->prepare('SELECT type FROM StoryVote WHERE story_id = ? AND username = ?');
-		$stmt->execute(array($storyId, $username));
-
-		$currentlySavedType = $stmt->fetchAll();
-
-		if(empty($currentlySavedType)){
-			return false;
-		}
-
-		else {
-			if($currentlySavedType[0]['type'] == $voteType){
-				return true;
-			}
-
-			if($currentlySavedType[0]['type'] != $voteType){
-				return false;
-			}
-		}
-	}
-
-	function changeUsersVote($storyId, $username) {
-		$db = Database::instance()->db();
-		$stmt = $db->prepare('DELETE FROM StoryVote WHERE story_id = ? AND username = ?');
-		$stmt->execute(array($storyId, $username));
+		return $currentType;
 	}
 
 	function addUsersVote($username, $storyId, $voteType) {
 		$db = Database::instance()->db();
 		$stmt = $db->prepare('INSERT INTO StoryVote VALUES(?, ?, ?)');
 		$stmt->execute(array($username, $storyId, $voteType));
+	}
+
+	function removeUserVote($storyId, $username) {
+		$db = Database::instance()->db();
+		$stmt = $db->prepare('DELETE FROM StoryVote WHERE story_id = ? AND username = ?');
+		$stmt->execute(array($storyId, $username));
+	}
+
+	function swapUsersVote($storyId, $username, $voteType) {
+		$db = Database::instance()->db();
+		$stmt = $db->prepare('DELETE FROM StoryVote WHERE story_id = ? AND username = ?');
+		$stmt->execute(array($storyId, $username));
+
+		$stmt = $db->prepare('INSERT INTO StoryVote VALUES(?, ?, ?)');
+		$stmt->execute(array($username, $storyId, $voteType));
+	}
+
+	function getStoryPoints($storyId){
+		$db = Database::instance()->db();
+		$stmt = $db->prepare('SELECT points FROM Story WHERE ?');
+		$stmt->execute(array($storyId));
+
+		return $stmt->fetchAll();
 	}
 	
 ?>

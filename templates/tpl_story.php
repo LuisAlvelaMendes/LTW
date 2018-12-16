@@ -14,20 +14,29 @@
 		$channel = null;
 	} ?>
 
-	<button id="storyCard" onclick="window.location.href='../pages/story.php?id=<?=$story['id']?>'">
-		<h1> <?=$story['title']?> </h1>
-		<p> <?=$story['fulltext']?> </p>
+	<div>
+		<button class="storyCardButton" onclick="window.location.href='../pages/story.php?id=<?=$story['id']?>'">
+			<h1> <?=$story['title']?> </h1>
+			<p> <?=$story['fulltext']?> </p>
 
-		<p>&bull; &bull; &bull;</p>
-	</button>
-	
-	<?php draw_info_bar_story($story['id'], $story['author'], $channel, $story['published'], $story['points']) ?>
+			<p>&bull; &bull; &bull;</p>
+		</button>
+		<?php draw_info_bar_story($story['id'], $story['author'], $channel, $story['published'], $story['points']) ?>
+	</div>
 <?php } ?>
 
-<?php function draw_addStory($channel) { ?>
-	<input type="hidden" name="channel" value="<?=$channel?>">
+<?php function draw_story($story) { ?>
+	<link rel="stylesheet" href="../css/story.css">
 
-	<button id = "createStory" class = "button" onclick="window.location.href='../pages/create_story.php?name=<?=$channel?>'">Create Story</button>
+	<script src="../scripts/vote.js" async></script>
+
+	<?php $newtext = draw_references($story[0]['fulltext']); ?>
+
+	<section id="storyText">
+		<h1><?=$story[0]['title']?></h1>
+		<p><?=$newtext?></p>
+	</section>
+	<?php draw_info_bar_story($story[0]['id'], $story[0]['author'], false, $story[0]['published'], $story[0]['points']); ?>
 <?php } ?>
 
 <?php function draw_textareas($channel) { ?>
@@ -63,7 +72,7 @@
 		</form>
 	<?php } else {?>
 		<form>
-			<textarea name="comment" placeholder="Add your comment"></textarea>
+			<textarea name="comment" placeholder="Add your comment" required></textarea>
 			<input type="hidden" name="username" value="<?=$_SESSION['username']?>">
 			<input type="hidden" name="story" value="<?=$storyId?>">
 			<input type="submit" value="Add">
