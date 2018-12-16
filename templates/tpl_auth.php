@@ -25,7 +25,7 @@
 			<input type="text" placeholder="Enter Username" name="username" required autofocus>
 
 			<label for="email">Email</label>
-			<input type="email" placeholder="Enter email" name="email" required autofocus>
+			<input type="email" placeholder="Enter email" name="email" required>
 
 			<label for="password">Password</label>
 			<input type="password" placeholder="Enter Password" name="password1" required>

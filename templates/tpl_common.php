@@ -169,12 +169,18 @@
 } ?>
 
 <?php function draw_info_bar_story($storyId, $author, $channel, $date, $points) { ?>
+	<?php if(isset($_SESSION['username'])){
+		$username = $_SESSION['username'];
+	} else {
+		$username = -1;
+	} ?>
+
 	<section class="info_bar">
 		
 		<div id="start">
-			<input type="checkbox" class="up" data-id=<?=$storyId?> data-point="1" data-username="<?=$_SESSION['username']?>">
+			<input type="checkbox" class="up" data-id=<?=$storyId?> data-point="1" data-username="<?=$username?>">
 			<h6 id="points"><?=$points?></h6>
-			<input type="checkbox" class="down" data-id=<?=$storyId?> data-point="0" data-username="<?=$_SESSION['username']?>">
+			<input type="checkbox" class="down" data-id=<?=$storyId?> data-point="0" data-username="<?=$username?>">
 		</div>
 		
 		<div id="middle">

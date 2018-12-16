@@ -28,7 +28,7 @@
 <?php function draw_story($story) { ?>
 	<link rel="stylesheet" href="../css/story.css">
 
-	<script src="../scripts/vote.js" async></script>
+	<script src="../scripts/voteStory.js" async></script>
 
 	<?php $newtext = draw_references($story[0]['fulltext']); ?>
 

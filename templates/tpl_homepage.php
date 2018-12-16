@@ -26,7 +26,7 @@
 <?php } ?>
 
 <?php function draw_storiesFromChannels($allChannels) { ?>
-	<script src="../scripts/vote.js" async></script>
+	<script src="../scripts/voteStory.js" async></script>
 	
 	<section id="storyCards">
 	<?php foreach($allChannels as $channel){
@@ -37,7 +37,7 @@
 <?php } ?>
 
 <?php function draw_stories($stories) { ?>
-	<script src="../scripts/vote.js" async></script>
+	<script src="../scripts/voteStory.js" async></script>
 	
 	<section id="storyCards">
 	<?php foreach($stories as $story){

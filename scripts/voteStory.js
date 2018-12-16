@@ -12,15 +12,28 @@ function refreshVotes() {
 	let CBs=Array();
 	let username = allCBs[0].getAttribute('data-username');
     
-	for(let i = 0; i < allCBs.length; i++) {
+    // User is not logged in disables CBs
+    if(username == -1){disableCB(); return; };
+
+    for(let i = 0; i < allCBs.length; i++) {
         CBs[i] = allCBs[i].getAttribute('data-id');
 	}
        
 	let request = new XMLHttpRequest();
-	request.open('post', '../actions/action_voteStory.php', true);
+	request.open('post', '../api/api_voteStory.php', true);
 	request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
     request.addEventListener('load', updateCB);
 	request.send(encodeForAjax({'CBs' : CBs, 'username' : username}));
+}
+
+function disableCB(){
+    let allUp = document.getElementsByClassName('up');
+    let allDown = document.getElementsByClassName('down');
+
+    for(let i = 0; i < allUp.length; i++) {
+        allUp[i].disabled = true;
+        allDown[i].disabled = true;
+    }
 }
 
 // Updates checkboxes with usr votes 
@@ -49,8 +62,11 @@ function addVote(event){
     let point = vote.getAttribute('data-point');
     let username = vote.getAttribute('data-username');
     
+    // User is not logged in does matter if he votes
+    if(username == -1) return;
+
     let request = new XMLHttpRequest();
-    request.open('post', '../actions/action_voteStory.php', true);
+    request.open('post', '../api/api_voteStory.php', true);
     request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
     request.addEventListener('load', newVote);
     request.send(encodeForAjax({'id' : id, 'point' : point, 'username' : username}));
