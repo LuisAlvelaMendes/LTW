@@ -1,5 +1,6 @@
 'use strict';
 
+// EventListener working on the section instead of on every single checkbox
 let storyCards = document.querySelector('#storyCards');
 storyCards.addEventListener('change', addVote);
 
@@ -7,12 +8,12 @@ storyCards.addEventListener('change', addVote);
 refreshVotes();
 
 function refreshVotes() {
-	let allCBs = document.getElementsByClassName('up');
+	let allCBs = document.getElementsByClassName('up'); // Only need the up arrow since only the voteType changes
 	let CBs=Array();
 	let username = allCBs[0].getAttribute('data-username');
-
+    
 	for(let i = 0; i < allCBs.length; i++) {
-		CBs[i] = allCBs[i].getAttribute('data-id');
+        CBs[i] = allCBs[i].getAttribute('data-id');
 	}
        
 	let request = new XMLHttpRequest();
@@ -22,6 +23,7 @@ function refreshVotes() {
 	request.send(encodeForAjax({'CBs' : CBs, 'username' : username}));
 }
 
+// Updates checkboxes with usr votes 
 function updateCB() {
     let votes = JSON.parse(this.responseText);
     let CB;
@@ -46,7 +48,7 @@ function addVote(event){
     let id = vote.getAttribute('data-id');
     let point = vote.getAttribute('data-point');
     let username = vote.getAttribute('data-username');
-
+    
     let request = new XMLHttpRequest();
     request.open('post', '../actions/action_voteStory.php', true);
     request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
@@ -54,31 +56,29 @@ function addVote(event){
     request.send(encodeForAjax({'id' : id, 'point' : point, 'username' : username}));
 }
 
+// Manages how the checkboxes work when there is a new vote
+// They behavve like a radio button but you can cancel your input once there is one
 function newVote() {
     let vote = JSON.parse(this.responseText);
     let voteId=vote['id'];
     let CB = document.querySelector(`[data-id="${voteId}"]`);
     let points = CB.nextElementSibling;
-    
+
     if(vote['type'] == null) {
-        console.log("---usr ainda nao tinha feito voto---");
-        console.log(vote['points']);
-        points.innerHTML = vote['points'][0].points;
+        points.innerHTML = vote['points'].points;
     }else {
         switch (vote['type']) {
             case '1':
-                console.log("---usr tinha feito um voto para cima---");
-                console.log(vote['points']);
-                points.innerHTML = vote['points'][0].points;
+                points.innerHTML = vote['points'].points;
                 CB.checked = false;
+
                 break;
             case '0':
-                console.log("---usr tinha feito um voto para baixo---");
-                console.log(vote['points']);
                 let aux = CB.nextElementSibling;
                 aux = aux.nextElementSibling;
-                points.innerHTML = vote['points'][0].points;
+                points.innerHTML = vote['points'].points;
                 aux.checked = false;
+
                 break;
         }
     }

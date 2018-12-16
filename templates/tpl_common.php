@@ -169,7 +169,7 @@
 } ?>
 
 <?php function draw_info_bar_story($storyId, $author, $channel, $date, $points) { ?>
-	<section id = "info_bar">
+	<section class="info_bar">
 		
 		<div id="start">
 			<input type="checkbox" class="up" data-id=<?=$storyId?> data-point="1" data-username="<?=$_SESSION['username']?>">

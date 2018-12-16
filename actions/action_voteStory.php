@@ -30,9 +30,9 @@
 			$points = getStoryPoints($storyId);
 
 			if(empty($vote)){
-				$ret=array('id' => $storyId, 'type' => null, 'points' => $points);
+				$ret=array('id' => $storyId, 'type' => null, 'points' => $points[0]);
 			} else {
-				$ret=array('id' => $storyId, 'type' => $vote[0]['type'], 'points' => $points);
+				$ret=array('id' => $storyId, 'type' => $vote[0]['type'], 'points' => $points[0]);
 			}
 
 			echo json_encode($ret);

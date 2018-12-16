@@ -86,7 +86,7 @@ body > #messages .success {
 	background-color: var(--successs-bg-color);
 }
 
-#info_bar {
+.info_bar {
 	background-color: white;
 	border: none;
 	border-radius: 13px;
@@ -101,15 +101,15 @@ body > #messages .success {
 	font-family: Arial, sans-serif;
 }
 
-#info_bar #uparrow{
+.info_bar #uparrow{
 	display: inline;
 }
 
-#info_bar #downarrow{
+.info_bar #downarrow{
 	display: inline;
 }
 
-#info_bar #points{
+.info_bar #points{
 	color: black;
 	font-size: 15px;
 
@@ -117,7 +117,7 @@ body > #messages .success {
 	padding-bottom: 15px;
 }
 
-#info_bar #date {
+.info_bar #date {
 	color: black;
 	font-size: 15px;
 	font-weight: 100;
@@ -125,7 +125,7 @@ body > #messages .success {
 	display: inline;
 }
 
-#info_bar #channel {
+.info_bar #channel {
 	color: black;
 	text-decoration: none;
 	cursor: pointer;
@@ -134,7 +134,7 @@ body > #messages .success {
 	display: inline;
 }
 
-#info_bar #profile {
+.info_bar #profile {
 	color: black;
 	text-decoration: none;
 	cursor: pointer;

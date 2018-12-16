@@ -23,8 +23,7 @@
 		return $recentStory;
 	}
 
-	function getStoriesFromSubscribedChannels($username)
-	{
+	function getStoriesFromSubscribedChannels($username) {
 		$db = Database::instance()->db();
 		
 		$stories = $db->prepare('SELECT * FROM Story WHERE channel in (SELECT channel FROM userSubscriptions WHERE username = ?) ORDER BY published DESC');
@@ -111,7 +110,7 @@
 
 	function getStoryPoints($storyId){
 		$db = Database::instance()->db();
-		$stmt = $db->prepare('SELECT points FROM Story WHERE ?');
+		$stmt = $db->prepare('SELECT points FROM Story WHERE id = ?');
 		$stmt->execute(array($storyId));
 
 		return $stmt->fetchAll();

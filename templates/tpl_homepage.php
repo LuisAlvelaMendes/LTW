@@ -14,12 +14,14 @@
 			<button id="searchButton" class="button" type='submit' onclick="window.location.href='../pages/search.php'">Search</button>
 		</div>
 
-		<div id="right">
-			<form action='../actions/action_createChannel.php' method='post'>
-				<input id="createChannelText" type='text' placeholder='Enter the channel name' name='name' required>
-				<button id="createChannelButton" class="button" type='submit'>Create Channel</button>
-			</form>
-		</div>
+		<?php if(isset($_SESSION['username'])) { ?>
+			<div id="right">
+				<form action='../actions/action_createChannel.php' method='post'>
+					<input id="createChannelText" type='text' placeholder='Enter the channel name' name='name' required>
+					<button id="createChannelButton" class="button" type='submit'>Create Channel</button>
+				</form>
+			</div>
+		<?php } ?>
 	</section>	
 <?php } ?>
 
@@ -44,24 +46,15 @@
 	</section>
 <?php } ?>
 
-<?php function draw_createChannel() { ?>
-	<section id="createChannel">
-		<form action='../actions/action_createChannel.php' method='post'>
-			<input id="createChannelText" type='text' placeholder='Enter the channel name' name='name' required>
-			<button id="createChannelButton" type='submit'>Create Channel</button>
-		</form>
-	</section>
-<?php } ?>
-
 <?php function draw_topchannels($topchannels) { ?>
 	<link rel="stylesheet" href="../css/top_subs.css">
 
-<section id="top_ch">
-	<? foreach($topchannels as $channel) { ?>
-	<button type="button" onclick="window.location.href='../pages/channel.php?name=<?= $channel['name'] ?>'">
-		<h1><?=$channel['name']?></h1>
-		<h2><?=$channel['subscribers']?></h2>
-	</button>
-	<? } ?>
-</section> 
+	<section id="top_ch">
+		<? foreach($topchannels as $channel) { ?>
+		<button type="button" onclick="window.location.href='../pages/channel.php?name=<?= $channel['name'] ?>'">
+			<h1><?=$channel['name']?></h1>
+			<h2><?=$channel['subscribers']?></h2>
+		</button>
+		<? } ?>
+	</section> 
 <?php } ?>
