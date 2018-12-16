@@ -59,22 +59,22 @@ function newVote() {
     let voteId=vote['id'];
     let CB = document.querySelector(`[data-id="${voteId}"]`);
     let points = CB.nextElementSibling;
-    console.log(vote['points']);
+    
     if(vote['type'] == null) {
-        console.log("Nao havia ptos do usr");
-        console.log(vote['points'][0].points);
+        console.log("---usr ainda nao tinha feito voto---");
+        console.log(vote['points']);
         points.innerHTML = vote['points'][0].points;
     }else {
         switch (vote['type']) {
             case '1':
-                console.log("Havia um 1 do usr");
-                console.log(vote['points'][0].points);
+                console.log("---usr tinha feito um voto para cima---");
+                console.log(vote['points']);
                 points.innerHTML = vote['points'][0].points;
                 CB.checked = false;
                 break;
             case '0':
-                console.log("Havia um 0 do usr");
-                console.log(vote['points'][0].points);
+                console.log("---usr tinha feito um voto para baixo---");
+                console.log(vote['points']);
                 let aux = CB.nextElementSibling;
                 aux = aux.nextElementSibling;
                 points.innerHTML = vote['points'][0].points;

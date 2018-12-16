@@ -1,4 +1,4 @@
-#storyCard {
+.storyCardButton {
 	background-color: white;
 	border: 2px solid white;
 	border-radius: 13px;
@@ -7,22 +7,22 @@
 	padding: 1em;
 }
 
-#storyCard:focus {
+.storyCardButton:focus {
 	outline: none;
 }
 
- #storyCard:hover {
+.storyCardButton:hover {
 	border: 2px solid #a5a5a5;
 }
 
- #storyCard > h1 {
+.storyCardButton > h1 {
 	font-size: 25px;
 	font-weight: 400;
 	text-align: left;
 	font-family: Verdana, sans-serif;
 }
 
- #storyCard > p {
+.storyCardButton > p {
 	overflow: hidden;
 	
 	max-height: 46px;
@@ -33,7 +33,7 @@
 	font-family: Arial, sans-serif;
 }
 
- #storyCard > p:last-child{
+.storyCardButton > p:last-child{
 	text-align: center;
 	font-size: 173%;
 	font-weight: bolder;
