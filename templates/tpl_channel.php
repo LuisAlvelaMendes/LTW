@@ -38,6 +38,7 @@
 <?php function draw_addStory($channel) { ?>
 	<section id="addStory">
 		<input type="hidden" name="channel" value="<?=$channel?>">
+		<input type="hidden" name="csrf" value="<?=$_SESSION['csrf']?>">
 		<button id = "createStory" class = "button" onclick="window.location.href='../pages/create_story.php?name=<?=$channel?>'">Create Story</button>
 	</section>
 <?php } ?>
@@ -46,6 +47,7 @@
 	<section id="drawSubscribe">
 		<form action='../actions/action_subscribeChannel.php' method='post'>
 			<input type="hidden" name="channel" value="<?=$channel?>">
+			<input type="hidden" name="csrf" value="<?=$_SESSION['csrf']?>">
 			<button id = "subscribe" class = "button" type='submit'>Subscribe</button>
 		</form>
 	</section>
@@ -55,6 +57,7 @@
 	<section id="drawUnsubscribe">
 		<form action='../actions/action_unsubscribeChannel.php' method='post'>
 			<input type="hidden" name="channel" value="<?=$channel?>">
+			<input type="hidden" name="csrf" value="<?=$_SESSION['csrf']?>">
 			<button id = "unsubscribe" class = "button" type='submit'>Unsubscribe</button>
 		</form>
 	</section>

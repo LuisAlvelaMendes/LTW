@@ -27,7 +27,9 @@
 				<?php if($username != NULL) { ?>
 					<nav id="signup">
 						<a id="profile" href="../pages/profile.php?name=<?=$username?>"><?= $username ?></a>
-						<a href="../actions/action_logout.php">Logout</a>
+						<a href="../actions/action_logout.php">Logout
+						<input type="hidden" name="csrf" value="<?=$_SESSION['csrf']?>">
+						</a>
 						<?php draw_subscriberList() ?>
 					</nav>
 				<?php } else { ?>

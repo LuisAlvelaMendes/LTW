@@ -16,21 +16,20 @@
 		$stmt->execute(array($name));
 
 		return $stmt->fetch()?true:false; // return true if channel with same name exists
-
 	}
 
-	function subscribeChannel($channel) {		
+	function subscribeChannel($username, $channel) {		
 		$db = Database::instance()->db();
 
 		$stmt = $db->prepare('INSERT INTO UserSubscriptions VALUES (?, ?)');
-		$stmt->execute(array($_SESSION['username'], $channel));
+		$stmt->execute(array($username, $channel));
 	}
 
-	function unsubscribeChannel($channel) {		
+	function unsubscribeChannel($username, $channel) {		
 		$db = Database::instance()->db();
 
 		$stmt = $db->prepare('DELETE FROM UserSubscriptions WHERE username = ? AND channel = ?');
-		$stmt->execute(array($_SESSION['username'], $channel));
+		$stmt->execute(array($username, $channel));
 	}
 
 	function channelSubscribed($channel) {
