@@ -86,7 +86,7 @@ body > #messages .success {
 	background-color: var(--successs-bg-color);
 }
 
-.info_bar {
+.infoBarStory {
 	background-color: white;
 	border: none;
 	border-radius: 13px;
@@ -140,7 +140,7 @@ body > #messages .success {
 	background: url(../images/Downvote.png);
 }
 
-.info_bar #points{
+.infoBarStory #points{
 	color: black;
 	font-size: 15px;
 	padding-left: 0.8em;
@@ -149,7 +149,7 @@ body > #messages .success {
 	padding-bottom: 15px;
 }
 
-.info_bar #date {
+.infoBarStory #date {
 	color: black;
 	font-size: 15px;
 	font-weight: 100;
@@ -157,7 +157,7 @@ body > #messages .success {
 	display: inline;
 }
 
-.info_bar #channel {
+.infoBarStory #channel {
 	color: black;
 	text-decoration: none;
 	cursor: pointer;
@@ -166,7 +166,7 @@ body > #messages .success {
 	display: inline;
 }
 
-.info_bar #profile {
+.infoBarStory #profile {
 	color: black;
 	text-decoration: none;
 	cursor: pointer;

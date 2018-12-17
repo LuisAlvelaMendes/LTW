@@ -13,7 +13,7 @@ function refreshVotes() {
 	let username = allCBs[0].getAttribute('data-username');
     
     // User is not logged in disables CBs
-    if(username == -1){disableCB(); return; };
+    if(username == -1){ disableCB(); console.log(username); return; };
 
     for(let i = 0; i < allCBs.length; i++) {
         CBs[i] = allCBs[i].getAttribute('data-id');
@@ -29,11 +29,12 @@ function refreshVotes() {
 function disableCB(){
     let allUp = document.getElementsByClassName('up');
     let allDown = document.getElementsByClassName('down');
-
+    
     for(let i = 0; i < allUp.length; i++) {
-        allUp[i].disabled = true;
-        allDown[i].disabled = true;
+        if(!allUp[i].disabled) allUp[i].disabled = true;
+        if(!allDown[i].disabled) allDown[i].disabled = true;
     }
+    
 }
 
 // Updates checkboxes with usr votes 

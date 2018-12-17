@@ -3,7 +3,12 @@
 let sort = document.getElementById("sort");
 sort.addEventListener("change", valueChanged);
 
+let usr = document.getElementById("username").value;
+
 function valueChanged(event) {
+    if(usr == -1) {
+        disableCB();
+    }
 
     let channel = document.getElementById("channel_name").value; //Gets channel 
 
@@ -14,30 +19,22 @@ function valueChanged(event) {
     request.send();
 }
 
-function addStories() 
-{
+function addStories() {
     let stories = JSON.parse(this.responseText);
-    let list = document.getElementById("story_cards");
+    let list = document.getElementById("storyCards");
     list.innerHTML=""; //Deletes stories
-
+   
     for(story in stories) {
         let storyComplete = document.createElement('div');
-        var storyCard = drawStoryCard(stories[story]); 
-        var infoBar = drawInfo(stories[story]);
+        var storyCard = drawStory(stories[story]); 
 
         storyComplete.innerHTML += storyCard;
-        storyComplete.innerHTML += infoBar;
 
         list.append(storyComplete);
     }
-
-    function drawStoryCard(story) {
-        var template = document.getElementById('tpl_story_card').innerHTML;
-        return Mustache.render(template, {storyId : story.id, title : story.title, text : story.fulltext});
-    }
-
-    function drawInfo(story) {
-        var template = document.getElementById('tpl_info_bar_story').innerHTML;
-        return Mustache.render(template, {storyId : story.id, username : story.author,  published : story.published, points : story.points});
-    }
 }  
+
+function drawStory(story) {
+    var template = document.getElementById('tpl_story_card').innerHTML;
+    return Mustache.render(template, {storyId : story.id, title : story.title, text : story.fulltext, author : story.author, published : story.published, points : story.points, username : usr});
+}

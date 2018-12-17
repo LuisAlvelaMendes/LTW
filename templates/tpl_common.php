@@ -175,12 +175,12 @@
 		$username = -1;
 	} ?>
 
-	<section class="info_bar">
+	<section class="infoBarStory">
 		
 		<div id="start">
-			<input type="checkbox" class="up" data-id=<?=$storyId?> data-point="1" data-username="<?=$username?>">
+			<input type="checkbox" class="up" data-id=<?=$storyId?> data-point="1" data-username=<?=$username?>>
 			<h6 id="points"><?=$points?></h6>
-			<input type="checkbox" class="down" data-id=<?=$storyId?> data-point="0" data-username="<?=$username?>">
+			<input type="checkbox" class="down" data-id=<?=$storyId?> data-point="0" data-username=<?=$username?>>
 		</div>
 		
 		<div id="middle">
@@ -196,45 +196,17 @@
 <?php } ?>
 
 <?php function draw_info_bar_comment($storyId, $commentId, $username, $channel, $date, $points) { ?>
-	<section id = "info_bar">
+	<?php if(isset($_SESSION['username'])){
+		$username = $_SESSION['username'];
+	} else {
+		$username = -1;
+	} ?>
+
+	<section id = "infoBarComment">
 		<div id="start">
-
-		<?php if(isset($_SESSION['username'])){ ?>
-			<form id="uparrow" action='../actions/action_voteComment.php' method='post'>
-
-				<?php if(!checkIfStoryVoteDisplay($storyId, $_SESSION['username'], 1)){ ?>
-					<input type="image" src="../images/UpvoteGrey.png">
-				<?php } ?>
-
-				<?php if(checkIfStoryVoteDisplay($storyId, $_SESSION['username'], 1)){ ?>
-					<input type="image" src="../images/Upvote.png">
-				<?php } ?>
-
-				<input type="hidden" name="story" value="<?=$storyId?>">
-				<input type="hidden" name="type" value="1">
-				<input type="hidden" name="username" value="<?=$_SESSION['username']?>">
-				<input type="hidden" name="comment" value="<?=$commentId?>">
-			</form>
-			
+			<input type="checkbox" class="up" data-id=<?=$storyId?> data-point="1" data-username="<?=$username?>">
 			<h6 id="points"><?=$points?></h6>
-
-			<form id="downarrow" action='../actions/action_voteComment.php' method='post'>
-			
-				<?php if(!checkIfStoryVoteDisplay($storyId, $_SESSION['username'], 0)){ ?>
-					<input type="image" src="../images/DownvoteGrey.png">
-				<?php } ?>
-
-				<?php if(checkIfStoryVoteDisplay($storyId, $_SESSION['username'], 0)){ ?>
-					<input type="image" src="../images/Downvote.png">
-				<?php } ?>
-				
-				<input type="hidden" name="story" value="<?=$storyId?>">
-				<input type="hidden" name="username" value="<?=$_SESSION['username']?>">
-				<input type="hidden" name="type" value="0">
-				<input type="hidden" name="comment" value="<?=$commentId?>">
-			</form>
-		<?php } ?>
-
+			<input type="checkbox" class="down" data-id=<?=$storyId?> data-point="0" data-username="<?=$username?>">
 		</div>
 		
 		<div id="middle">

@@ -1,6 +1,15 @@
-<?php include_once('../templates/tpl_common.php'); ?>
+<?php 
+	include_once('../templates/tpl_common.php'); 
+	include_once('../includes/session.php');
+?>
 
 <?php function drawStories($stories, $channel) { ?>
+	<?php if(isset($_SESSION['username'])){
+		$username = $_SESSION['username'];
+	} else {
+		$username = -1;
+	} ?>
+
 	<link rel="stylesheet" href="../css/storyCard.css">
 	
 	<script src="../scripts/voteStory.js" async></script>
@@ -8,6 +17,9 @@
 	<script src="../includes/mustache.js" async></script>
 	
 	<section id="sortStories">
+		<input id="channel_name" type="hidden" name="channel" value="<?=$channel?>">
+		<input id="username" type="hidden" name="username" value="<?=$username?>">
+
 		<label> Sort by </label>
 		<select id="sort">
 		<option>Date</option>

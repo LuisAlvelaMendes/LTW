@@ -7,8 +7,6 @@ let form = document.querySelector('form');
 
 form.addEventListener('submit', addComment);
 
-window.setInterval(refreshComments, 10000);
-
 // Run refresh when starting
 refreshComments();
 
