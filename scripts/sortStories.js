@@ -7,7 +7,9 @@ let usr = document.getElementById("username").value;
 
 function valueChanged(event) {
     if(usr == -1) {
-        disableCB();
+        story_disableCB();
+    } else {
+        story_refreshVotes();
     }
 
     let channel = document.getElementById("channel_name").value; //Gets channel 

@@ -8,12 +8,14 @@
 		$usrVotes = array();
 		$j = 0;
 	
-		for ($i = 0; $i < strlen($storyIds); $i++) { 
-			if($storyIds[$i] != ','){
-				$vote = getUserVotes($storyIds[$i], $username);
+		$ids = explode(',', $storyIds);
+
+		for ($i = 0; $i < sizeof($storyIds); $i++) { 
+			if($ids[$i] != ','){
+				$vote = getUserVotes($ids[$i], $username);
 
 				if(!empty($vote)) {
-					$usrVotes[$j] = array('id' => $storyIds[$i], 'type' => $vote[0]['type']);
+					$usrVotes[$j] = array('id' => $ids[$i], 'type' => $vote[0]['type']);
 					$j++;
 				}
 			}

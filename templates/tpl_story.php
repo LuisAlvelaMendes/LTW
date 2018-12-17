@@ -32,11 +32,13 @@
 
 	<?php $newtext = draw_references($story[0]['fulltext']); ?>
 
-	<section id="storyText">
-		<h1><?=$story[0]['title']?></h1>
-		<p><?=$newtext?></p>
+	<section id ="storyCards">
+		<section id="storyText">
+			<h1><?=$story[0]['title']?></h1>
+			<p><?=$newtext?></p>
+		</section>
+		<?php draw_info_bar_story($story[0]['id'], $story[0]['author'], false, $story[0]['published'], $story[0]['points']); ?>
 	</section>
-	<?php draw_info_bar_story($story[0]['id'], $story[0]['author'], false, $story[0]['published'], $story[0]['points']); ?>
 <?php } ?>
 
 <?php function draw_textareas($channel) { ?>
@@ -58,8 +60,18 @@
 
 <?php function draw_comment_section($storyId) { ?>
 	<link rel="stylesheet" href="../css/story.css">
+	
+	<script src="../scripts/voteComment.js" defer></script>
 	<script src="../scripts/addComment.js" defer></script>
-	<script src="../includes/mustache.js" async></script>
+	<script src="../includes/mustache.js" defer></script>
+
+	<?php if(isset($_SESSION['username'])){
+		$username = $_SESSION['username'];
+	} else {
+		$username = -1;
+	} ?>
+
+	<input id="username" type="hidden" name="username" value=<?=$username?>> 
 
 	<h3 id="comments"> Comment Section: </h3>
 	

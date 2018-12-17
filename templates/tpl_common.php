@@ -175,7 +175,7 @@
 		$username = -1;
 	} ?>
 
-	<section class="infoBarStory">
+	<section class="infoBar">
 		
 		<div id="start">
 			<input type="checkbox" class="up" data-id=<?=$storyId?> data-point="1" data-username=<?=$username?>>
@@ -192,31 +192,6 @@
 			<a id="profile" href="../pages/profile.php?name=<?=$author?>"><?=$author?></a>
 		</div>
 
-	</section>
-<?php } ?>
-
-<?php function draw_info_bar_comment($storyId, $commentId, $username, $channel, $date, $points) { ?>
-	<?php if(isset($_SESSION['username'])){
-		$username = $_SESSION['username'];
-	} else {
-		$username = -1;
-	} ?>
-
-	<section id = "infoBarComment">
-		<div id="start">
-			<input type="checkbox" class="up" data-id=<?=$storyId?> data-point="1" data-username="<?=$username?>">
-			<h6 id="points"><?=$points?></h6>
-			<input type="checkbox" class="down" data-id=<?=$storyId?> data-point="0" data-username="<?=$username?>">
-		</div>
-		
-		<div id="middle">
-			<a id="date"><?=$date?></a>
-			<a id="channel" onclick="window.location.href='../pages/channel.php?name=<?=$channel?>'"><?=$channel?></a>
-		</div>
-
-		<div id="end">
-			<a id="profile" onclick="window.location.href='../pages/profile.php?name=<?=$username?>'"><?=$username?></a>
-		</div>
 	</section>
 <?php } ?>
 

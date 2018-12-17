@@ -1,53 +1,50 @@
 'use strict';
 
 // EventListener working on the section instead of on every single checkbox
-let storyCards = document.querySelector('#storyCards');
-storyCards.addEventListener('change', story_addVote);
+let commentSection = document.querySelector('#comment_section');
+commentSection.addEventListener('change', comment_addVote);
 
-// Refresh votes at start, changing checkbox which have been voted
-story_refreshVotes();
+let username = document.getElementById('username').value;
 
-function story_refreshVotes() {
-	let allCBs = storyCards.getElementsByClassName('up'); // Only need the up arrow since only the voteType changes
-    let CBs=Array();
-	let username = allCBs[0].getAttribute('data-username');
-    
+function comment_refreshVotes() {
+	let allCBs = commentSection.getElementsByClassName('up'); // Only need the up arrow since only the voteType changes
+    let CBs=Array(); 
+	
     // User is not logged in disables CBs
     if(username == -1) {
-        story_disableCB();
-        return; 
+        comment_disableCB();
+        return;
     }
 
     for(let i = 0; i < allCBs.length; i++) {
         CBs[i] = allCBs[i].getAttribute('data-id');
 	}
-    
+   
 	let request = new XMLHttpRequest();
-	request.open('post', '../api/api_voteStory.php', true);
+	request.open('post', '../api/api_voteComment.php', true);
 	request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-    request.addEventListener('load', story_updateCB);
+    request.addEventListener('load', comment_updateCB);
 	request.send(encodeForAjax({'CBs' : CBs, 'username' : username}));
 }
 
-function story_disableCB(){
-    let allUp = storyCards.getElementsByClassName('up');
-    let allDown = storyCards.getElementsByClassName('down');
-    
+function comment_disableCB(){
+    let allUp = commentSection.getElementsByClassName('up');
+    let allDown = commentSection.getElementsByClassName('down');
+
     for(let i = 0; i < allUp.length; i++) {
-        if(!allUp[i].disabled) allUp[i].disabled = true;
-        if(!allDown[i].disabled) allDown[i].disabled = true;
+        allUp[i].disabled = true;
+        allDown[i].disabled = true;
     }
-    
 }
 
 // Updates checkboxes with usr votes 
-function story_updateCB() {
+function comment_updateCB() {
     let votes = JSON.parse(this.responseText);
     let CB;
-    
+    console.log(votes);
     for(let i = 0; i < votes.length; i++){
         let voteId = votes[i]['id'];
-        CB = storyCards.querySelector(`[data-id="${voteId}"]`);
+        CB = commentSection.querySelector(`[data-id="${voteId}"]`);
         if(votes[i]['type'] == 1){
             CB.checked = true;
         } else {
@@ -59,29 +56,28 @@ function story_updateCB() {
 }
 
 // Add vote to db
-function story_addVote(event){
+function comment_addVote(event){
     let vote = event.target;
     
     let id = vote.getAttribute('data-id');
     let point = vote.getAttribute('data-point');
-    let username = vote.getAttribute('data-username');
     
     // User is not logged in does matter if he votes
     if(username == -1) return;
 
     let request = new XMLHttpRequest();
-    request.open('post', '../api/api_voteStory.php', true);
+    request.open('post', '../api/api_voteComment.php', true);
     request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-    request.addEventListener('load', story_newVote);
+    request.addEventListener('load', comment_newVote);
     request.send(encodeForAjax({'id' : id, 'point' : point, 'username' : username}));
 }
 
 // Manages how the checkboxes work when there is a new vote
 // They behavve like a radio button but you can cancel your input once there is one
-function story_newVote() {
+function comment_newVote() {
     let vote = JSON.parse(this.responseText);
     let voteId=vote['id'];
-    let CB = storyCards.querySelector(`[data-id="${voteId}"]`);
+    let CB = commentSection.querySelector(`[data-id="${voteId}"]`);
     let points = CB.nextElementSibling;
 
     if(vote['type'] == null) {

@@ -12,42 +12,61 @@
         return $commentsForStory;
     }
 
-	//will return false if it wasn't, or it was but with the opposite type of vote
-    function checkIfCommentWasVotedOnByUser($commentId, $username, $voteType) { 
+	function comment_getUserVotes($commentId, $username) {
 		$db = Database::instance()->db();
+		$stmt = $db->prepare('SELECT type FROM CommentVote WHERE comment_id = ? AND username = ?');
+		$stmt->execute(array($commentId, $username));
+		$vote = $stmt->fetchAll();
 
+		return $vote;
+	}
+
+	function comment_addVote($commentId, $username, $voteType) { 
+		$db = Database::instance()->db();
 		$stmt = $db->prepare('SELECT type FROM CommentVote WHERE comment_id = ? AND username = ?');
 		$stmt->execute(array($commentId, $username));
 
-		$currentlySavedType = $stmt->fetchAll();
-
-		if(empty($currentlySavedType)){
-			addUsersVoteComment($username, $commentId, $voteType);
-			return false;
-		}
-
-		else {
-			if($currentlySavedType[0]['type'] == $voteType){
-				return true;
-			}
-
-			if($currentlySavedType[0]['type'] != $voteType){
-				changeUsersVoteComment($commentId, $username);
-				return false;
+		$currentType = $stmt->fetchAll();
+		
+		if(empty($currentType)){
+			comment_addUsersVote($username, $commentId, $voteType);
+		} else {
+			if($currentType[0]['type'] == $voteType) {
+				comment_removeUserVote($commentId, $username);
+			} else if($currentType[0]['type'] != $voteType){
+				comment_swapUsersVote($commentId, $username, $voteType);
 			}
 		}
+
+		return $currentType;
 	}
 
-	function changeUsersVoteComment($commentId, $username) {
-		$db = Database::instance()->db();
-		$stmt = $db->prepare('DELETE FROM CommentVote WHERE comment_id = ? AND username = ?');
-		$stmt->execute(array($commentId, $username));
-    }
-    
-    function addUsersVoteComment($username, $commentId, $voteType) {
+	function comment_addUsersVote($username, $commentId, $voteType) {
 		$db = Database::instance()->db();
 		$stmt = $db->prepare('INSERT INTO CommentVote VALUES(?, ?, ?)');
 		$stmt->execute(array($username, $commentId, $voteType));
 	}
 
+	function comment_removeUserVote($commentId, $username) {
+		$db = Database::instance()->db();
+		$stmt = $db->prepare('DELETE FROM CommentVote WHERE comment_id = ? AND username = ?');
+		$stmt->execute(array($commentId, $username));
+	}
+
+	function comment_swapUsersVote($commentId, $username, $voteType) {
+		$db = Database::instance()->db();
+		$stmt = $db->prepare('DELETE FROM CommentVote WHERE comment_id = ? AND username = ?');
+		$stmt->execute(array($commentId, $username));
+
+		$stmt = $db->prepare('INSERT INTO CommentVote VALUES(?, ?, ?)');
+		$stmt->execute(array($username, $commentId, $voteType));
+	}
+
+	function comment_getCommentPoints($commentId){
+		$db = Database::instance()->db();
+		$stmt = $db->prepare('SELECT points FROM Comment WHERE id = ?');
+		$stmt->execute(array($commentId));
+
+		return $stmt->fetchAll();
+	}
 ?>
