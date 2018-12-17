@@ -4,6 +4,11 @@
 
     $name = $_POST['name'];
 
+    if ($_SESSION['csrf'] !== $_POST['csrf']) {
+		$_SESSION['messages'][] = array('type' => 'error', 'content' => 'Request does not appear to be legitimate!');
+        die(header('Location: ../pages/homepage.php'));
+    }
+    
     // Don't allow certain characters
     if ( !preg_match ("/^[a-z A-Z0-9]+$/", $name)) {
         $_SESSION['messages'][] = array('type' => 'error', 'content' => 'Channels names can only contain letters, numbers or spaces!');

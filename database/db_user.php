@@ -4,10 +4,11 @@
     function checkUserPassword($username, $password) {
         $db = Database::instance()->db();
 
-        $stmt = $db->prepare('SELECT * FROM utilizer WHERE username = ? AND password = ?');
-        $stmt->execute(array($username, sha1($password)));
+        $stmt = $db->prepare('SELECT * FROM utilizer WHERE username = ?');
+        $stmt->execute(array($username));
     
-        return $stmt->fetch()?true:false; // return true if a line exists
+        $user = $stmt->fetch();
+        return $user !== false && password_verify($password, $user['password']);
     }
 
     function getUserPublicInfo($username) {
@@ -42,8 +43,10 @@
     function addUser($username, $password, $email) {
         $db = Database::instance()->db();
 
+        $options = ['cost' => 12];
+
         $stmt = $db->prepare('INSERT INTO utilizer (username, password, email, created) VALUES (?, ?, ?, ?)');
-        $stmt->execute(array($username, sha1($password), $email, time()));
+        $stmt->execute(array($username, password_hash($password, PASSWORD_DEFAULT, $options), $email, time()));
     }
 
     function getAllStoriesPosted($username) {

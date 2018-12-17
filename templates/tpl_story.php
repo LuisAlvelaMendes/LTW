@@ -51,6 +51,7 @@
 		<label id = "text_label" for='text'>Text</label>
 		<textarea id = "textarea" name='fulltext' rows='15' cols="70" required ></textarea>
 
+		<input type="hidden" name="csrf" value="<?=$_SESSION['csrf']?>">
 		<input type="hidden" name="channel" value="<?=$channel?>">
 
 		<button id="submit" type='submit' class = "button">Submit</button>

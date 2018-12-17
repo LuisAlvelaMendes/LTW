@@ -18,6 +18,7 @@
 			<div id="right">
 				<form action='../actions/action_createChannel.php' method='post'>
 					<input id="createChannelText" type='text' placeholder='Enter the channel name' name='name' required>
+					<input type="hidden" name="csrf" value="<?=$_SESSION['csrf']?>">
 					<button id="createChannelButton" class="button" type='submit'>Create Channel</button>
 				</form>
 			</div>

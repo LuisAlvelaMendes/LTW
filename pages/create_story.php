@@ -9,6 +9,12 @@
 
 	$channel=$_GET['name'];
 
+	if(!isset($_SESSION['username']))
+	{
+		$_SESSION['messages'][] = array('type' => 'error', 'content' => 'You do not have permission to access that page!');
+		die(header('Location: homepage.php'));
+	}
+
 	draw_header($_SESSION['username'], $channel);	
 
 	draw_textareas($channel);

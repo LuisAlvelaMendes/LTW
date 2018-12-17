@@ -25,6 +25,7 @@
 			<label for="newpassword">New Password</label>
 			<input type="password" placeholder="Enter New Password" name="newpassword" required>
 
+			<input type="hidden" name="csrf" value="<?=$_SESSION['csrf']?>">
 			<button type="submit">Change</button>
 		</form>
 
@@ -40,6 +41,7 @@
 			<label for="newemail">New Email</label>
 			<input type="email" placeholder="Enter New Password" name="newemail" required>
 
+			<input type="hidden" name="csrf" value="<?=$_SESSION['csrf']?>">
 			<button type="submit">Change</button>
 		</form>
 	</section>
