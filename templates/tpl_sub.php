@@ -3,7 +3,7 @@
   include_once('../database/db_channel.php'); 
 ?>
 
-<!-- Draws custom dropdown menu displaying user subscribed channels -->
+<?php // Draws custom dropdown menu displaying user subscribed channels ?>
 <?php function draw_subscriberList() { ?>
 	<link rel="stylesheet" href="../css/subList.css">
   <script src="../scripts/dropmenu.js" async></script>
@@ -25,7 +25,7 @@
   </section>
 <?php } ?>
 
-<!-- Draws user subscribed channels -->
+<?php // Draws user subscribed channels ?>
 <?php function draw_subscribersAside($username) { ?>
   <link rel="stylesheet" href="../css/story.css">
 
@@ -45,7 +45,7 @@
   </section>
 <?php } ?>
 
-<!-- Draws top channels under header banner in homepage -->
+<?php // Draws top channels under header banner in homepage ?>
 <?php function draw_topchannels($topchannels) { ?>
     <link rel="stylesheet" href="../css/top_subs.css">
 

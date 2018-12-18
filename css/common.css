@@ -40,17 +40,30 @@ body > header #title {
 	cursor: pointer;
 }
 
+body > header #home {
+	padding-top: 1.5em;
+	padding-left: 2em;
+	padding-bottom: 15px;
+
+	grid-column: 1;
+	grid-row: 3;
+
+	color: white;
+}
+
 body > header #subscribers {
-	padding-top: 1em;
+	padding-top: 1.5em;
 	padding-left: 2em;
 	padding-bottom: 15px; 
 
-	grid-column: 1;
-	grid-row: 2;
+	margin-left: 3em;
 
+	grid-column: 1;
+	grid-row: 3;
 }
 
 body > header #signup {
+	padding-top: 1.5em;
 	padding-right: 2em;
 	padding-bottom: 15px; 
 
@@ -76,21 +89,6 @@ body > header > #signup > a {
 
 body > header #signup > a:first-child {
 	padding-left: 0;
-}
-
-body > header > #homepage
-{
-	content: "";
-	padding: 0;
-	margin: 0;
-	width: 27px;
-	height: 28px;
-	border: none;
-
-	grid-row: 3;
-	grid-column: 1;
-	
-	background: url(../images/Home.png);
 }
 
 body > #messages div {
@@ -201,8 +199,8 @@ body > #messages .success {
 	display:inline;
 	padding-right: 0.5em;
 }
-#no_stories
-{
+
+#no_stories {
 	font-size: 20px;
 	text-align: center;
 	font-family: Verdana, sans-serif;
@@ -218,7 +216,7 @@ body > #messages .success {
 }
 
 .button:hover {
-    background-color: #f81109;
+	background-color: #f96d48;
 }
 
 #homepage_buttons{
@@ -228,19 +226,11 @@ body > #messages .success {
 	margin-top: 20px;
 }
 
-#subscribe, #unsubscribe {
-    left: 1070px;
-    top: -20px;
-}
-
-#createStory {
-    left: 870px;
-    top: 36.5px;
-}
-
 #createChannelText{
     font-size: 14px;  
-    padding: 12px 24px;
+	padding: 12px 24px;
+	margin: 0;
+	margin-right: 8px;
 }
 
 footer {

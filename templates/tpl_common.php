@@ -7,7 +7,7 @@
 	include_once('../database/db_user.php'); 
 ?>
 
-<!-- Draws headder banner present in the start of every page -->
+<?php // Draws headder banner present in the start of every page ?>
 <?php function draw_header($username, $channel, $title) { ?>
 	<!DOCTYPE html>
 	<html>
@@ -15,6 +15,7 @@
 			<title><?=$title?></title>
 			<meta charset="utf-8" />
 			<link rel="stylesheet" href="../css/common.css">
+			<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
 		</head>
 
 		<body>
@@ -32,7 +33,7 @@
 						<a id="subscribers"><?=$subscribers[0]["subscribers"]?> subscribers </a>						
 					<?php } ?>
 
-					<button id="homepage" onclick="window.location.href='../pages/homepage.php'"></button>
+					<a id="home" href="../pages/homepage.php"><i class="fas fa-home"></i></a>
 
 				<?php } ?>
 
@@ -62,7 +63,7 @@
 			} ?>
 <?php } ?>
 
-<!-- Scans text for references to user or channels and creates links to them -->
+<?php // Scans text for references to user or channels and creates links to them ?>
 <?php function draw_references($text) { 
 	// References to a channel with #
 	preg_match_all("/#(\\w+)/", $text, $channelMatches);
@@ -127,13 +128,13 @@
 	return $replace1;
 } ?>
 
-<!-- Converts stored date to normal format -->
+<?php // Converts stored date to normal format ?>
 <?php function convert_epoch($epoch){
 	$dt = new DateTime("@$epoch");
 	return $dt;
 } ?>
 
-<!-- Given the date calculates the elapsed time to now -->
+<?php // Given the date calculates the elapsed time to now ?>
 <?php function time_elapsed($date) {
 	$now = new DateTime;
 	$ago = new DateTime($date);
@@ -164,7 +165,7 @@
 	return $string ? implode(', ', $string) . '' : 'just now';
 } ?>
 
-<!-- Draws infor bar for stories when they are first displayed -->
+<?php // Draws infor bar for stories when they are first displayed ?>
 <?php function draw_info_bar_story($storyId, $author, $channel, $date, $points) { ?>
 	<?php if(isset($_SESSION['username'])){
 		$username = $_SESSION['username'];
@@ -192,7 +193,7 @@
 	</section>
 <?php } ?>
 
-<!-- Draws footer present at the end of every page -->
+<?php // Draws footer present at the end of every page ?>
 <?php function draw_footer() { ?>
 	</body>
 	<footer> 

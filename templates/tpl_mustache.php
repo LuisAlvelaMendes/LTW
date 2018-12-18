@@ -1,4 +1,4 @@
-<!-- Draws storyCard after sorting stories -->
+<?php // Draws storyCard after sorting stories ?>
 <script id="tpl_story_card" type="x-tmpl-mustache">
 	<button class="storyCardButton" onclick="window.location.href='../pages/story.php?id={{storyId}}'">
 		<h1>{{title}}</h1>
@@ -26,7 +26,7 @@
 	</section>
 </script>
 
-<!-- Draws new comment at the start or after a new one -->
+<?php // Draws new comment at the start or after a new one ?>
 <script id="tpl_comment" type="x-tmpl-mustache">
     <p class="usrComment">{{{text}}}</p>
 

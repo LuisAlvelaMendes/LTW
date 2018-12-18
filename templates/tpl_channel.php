@@ -3,7 +3,7 @@
 	include_once('../includes/session.php');
 ?>
 
-<!-- Draws stories on channel -->
+<?php // Draws stories on channel ?>
 <?php function drawStories($stories, $channel) { ?>
 	<?php if(isset($_SESSION['username'])){
 		$username = $_SESSION['username'];
@@ -12,7 +12,8 @@
 	} ?>
 
 	<link rel="stylesheet" href="../css/storyCard.css">
-	
+	<link rel="stylesheet" href="../css/channel.css">
+
 	<script src="../scripts/voteStory.js" defer></script>
 	<script src="../scripts/sortStories.js" async></script>
 	<script src="../includes/mustache.js" async></script>
@@ -36,8 +37,10 @@
 	</section>
 <?php } ?>
 
-<!-- Draws add story button-->
+<?php // Draws add story button ?>
 <?php function draw_addStory($channel) { ?>
+	<link rel="stylesheet" href="../css/channel.css">
+
 	<section id="addStory">
 		<input type="hidden" name="channel" value="<?=$channel?>">
 		<input type="hidden" name="csrf" value="<?=$_SESSION['csrf']?>">
@@ -45,8 +48,10 @@
 	</section>
 <?php } ?>
 
-<!-- Draws subscribe Button-->
+<?php // Draws subscribe Button ?>
 <?php function draw_subscribeButton($channel) { ?>
+	
+
 	<section id="drawSubscribe">
 		<form action='../actions/action_subscribeChannel.php' method='post'>
 			<input type="hidden" name="channel" value="<?=$channel?>">
@@ -56,8 +61,10 @@
 	</section>
 <?php } ?>
 
-<!-- Draws unsubscribe Button-->
+<?php // Draws unsubscribe Button ?>
 <?php function draw_unsubscribeButton($channel) { ?>
+	<link rel="stylesheet" href="../css/channel.css">
+
 	<section id="drawUnsubscribe">
 		<form action='../actions/action_unsubscribeChannel.php' method='post'>
 			<input type="hidden" name="channel" value="<?=$channel?>">
