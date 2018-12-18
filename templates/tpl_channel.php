@@ -12,7 +12,7 @@
 
 	<link rel="stylesheet" href="../css/storyCard.css">
 	
-	<script src="../scripts/voteStory.js" async></script>
+	<script src="../scripts/voteStory.js" defer></script>
 	<script src="../scripts/sortStories.js" async></script>
 	<script src="../includes/mustache.js" async></script>
 	

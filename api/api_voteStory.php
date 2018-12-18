@@ -10,7 +10,7 @@
 	
 		$ids = explode(',', $storyIds);
 
-		for ($i = 0; $i < sizeof($storyIds); $i++) { 
+		for ($i = 0; $i < sizeof($ids); $i++) { 
 			if($ids[$i] != ','){
 				$vote = getUserVotes($ids[$i], $username);
 

@@ -6,11 +6,7 @@ sort.addEventListener("change", valueChanged);
 let usr = document.getElementById("username").value;
 
 function valueChanged(event) {
-    if(usr == -1) {
-        story_disableCB();
-    } else {
-        story_refreshVotes();
-    }
+    story_refreshVotes();
 
     let channel = document.getElementById("channel_name").value; //Gets channel 
 
@@ -34,6 +30,8 @@ function addStories() {
 
         list.append(storyComplete);
     }
+
+    story_refreshVotes();
 }  
 
 function drawStory(story) {
