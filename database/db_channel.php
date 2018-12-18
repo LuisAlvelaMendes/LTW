@@ -74,6 +74,18 @@
 		return $topChannelNames;
 	}
 
+	function getNumberOfSubscribers($channel)
+	{
+		$db = Database::instance()->db();
+
+		$subscribers = $db->prepare('SELECT count(*) as subscribers FROM UserSubscriptions WHERE channel = ?');
+				
+		$subscribers->execute(array($channel));
+		$subscribers = $subscribers->fetchAll();
+
+		return $subscribers;
+	}
+
 	function addStory($title, $channel, $fulltext) {
 		$db = Database::instance()->db();
 

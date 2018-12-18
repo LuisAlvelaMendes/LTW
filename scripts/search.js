@@ -7,8 +7,6 @@ function inputChanged(event) {
     if (event.keyCode != 13)
         return;
 
-    console.log(event.keyCode);
-
     let input = text.value;
     let list = document.getElementById("matches");
     list.innerHTML = "";
@@ -83,8 +81,6 @@ function commentsReceived() {
         if (match.text.length > 50)
             match.text = match.text.substring(0, 50) + " ...";
         button.innerHTML = '<p> Comment </p><h1>' + match.text + '</h1><h4>From: ' + match.username + '</h4>';
-
-        console.log(match.text.length);
 
         list.appendChild(button);
     }

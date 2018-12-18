@@ -47,6 +47,15 @@
 	</section>
 <?php } ?>
 
+<?php function draw_no_stories() { ?>	
+	<link rel="stylesheet" href="../css/common.css">
+
+	<section id="no_stories">
+		<p> You are not subscribed to any channel. </p>
+		<p> Subscribe now in order to see stories about your favourite topics here in your homepage! </p>
+	</section>
+<?php } ?>
+
 <?php function draw_topchannels($topchannels) { ?>
 	<link rel="stylesheet" href="../css/top_subs.css">
 

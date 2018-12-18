@@ -22,6 +22,17 @@
 					<a id="title" href="../pages/homepage.php"><?=$channel?></a>
 				<?php } else { ?>
 					<a id="title" href="../pages/channel.php?name=<?=$channel?>"><?=$channel?></a>
+
+					<?php $subscribers = getNumberOfSubscribers($channel) ?>
+
+					<?php if($subscribers[0]["subscribers"] === '1') {?>
+						<a id="subscribers"><?=$subscribers[0]["subscribers"]?> subscriber </a>
+					<?php } else { ?>
+						<a id="subscribers"><?=$subscribers[0]["subscribers"]?> subscribers </a>						
+					<?php } ?>
+
+					<button id="homepage" onclick="window.location.href='../pages/homepage.php'"></button>
+
 				<?php } ?>
 
 				<?php if($username != NULL) { ?>

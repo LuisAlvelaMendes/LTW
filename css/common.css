@@ -40,12 +40,22 @@ body > header #title {
 	cursor: pointer;
 }
 
+body > header #subscribers {
+	padding-top: 1em;
+	padding-left: 2em;
+	padding-bottom: 15px; 
+
+	grid-column: 1;
+	grid-row: 2;
+
+}
+
 body > header #signup {
 	padding-right: 2em;
 	padding-bottom: 15px; 
 
 	grid-column: 2;
-	grid-row: 2;
+	grid-row: 3;
 
 	font-size: 15px;
 }
@@ -66,6 +76,21 @@ body > header > #signup > a {
 
 body > header #signup > a:first-child {
 	padding-left: 0;
+}
+
+body > header > #homepage
+{
+	content: "";
+	padding: 0;
+	margin: 0;
+	width: 27px;
+	height: 28px;
+	border: none;
+
+	grid-row: 3;
+	grid-column: 1;
+	
+	background: url(../images/Home.png);
 }
 
 body > #messages div {
@@ -175,6 +200,12 @@ body > #messages .success {
 
 	display:inline;
 	padding-right: 0.5em;
+}
+#no_stories
+{
+	font-size: 20px;
+	text-align: center;
+	font-family: Verdana, sans-serif;
 }
 
 .button {

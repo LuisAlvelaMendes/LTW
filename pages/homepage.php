@@ -26,6 +26,11 @@
 	} else {
 		$stories = getStoriesFromSubscribedChannels($_SESSION['username']);
 
+		if(count($stories) === 0)
+		{
+			draw_no_stories();
+		}
+			
 		draw_stories($stories);
 	}
 
