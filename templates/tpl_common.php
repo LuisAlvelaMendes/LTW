@@ -1,5 +1,6 @@
 <?php 
 	include_once('tpl_story.php');
+	include_once('../templates/tpl_sub.php')
 
 	include_once('../database/db_story.php');
 	include_once('../database/db_channel.php');
@@ -7,6 +8,7 @@
 	include_once('../database/db_channel.php'); 
 ?>
 
+<!-- Draws headder banner present in the start of every page -->
 <?php function draw_header($username, $channel, $title) { ?>
 	<!DOCTYPE html>
 	<html>
@@ -50,6 +52,7 @@
 			} ?>
 <?php } ?>
 
+<!-- Scans text for references to user or channels and creates links to them -->
 <?php function draw_references($text) { 
 	// References to a channel with #
 	preg_match_all("/#(\\w+)/", $text, $channelMatches);
@@ -114,32 +117,13 @@
 	return $replace1;
 } ?>
 
-<?php function draw_subscriberList() { ?>
-	<link rel="stylesheet" href="../css/subList.css">
-  <script src="../scripts/dropmenu.js" async></script>
-  
-  <section id="dropdown" class="dropdown">
-    <button onclick="myFunction()" class="dropbtn">&#9660;</button>
-
-    <section id="myDropdown" class="dropdown-content">
-      <?php 
-      $subscribedChannelsNames = getSubscribedChannels($_SESSION['username']);
-      if(empty($subscribedChannelsNames)) { ?>
-        <a id="Empty">Empty</a>
-      <?php } else {
-        foreach( $subscribedChannelsNames as $channelName) { ?>
-          <a onclick="window.location.href='../pages/channel.php?name=<?=$channelName['channel']?>'"><?=$channelName['channel']?></a>
-        <?php }
-      } ?>
-    </section>    
-  </section>
-<?php } ?>
-
+<!-- Converts stored date to normal format -->
 <?php function convert_epoch($epoch){
 	$dt = new DateTime("@$epoch");
 	return $dt;
 } ?>
 
+<!-- Given the date calculates the elapsed time to now -->
 <?php function time_elapsed($date) {
 	$now = new DateTime;
 	$ago = new DateTime($date);
@@ -170,6 +154,7 @@
 	return $string ? implode(', ', $string) . '' : 'just now';
 } ?>
 
+<!-- Draws infor bar for stories when they are first displayed -->
 <?php function draw_info_bar_story($storyId, $author, $channel, $date, $points) { ?>
 	<?php if(isset($_SESSION['username'])){
 		$username = $_SESSION['username'];
@@ -197,6 +182,7 @@
 	</section>
 <?php } ?>
 
+<!-- Draws footer present at the end of every page -->
 <?php function draw_footer() { ?>
 	</body>
 	<footer> 

@@ -1,3 +1,4 @@
+<!-- Draws search page -->
 <?php function draw_searchbar() { ?>
     <script src="../scripts/search.js" defer></script>
     <link rel="stylesheet" href="../css/search.css">

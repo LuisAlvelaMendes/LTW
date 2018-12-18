@@ -3,6 +3,7 @@
 	include_once('../includes/session.php');
 ?>
 
+<!-- Draws stories on channel -->
 <?php function drawStories($stories, $channel) { ?>
 	<?php if(isset($_SESSION['username'])){
 		$username = $_SESSION['username'];
@@ -35,6 +36,7 @@
 	</section>
 <?php } ?>
 
+<!-- Draws add story button-->
 <?php function draw_addStory($channel) { ?>
 	<section id="addStory">
 		<input type="hidden" name="channel" value="<?=$channel?>">
@@ -43,6 +45,7 @@
 	</section>
 <?php } ?>
 
+<!-- Draws subscribe Button-->
 <?php function draw_subscribeButton($channel) { ?>
 	<section id="drawSubscribe">
 		<form action='../actions/action_subscribeChannel.php' method='post'>
@@ -53,6 +56,7 @@
 	</section>
 <?php } ?>
 
+<!-- Draws unsubscribe Button-->
 <?php function draw_unsubscribeButton($channel) { ?>
 	<section id="drawUnsubscribe">
 		<form action='../actions/action_unsubscribeChannel.php' method='post'>

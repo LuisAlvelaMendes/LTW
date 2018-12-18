@@ -1,6 +1,7 @@
 <?php
 	include_once('../database/db_story.php');
 
+	// Gets user vote on stories
 	if(isset($_POST['CBs']) && isset($_POST['username'])) {
 		$storyIds = $_POST['CBs'];
 		$username = $_POST['username'];
@@ -22,7 +23,8 @@
 		}
 
 		echo json_encode($usrVotes);
-			
+		
+	// Changes/Adds user votes on story
 	} else if(isset($_POST['id']) && isset($_POST['username']) && isset($_POST['point'])){
 			$storyId = $_POST['id'];
 			$username = $_POST['username'];

@@ -43,21 +43,6 @@
 		return $correspondingStory->fetchAll();
 	}
 
-	function addComment($story_id, $username, $timestamp, $text) {
-		$db = Database::instance()->db();
-		$stmt = $db->prepare('INSERT INTO comment (story_id, parent_comment, username, date, text) VALUES (?, null, ?, ?, ?)');
-  		$stmt->execute(array($story_id, $username, $timestamp, $text));
-	}
-
-	function getNewComments($story_id) {
-		$db = Database::instance()->db();
-		$stmt = $db->prepare("SELECT * FROM Comment WHERE story_id = ? ORDER BY date DESC");
-		$stmt->execute(array($story_id));
-		$comments = $stmt->fetchAll();
-
-		return $comments;
-	}
-
 	function getUserVotes($storyId, $username) {
 		$db = Database::instance()->db();
 		$stmt = $db->prepare('SELECT type FROM StoryVote WHERE story_id = ? AND username = ?');

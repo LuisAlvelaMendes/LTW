@@ -13,7 +13,7 @@ function refreshComments() {
 	let username = document.getElementById('username').value;
 
 	let request = new XMLHttpRequest();
-	request.open('get', '../actions/action_addComment.php?' + encodeForAjax({'story_id' : story_id}), true);
+	request.open('get', '../api/api_addComment.php?' + encodeForAjax({'story_id' : story_id}), true);
 	request.addEventListener('load', newComment);
 	request.send();
 }
@@ -27,7 +27,7 @@ function addComment(event) {
 	document.querySelector('textarea[name=comment]').value='';
 
 	let request = new XMLHttpRequest();
-	request.open('get', '../actions/action_addComment.php?' + encodeForAjax({'username': username, 'text': text_comment, 'story_id' : story_id}), true);
+	request.open('get', '../api/api_addComment.php?' + encodeForAjax({'username': username, 'text': text_comment, 'story_id' : story_id}), true);
 	request.addEventListener('load', newComment);
 	request.send();
 

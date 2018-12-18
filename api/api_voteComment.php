@@ -1,6 +1,7 @@
 <?php
 	include_once('../database/db_comments.php');
 
+	// Gets votes on usr comments
 	if(isset($_POST['CBs']) && isset($_POST['username'])) {
 		$commentIds = $_POST['CBs'];
 		$username = $_POST['username'];
@@ -22,7 +23,8 @@
 		}
 
 		echo json_encode($usrVotes);
-			
+	
+	// Changes/Adds vote to a comment	
 	} else if(isset($_POST['id']) && isset($_POST['username']) && isset($_POST['point'])){
 			$commentId = $_POST['id'];
 			$username = $_POST['username'];

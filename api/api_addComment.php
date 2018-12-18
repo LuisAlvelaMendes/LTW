@@ -1,5 +1,5 @@
 <?php
-  include_once('../database/db_story.php');
+  include_once('../database/db_comments.php');
   include_once('../templates/tpl_common.php');
 
   // Current time
@@ -18,14 +18,14 @@
 		addComment($story_id, $username, $timestamp, $text);
   }
 
-  // Retrieve new messages
-  $messages = getNewComments($story_id);
+  // Retrieve new comments
+  $comments = getNewComments($story_id);
 
   // alter text field of each message
-  for($i = 0; $i < sizeof($messages); $i++) {
-    $messages[$i]['text'] = draw_references($messages[$i]['text']);
+  for($i = 0; $i < sizeof($comments); $i++) {
+    $comments[$i]['text'] = draw_references($comments[$i]['text']);
   }
 
   // JSON encode
-  echo json_encode($messages);
+  echo json_encode($comments);
 ?>
