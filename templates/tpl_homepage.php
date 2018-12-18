@@ -28,7 +28,7 @@
 	</section>	
 <?php } ?>
 
-<?php Draws stories from all channels ?>
+<?php //  Draws stories from all channels ?>
 <?php function draw_storiesFromChannels($allChannels) { ?>
 	<script src="../scripts/voteStory.js" async></script>
 	
