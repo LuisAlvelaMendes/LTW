@@ -10,9 +10,9 @@
 	$topchannels = getTopChannels(); 
 
 	if(!isset($_SESSION['username'])) {
-		draw_header(null, 'NOT REDDIT'); 
+		draw_header(null, 'Homepage', 'Homepage'); 
 	} else {
-		draw_header($_SESSION['username'], 'NOT REDDIT');
+		draw_header($_SESSION['username'], 'Homepage', 'Homepage');
 	}
 
 	draw_topchannels($topchannels);

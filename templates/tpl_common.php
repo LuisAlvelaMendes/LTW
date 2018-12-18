@@ -7,18 +7,18 @@
 	include_once('../database/db_channel.php'); 
 ?>
 
-<?php function draw_header($username, $channel) { ?>
+<?php function draw_header($username, $channel, $title) { ?>
 	<!DOCTYPE html>
 	<html>
 		<head>
-			<title>Lorem ipsum dolor sit amet</title>
+			<title><?=$title?></title>
 			<meta charset="utf-8" />
 			<link rel="stylesheet" href="../css/common.css">
 		</head>
 
 		<body>
 			<header>
-				<?php if($channel === "NOT REDDIT") { ?>
+				<?php if($channel === "Homepage") { ?>
 					<a id="title" href="../pages/homepage.php"><?=$channel?></a>
 				<?php } else { ?>
 					<a id="title" href="../pages/channel.php?name=<?=$channel?>"><?=$channel?></a>

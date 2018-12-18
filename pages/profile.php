@@ -7,9 +7,9 @@
     $usernameOfProfile = $_GET['name'];  
 
     if(!isset($_SESSION['username'])) {
-        draw_header(null, 'NOT REDDIT');
+        draw_header(null, 'Homepage',$usernameOfProfile);
     } else {
-        draw_header($_SESSION['username'], 'NOT REDDIT');
+        draw_header($_SESSION['username'], 'Homepage', $usernameOfProfile);
 
         if($usernameOfProfile == $_SESSION['username']){
             draw_edit_profile_button();

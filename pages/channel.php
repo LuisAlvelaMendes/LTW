@@ -11,11 +11,17 @@
 
 	$channel=$_GET['name'];
 
+	if(!channelExists($channel))
+	{
+		$_SESSION['messages'][] = array('type' => 'error', 'content' => 'Channel does not exist!');
+		die(header('Location: homepage.php'));
+	}
+
 	if(!isset($_SESSION['username'])) {
-		draw_header(null, $channel);
+		draw_header(null, $channel, $channel);
 
 	} else {
-		draw_header($_SESSION['username'], $channel);
+		draw_header($_SESSION['username'], $channel, $channel);
 		draw_addStory($channel);
 
 		if(channelSubscribed($channel))

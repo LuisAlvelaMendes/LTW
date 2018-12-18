@@ -9,13 +9,19 @@
 
 	$channel=$_GET['name'];
 
+	if(!channelExists($channel))
+	{
+		$_SESSION['messages'][] = array('type' => 'error', 'content' => 'Channel does not exist!');
+		die(header('Location: homepage.php'));
+	}
+
 	if(!isset($_SESSION['username']))
 	{
 		$_SESSION['messages'][] = array('type' => 'error', 'content' => 'You do not have permission to access that page!');
 		die(header('Location: homepage.php'));
 	}
 
-	draw_header($_SESSION['username'], $channel);	
+	draw_header($_SESSION['username'], $channel, $channel);	
 
 	draw_textareas($channel);
 

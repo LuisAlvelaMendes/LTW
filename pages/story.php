@@ -13,9 +13,9 @@
 	$story = getStoryMainInfoById($storyId);
 	
 	if(!isset($_SESSION['username'])) {
-		draw_header(null, $story[0]['channel']);
+		draw_header(null, $story[0]['channel'], $story[0]['channel']);
 	} else {
-		draw_header($_SESSION['username'], $story[0]['channel']);
+		draw_header($_SESSION['username'], $story[0]['channel'], $story[0]['channel']);
   	}
 	
 	draw_story($story);

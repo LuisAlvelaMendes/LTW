@@ -97,6 +97,7 @@ body > #messages .success {
 
 	margin: 2px 0.5em 15px 0.5em;
 	padding: 4px 3px 7px 0;
+	width: 99%;
 	font-family: Arial, sans-serif;
 }
 
