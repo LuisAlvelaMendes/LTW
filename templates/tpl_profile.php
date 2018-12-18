@@ -3,12 +3,14 @@
 	include_once('../templates/tpl_common.php');
 ?>
 
+<!-- Draws edit button -->
 <?php function draw_edit_profile_button() { ?>
 	<link rel="stylesheet" href="../css/auth.css"> 
 
 	<button id="editButton" onclick="window.location.href='../pages/edit.php'"> Edit Profile Info </button>
 <?php } ?>
 
+<!-- Draws edit profile page -->
 <?php function draw_edit_profile() { ?>
 	<link rel="stylesheet" href="../css/edit.css"> 
 
@@ -47,6 +49,7 @@
 	</section>
 <?php } ?>
 
+<!-- Draws stories posted by the user -->
 <?php function draw_posted_stories($username) { ?>
 	<link rel="stylesheet" href="../css/profile.css">
 
@@ -66,6 +69,7 @@
 	</section>
 <?php } ?>
 
+<!-- Draws comments posted by the user -->
 <?php function draw_posted_comments($username) { ?>
 	<section id="subscriptions">
 		<h3> User's Posted Comments: </h3>
@@ -83,6 +87,7 @@
 	</section>
 <?php } ?>
 
+<!-- Draws subscribed channel list-->
 <?php function draw_subscribersAside($username) { ?>
   <link rel="stylesheet" href="../css/story.css">
 
@@ -102,6 +107,7 @@
   </section>
 <?php } ?>
 
+<!-- Draws user account info -->
 <?php function draw_user_info($username, $created, $points, $email) { ?>
 	<?php $data = convert_epoch($created) ?>
 	

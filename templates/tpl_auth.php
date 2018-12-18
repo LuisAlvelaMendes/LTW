@@ -1,5 +1,6 @@
 <?php include_once('../includes/session.php') ?>
 
+<!-- Draws login inputs -->
 <?php function draw_login() { ?>
 	<link rel="stylesheet" href="../css/auth.css"> 
 
@@ -16,6 +17,7 @@
 	</section>
 <?php } ?>
 
+<!-- Draws register inputs -->
 <?php function draw_register() { ?>
 	<link rel="stylesheet" href="../css/auth.css"> 
 

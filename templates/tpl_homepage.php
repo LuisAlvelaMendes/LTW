@@ -1,11 +1,13 @@
 <?php 
-    include_once('../templates/tpl_story.php');
-    include_once('../includes/session.php'); 
+	include_once('../includes/session.php'); 
+	
+	include_once('../templates/tpl_story.php');
 
     include_once('../database/db_channel.php');
     include_once('../database/db_story.php') ;
 ?>
 
+<!-- Draws button presen in the homepage.php -->
 <?php function draw_homepage_buttons() { ?>
 	<link rel="stylesheet" href="../css/common.css">
 	
@@ -26,6 +28,7 @@
 	</section>	
 <?php } ?>
 
+<!-- Draws stories from all channels -->
 <?php function draw_storiesFromChannels($allChannels) { ?>
 	<script src="../scripts/voteStory.js" async></script>
 	
@@ -37,6 +40,7 @@
 	</section>
 <?php } ?>
 
+<!-- Draws stories from subscribed channels -->
 <?php function draw_stories($stories) { ?>
 	<script src="../scripts/voteStory.js" async></script>
 	

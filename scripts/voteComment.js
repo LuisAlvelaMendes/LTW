@@ -6,6 +6,7 @@ commentSection.addEventListener('change', comment_addVote);
 
 let username = document.getElementById('username').value;
 
+// Refreshes votes on comments when page loads and when theres a new comment
 function comment_refreshVotes() {
 	let allCBs = commentSection.getElementsByClassName('up'); // Only need the up arrow since only the voteType changes
     let CBs=Array(); 
@@ -27,6 +28,7 @@ function comment_refreshVotes() {
 	request.send(encodeForAjax({'CBs' : CBs, 'username' : username}));
 }
 
+// Disables comment CB when user is not logged in
 function comment_disableCB(){
     let allUp = commentSection.getElementsByClassName('up');
     let allDown = commentSection.getElementsByClassName('down');
@@ -41,7 +43,7 @@ function comment_disableCB(){
 function comment_updateCB() {
     let votes = JSON.parse(this.responseText);
     let CB;
-    console.log(votes);
+    
     for(let i = 0; i < votes.length; i++){
         let voteId = votes[i]['id'];
         CB = commentSection.querySelector(`[data-id="${voteId}"]`);

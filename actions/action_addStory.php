@@ -12,5 +12,6 @@
     }
 
     addStory(htmlspecialchars($title), $channel, htmlspecialchars($fulltext));
+    
     header("Location: ../pages/channel.php?name=$channel");
 ?>

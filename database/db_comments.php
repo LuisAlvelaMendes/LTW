@@ -1,16 +1,20 @@
 <?php
     include_once('../includes/database.php');
 
-    function getCommentsFromStory($storyId) {
-        $db = Database::instance()->db();
+	function addComment($story_id, $username, $timestamp, $text) {
+		$db = Database::instance()->db();
+		$stmt = $db->prepare('INSERT INTO comment (story_id, parent_comment, username, date, text) VALUES (?, null, ?, ?, ?)');
+  		$stmt->execute(array($story_id, $username, $timestamp, $text));
+	}
 
-        $commentsForStory = $db->prepare('SELECT id, text, parent_comment, username, date, points, text FROM Comment WHERE story_id = ?');
-            
-        $commentsForStory->execute(array($storyId));
-        $commentsForStory = $commentsForStory->fetchAll();
+	function getNewComments($story_id) {
+		$db = Database::instance()->db();
+		$stmt = $db->prepare("SELECT * FROM Comment WHERE story_id = ? ORDER BY date DESC");
+		$stmt->execute(array($story_id));
+		$comments = $stmt->fetchAll();
 
-        return $commentsForStory;
-    }
+		return $comments;
+	}
 
 	function comment_getUserVotes($commentId, $username) {
 		$db = Database::instance()->db();
@@ -29,19 +33,19 @@
 		$currentType = $stmt->fetchAll();
 		
 		if(empty($currentType)){
-			comment_addUsersVote($username, $commentId, $voteType);
+			comment_addUserVote($username, $commentId, $voteType);
 		} else {
 			if($currentType[0]['type'] == $voteType) {
 				comment_removeUserVote($commentId, $username);
 			} else if($currentType[0]['type'] != $voteType){
-				comment_swapUsersVote($commentId, $username, $voteType);
+				comment_swapUserVote($commentId, $username, $voteType);
 			}
 		}
 
 		return $currentType;
 	}
 
-	function comment_addUsersVote($username, $commentId, $voteType) {
+	function comment_addUserVote($username, $commentId, $voteType) {
 		$db = Database::instance()->db();
 		$stmt = $db->prepare('INSERT INTO CommentVote VALUES(?, ?, ?)');
 		$stmt->execute(array($username, $commentId, $voteType));
@@ -53,7 +57,7 @@
 		$stmt->execute(array($commentId, $username));
 	}
 
-	function comment_swapUsersVote($commentId, $username, $voteType) {
+	function comment_swapUserVote($commentId, $username, $voteType) {
 		$db = Database::instance()->db();
 		$stmt = $db->prepare('DELETE FROM CommentVote WHERE comment_id = ? AND username = ?');
 		$stmt->execute(array($commentId, $username));

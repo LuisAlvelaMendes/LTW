@@ -7,6 +7,7 @@ storyCards.addEventListener('change', story_addVote);
 // Refresh votes at start, changing checkbox which have been voted
 story_refreshVotes();
 
+// Refreshes story votes when page load and after channel stories being sorted
 function story_refreshVotes() {
 	let allCBs = storyCards.getElementsByClassName('up'); // Only need the up arrow since only the voteType changes
     let CBs=Array();
@@ -29,6 +30,7 @@ function story_refreshVotes() {
 	request.send(encodeForAjax({'CBs' : CBs, 'username' : username}));
 }
 
+// Disables CB when user is not logged in
 function story_disableCB(){
     let allUp = storyCards.getElementsByClassName('up');
     let allDown = storyCards.getElementsByClassName('down');
@@ -37,7 +39,6 @@ function story_disableCB(){
         if(!allUp[i].disabled) allUp[i].disabled = true;
         if(!allDown[i].disabled) allDown[i].disabled = true;
     }
-    
 }
 
 // Updates checkboxes with usr votes 
@@ -94,8 +95,8 @@ function story_newVote() {
 
                 break;
             case '0':
-                let aux = CB.nextElementSibling;
-                aux = aux.nextElementSibling;
+                let aux = CB.nextElementSibling;    // Next sibling is the points
+                aux = aux.nextElementSibling;       // Next next sibling is the downvote
                 points.innerHTML = vote['points'].points;
                 aux.checked = false;
 

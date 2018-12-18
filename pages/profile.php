@@ -1,8 +1,11 @@
 <?php 
     include_once('../includes/session.php');
+    
     include_once('../templates/tpl_common.php');
-    include_once('../database/db_user.php');
+    include_once('../templates/tpl_sub.php');
     include_once('../templates/tpl_profile.php');
+
+    include_once('../database/db_user.php');
 
     $usernameOfProfile = $_GET['name'];  
 

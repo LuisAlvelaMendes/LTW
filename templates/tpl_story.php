@@ -5,6 +5,7 @@
 	include_once('../database/db_story.php');
 ?>
 
+<!-- Draws story card used in homepage and channel-->
 <?php function draw_storyCard($story, $displayChannel) { ?>
 	<link rel="stylesheet" href="../css/storyCard.css">
 
@@ -25,6 +26,7 @@
 	</div>
 <?php } ?>
 
+<!-- Draws complete story -->
 <?php function draw_story($story) { ?>
 	<link rel="stylesheet" href="../css/story.css">
 
@@ -41,6 +43,7 @@
 	</section>
 <?php } ?>
 
+<!-- Draws input for new story -->
 <?php function draw_textareas($channel) { ?>
 	<link rel="stylesheet" href="../css/story.css">
 
@@ -59,6 +62,7 @@
 
 <?php } ?>
 
+<!-- Draws comment input for the story -->
 <?php function draw_comment_section($storyId) { ?>
 	<link rel="stylesheet" href="../css/story.css">
 	
