@@ -1,11 +1,10 @@
-<?php 
+﻿<?php 
 	include_once('tpl_story.php');
-	include_once('../templates/tpl_sub.php')
+	include_once('../templates/tpl_sub.php');
 
 	include_once('../database/db_story.php');
 	include_once('../database/db_channel.php');
 	include_once('../database/db_user.php'); 
-	include_once('../database/db_channel.php'); 
 ?>
 
 <!-- Draws headder banner present in the start of every page -->

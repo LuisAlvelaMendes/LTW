@@ -59,16 +59,3 @@
 		<p> Subscribe now in order to see stories about your favourite topics here in your homepage! </p>
 	</section>
 <?php } ?>
-
-<?php function draw_topchannels($topchannels) { ?>
-	<link rel="stylesheet" href="../css/top_subs.css">
-
-	<section id="top_ch">
-		<? foreach($topchannels as $channel) { ?>
-		<button type="button" onclick="window.location.href='../pages/channel.php?name=<?= $channel['name'] ?>'">
-			<h1><?=$channel['name']?></h1>
-			<h2><?=$channel['subscribers']?></h2>
-		</button>
-		<? } ?>
-	</section> 
-<?php } ?>
