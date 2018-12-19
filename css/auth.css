@@ -23,7 +23,7 @@
 	border: none;
 	border-bottom: 2px solid #666666;
 
-	background-color: #ececec;
+	background-color: #F7EBE8;
 }
 
 #login input[type=submit] {
@@ -49,13 +49,13 @@
 
 	margin-top: 1.2em;
 
-	background-color: #666666;
+	background-color: #5E6572;
 	color: white;
 
 	border: none;
 }
 
 #login button:hover {
-	background-color: #7f7f7f;
+	background-color: #7D98A1;
 	color: white;
 }

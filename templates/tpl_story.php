@@ -82,17 +82,17 @@
 	
 	<?php if(!isset($_SESSION['username'])) { ?>
 		<form>
-			<textarea name="comment" placeholder="Add your comment"></textarea>
+			<textarea class="addComment" name="comment" placeholder="Add your comment" rows="3" cols="50"></textarea>
 			<input type="hidden" name="username" value="<?=$_SESSION['username']?>">
 			<input type="hidden" name="story" value="<?=$storyId?>">
-			<input type="submit" value="Add" disabled>
+			<input class="submitComment" type="submit" value="Add" disabled>
 		</form>
 	<?php } else {?>
 		<form>
-			<textarea name="comment" placeholder="Add your comment" required></textarea>
+			<textarea class="addComment" name="comment" placeholder="Add your comment" required></textarea>
 			<input type="hidden" name="username" value="<?=$_SESSION['username']?>">
 			<input type="hidden" name="story" value="<?=$storyId?>">
-			<input type="submit" value="Add">
+			<input class="submitComment" type="submit" value="Add">
 		</form>
 	<?php } ?>
 
