@@ -13,7 +13,7 @@ function valueChanged(event) {
     //Request to get stories by correct order
     let request = new XMLHttpRequest();
     request.addEventListener("load", addStories);
-    request.open("get", "../database/db_storiesBy" + event.target.value + ".php?channel=" + channel, true);
+    request.open("get", "../api/api_sortStories.php?order=" + event.target.value + "&channel=" + channel,  true);
     request.send();
 }
 
@@ -36,5 +36,8 @@ function addStories() {
 
 function drawStory(story) {
     var template = document.getElementById('tpl_story_card').innerHTML;
-    return Mustache.render(template, {storyId : story.id, title : story.title, text : story.fulltext, author : story.author, published : story.published, points : story.points, username : usr});
+    return Mustache.render(template, {storyId : story['storyId'], title : story['title'],
+                                    text : story['fulltext'], author : story['author'], 
+                                    published : story['published'], points : story['points'],
+                                    username : usr});
 }

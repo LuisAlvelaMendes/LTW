@@ -39,7 +39,7 @@
 		</div>
 		
 		<div class="middle">
-			<a id="date">{{published}}</a>
+			<a id="date">{{date}}</a>
 		</div>
 
 		<div class="end">

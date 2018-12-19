@@ -182,7 +182,7 @@
 		</div>
 		
 		<div id="middle">
-			<a id="date"><?=$date?></a>
+			<a id="date"><?=time_elapsed('@' . $date)?></a>
 			<a id="channel" href="../pages/channel.php?name=<?=$channel?>"><?=$channel?></a>
 		</div>
 

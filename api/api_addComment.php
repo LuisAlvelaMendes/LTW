@@ -21,11 +21,19 @@
   // Retrieve new comments
   $comments = getNewComments($story_id);
 
+  $commentsFix = array();
+
   // alter text field of each message
   for($i = 0; $i < sizeof($comments); $i++) {
-    $comments[$i]['text'] = draw_references($comments[$i]['text']);
+	$text = draw_references($comments[$i]['text']);
+	$date = time_elapsed('@' . $comments[$i]['date']);
+	$commentsFix[$i] = array('text' => $text, 'storyId' => $comments[$i]['story_id'], 
+							'commentId' => $comments[$i]['id'], 'author' => $comments[$i]['username'], 
+							'username' => $comments[$i]['username'], 'date' => $date,
+							'points' => $comments[$i]['points']);
+	
   }
 
   // JSON encode
-  echo json_encode($comments);
+  echo json_encode($commentsFix);
 ?>

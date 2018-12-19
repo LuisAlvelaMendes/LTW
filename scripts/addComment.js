@@ -10,8 +10,6 @@ refreshComments();
 
 // Ask for new comments
 function refreshComments() {
-	let username = document.getElementById('username').value;
-
 	let request = new XMLHttpRequest();
 	request.open('get', '../api/api_addComment.php?' + encodeForAjax({'story_id' : story_id}), true);
 	request.addEventListener('load', newComment);
@@ -54,7 +52,11 @@ function newComment() {
 
 function draw_comment(comment){
 	var template = document.getElementById('tpl_comment').innerHTML;
-	return Mustache.render(template, {text : comment.text, storyId : comment.story_id, commentId : comment.id, author : comment.username,  published : comment.date, points : comment.points, username : username});
+	console.log(typeof comment['date']);
+	return Mustache.render(template, {text : comment['text'], storyId : comment['storyId'], 
+									commentId : comment['id'], author : comment['author'],
+									date : comment['date'], points : comment['points'], 
+									username : username});
 }
 
 function encodeForAjax(data) {
