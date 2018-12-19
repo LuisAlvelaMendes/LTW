@@ -19,14 +19,15 @@
 
 	if(!isset($_SESSION['username'])) {
 		draw_header(null, $channel, $channel);
-
+		$subscribe = false;
 	} else {
 		draw_header($_SESSION['username'], $channel, $channel);
+		$subscribe = channelSubscribed($channel);
 	}	
 
 	$stories= getStoriesFromChannel($channel);
 
-	draw_channelButtons($channel, channelSubscribed($channel));
+	draw_channelButtons($channel, $subscribe);
 
 	drawStories($stories, $channel);
 
