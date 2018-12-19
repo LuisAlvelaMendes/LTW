@@ -7,13 +7,13 @@
     display: block;
     flex: 1;
     
-    background-color: #666666;
+    background-color: #39393A;
     
     border: none;
 }
 
 #top_ch button:hover {
-    background-color: gray;
+    background-color: #606061;
 }
 
 #top_ch button:not(:last-child) {

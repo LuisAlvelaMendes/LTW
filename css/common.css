@@ -4,7 +4,7 @@ body {
 	
 	max-width: 80em;
 
-	--bg-color: #ececec;
+	--bg-color: #F7EBE8;
 	--panel-color: #f95d34;
 
 	--error-bg-color: lightcoral;
@@ -206,9 +206,16 @@ body > #messages .success {
 	font-family: Verdana, sans-serif;
 }
 
+#homepage_buttons{
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	margin-top: 20px;
+}
+
 .button {
     position: relative;
-    background-color: #f95d34;
+    background-color: #5E6572;
     border: none;
     color: white;
     padding: 18px 34px;
@@ -216,14 +223,7 @@ body > #messages .success {
 }
 
 .button:hover {
-	background-color: #f96d48;
-}
-
-#homepage_buttons{
-	display: flex;
-	flex-direction: row;
-	justify-content: space-between;
-	margin-top: 20px;
+	background-color: #7D98A1;
 }
 
 #createChannelText{

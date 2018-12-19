@@ -22,15 +22,11 @@
 
 	} else {
 		draw_header($_SESSION['username'], $channel, $channel);
-		draw_addStory($channel);
-
-		if(channelSubscribed($channel))
-			draw_unsubscribeButton($channel);
-		else
-			draw_subscribeButton($channel);
 	}	
 
 	$stories= getStoriesFromChannel($channel);
+
+	draw_channelButtons($channel, channelSubscribed($channel));
 
 	drawStories($stories, $channel);
 
