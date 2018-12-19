@@ -15,5 +15,4 @@
     draw_searchbar();
 
     draw_footer();
-
 ?>

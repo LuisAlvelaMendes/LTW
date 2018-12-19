@@ -13,7 +13,7 @@
 	
 	<section id = "homepage_buttons">
 		<div id="left">
-			<button id="searchButton" class="button" type='submit' onclick="window.location.href='../pages/search.php'">Search</button>
+			<button id="searchButton" class="button" type='submit' onclick="window.location.href='../pages/search.php'"><i class="fas fa-search"></i>Search</button>
 		</div>
 
 		<?php if(isset($_SESSION['username'])) { ?>
