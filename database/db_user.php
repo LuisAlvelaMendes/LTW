@@ -70,8 +70,10 @@
     function changeUserPassword($username, $password) {
         $db = Database::instance()->db();
 
+        $options = ['cost' => 12];
+
         $stmt = $db->prepare('UPDATE utilizer SET password = ? WHERE username = ?');
-        $stmt->execute(array(sha1($password), $username));
+        $stmt->execute(array(password_hash(($password), PASSWORD_DEFAULT, $options), $username));
     
         return true;
     }
