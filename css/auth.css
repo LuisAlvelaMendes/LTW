@@ -3,6 +3,9 @@
 	width: 20em;
 	padding: 1em;
 	text-align: center;
+
+	background-color: white;
+	border-radius: 13px;
 }
 
 #login label{
@@ -13,6 +16,7 @@
 
 	text-align: center;
 	font-weight: bold;
+	font-family: Verdana, sans-serif;
 }
 
 #login input {
@@ -20,10 +24,12 @@
 
 	margin: 0 auto;
 
+	background-color: white;
+
 	border: none;
 	border-bottom: 2px solid #666666;
 
-	background-color: #F7EBE8;
+	font-family: Arial, sans-serif;
 }
 
 #login input[type=submit] {

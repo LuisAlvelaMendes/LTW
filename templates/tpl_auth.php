@@ -12,7 +12,7 @@
 			<label for="password">Password</label>
 			<input type="password" placeholder="Enter Password" name="password" required>
 
-			<button type="submit">Login</button>
+			<button class="button" type="submit">Login</button>
 		</form>
 	</section>
 <?php } ?>
@@ -35,7 +35,7 @@
 			<label for="Repeat password">Password</label>
 			<input type="password" placeholder="Repeat Password" name="password2" required>
 
-			<button type="submit">Register</button>
+			<button class="button" type="submit">Register</button>
 		</form>
 	</section>
 <?php } ?>

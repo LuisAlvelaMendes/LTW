@@ -5,9 +5,9 @@
 
 <?php // Draws edit button ?>
 <?php function draw_edit_profile_button() { ?>
-	<link rel="stylesheet" href="../css/auth.css"> 
+	<link rel="stylesheet" href="../css/edit.css"> 
 
-	<button id="editButton" onclick="window.location.href='../pages/edit.php'"> Edit Profile Info </button>
+	<button class="button" id="editButton" onclick="window.location.href='../pages/edit.php'"> Edit Profile Info </button>
 <?php } ?>
 
 <?php // Draws edit profile page ?>
@@ -15,37 +15,36 @@
 	<link rel="stylesheet" href="../css/edit.css"> 
 
 	<section id="edit">
-		<form action="../actions/action_editPass.php" method="post">
+		<div id="chngPass">
+			<form action="../actions/action_editPass.php" method="post">
+				<p> Change Password: </p>
+			
+				<label>Old Password</label>
+				<input class="input" type="password" placeholder="Enter Old Password" name="oldpassword" required>
 
-			<p> Change Password: </p>
-		
-            <label for="oldpassword">Old Password</label>
-			<input type="password" placeholder="Enter Old Password" name="oldpassword" required>
+				<label>New Password</label>
+				<input class="input"  type="password" placeholder="Enter New Password" name="newpassword" required>
 
-			<br>
+				<input type="hidden" name="csrf" value="<?=$_SESSION['csrf']?>">
+				<button class="button" type="submit">Change</button>
+			</form>
+		</div>
 
-			<label for="newpassword">New Password</label>
-			<input type="password" placeholder="Enter New Password" name="newpassword" required>
+		<div id="chngEmail">
+			<form action="../actions/action_editEmail.php" method="post">
 
-			<input type="hidden" name="csrf" value="<?=$_SESSION['csrf']?>">
-			<button type="submit">Change</button>
-		</form>
+				<p> Change Email: </p>
+			
+				<label for="oldemail">Old Email</label>
+				<input class="input"  type="email" placeholder="Enter Old email" name="oldemail" required>
 
-		<form action="../actions/action_editEmail.php" method="post">
+				<label for="newemail">New Email</label>
+				<input class="input" type="email" placeholder="Enter New Password" name="newemail" required>
 
-			<p> Change Email: </p>
-		
-			<label for="oldemail">Old Email</label>
-			<input type="email" placeholder="Enter Old email" name="oldemail" required>
-
-			<br>
-
-			<label for="newemail">New Email</label>
-			<input type="email" placeholder="Enter New Password" name="newemail" required>
-
-			<input type="hidden" name="csrf" value="<?=$_SESSION['csrf']?>">
-			<button type="submit">Change</button>
-		</form>
+				<input type="hidden" name="csrf" value="<?=$_SESSION['csrf']?>">
+				<button class="button" type="submit">Change</button>
+			</form>
+		</div>
 	</section>
 <?php } ?>
 
@@ -53,7 +52,7 @@
 <?php function draw_posted_stories($username) { ?>
 	<link rel="stylesheet" href="../css/profile.css">
 
-	<section id="subscriptions">
+	<section class="userHistory">
 		<h3> User's Posted Stories: </h3>
 		
 		<?php 
@@ -71,7 +70,7 @@
 
 <?php // Draws comments posted by the user ?>
 <?php function draw_posted_comments($username) { ?>
-	<section id="subscriptions">
+	<section class="userHistory">
 		<h3> User's Posted Comments: </h3>
 		
 		<?php 
@@ -100,4 +99,24 @@
 		<p>Points: <?=$points?></p>
 	</section>
 
+<?php } ?>
+
+<?php // Draws user subscribed channels ?>
+<?php function draw_subscribedChannels($username) { ?>
+  <link rel="stylesheet" href="../css/story.css">
+
+  <section class="userHistory">
+      <h3> User's Subscribed Channels: </h3>
+      
+      <?php 
+      $subscribedChannelsNames = getSubscribedChannels($username);
+
+      if(empty($subscribedChannelsNames)) { ?>
+        <p> User has not subscribed to any channel..</p>
+      <?php } else {
+        foreach( $subscribedChannelsNames as $channelName) { ?>
+          <p><a onclick="window.location.href='../pages/channel.php?name=<?=$channelName['channel']?>'"><?=$channelName['channel']?></a></p>
+        <?php }
+      } ?>
+  </section>
 <?php } ?>

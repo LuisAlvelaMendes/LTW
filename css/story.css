@@ -80,6 +80,10 @@
     outline: none;
 }
 
+.submitComment:disabled {
+    background-color: #7D98A1;
+}
+
 .usrComment:first-child {
     margin-top: 2em;
 }

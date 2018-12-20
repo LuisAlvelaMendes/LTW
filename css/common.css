@@ -9,7 +9,7 @@ body {
 	
 	max-width: 80em;
 
-	background-color: #F7EBE8;
+	background: url(../images/background.png) no-repeat center center fixed;
 }
 
 body > header{
@@ -120,8 +120,13 @@ body > #messages .success {
 
 	margin: 2px 0.5em 15px 0.5em;
 	padding: 4px 3px 7px 0;
-	width: 99%;
+	max-width: 80em;
+	width: 99.5%;
 	font-family: Arial, sans-serif;
+}
+
+.up, .down {
+	cursor: pointer;
 }
 
 .up:before {
@@ -252,5 +257,5 @@ footer {
 
 footer p {
 	font-size: 20px;
-	padding-left: 1em;
+	padding-left: 2em;
 }
