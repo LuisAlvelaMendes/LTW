@@ -38,9 +38,9 @@ function newComment() {
 
 	let comments = JSON.parse(this.responseText);
 
-	for(var comment in comments) {
+	for(let comment in comments) {
 		let commentComplete = document.createElement('div');
-		var usrComment = draw_comment(comments[comment]);
+		let usrComment = draw_comment(comments[comment]);
 
 		commentComplete.innerHTML += usrComment;
 
@@ -51,12 +51,12 @@ function newComment() {
 }
 
 function draw_comment(comment){
-	var template = document.getElementById('tpl_comment').innerHTML;
-	console.log(typeof comment['date']);
-	return Mustache.render(template, {text : comment['text'], storyId : comment['storyId'], 
-									commentId : comment['id'], author : comment['author'],
-									date : comment['date'], points : comment['points'], 
-									username : username});
+	let template = document.getElementById('tpl_comment').innerHTML;
+	let username = document.querySelector('input[name=username]').value;
+
+	return Mustache.render(template, {text : comment.text, commentId : comment.id,
+									author : comment.username,  date : comment.date,
+									points : comment.points, username : username});
 }
 
 function encodeForAjax(data) {
