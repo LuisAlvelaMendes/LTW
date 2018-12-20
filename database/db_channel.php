@@ -66,7 +66,7 @@
 	function getTopChannels() {
 		$db = Database::instance()->db();
 
-		$topChannels = $db->prepare('SELECT name, count(*) as subscribers FROM Channel left join UserSubscriptions WHERE name = channel GROUP BY name LIMIT 5');
+		$topChannels = $db->prepare('SELECT name, count(*) as subscribers FROM Channel left join UserSubscriptions WHERE name = channel GROUP BY name ORDER BY subscribers DESC LIMIT 5');
 				
 		$topChannels->execute();
 		$topChannelNames = $topChannels->fetchAll();

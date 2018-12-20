@@ -148,38 +148,58 @@ END;
 PRAGMA foreign_keys = ON;
 
 INSERT INTO Channel (name) VALUES ("Portugal");
-INSERT INTO Channel (name) VALUES ("Lorem Ipsum");
+INSERT INTO Channel (name) VALUES ("Worldnews");
+INSERT INTO Channel (name) VALUES ("Jokes");
+
 
 -- All passwords are 1234 in SHA-1 format
 
-INSERT INTO Utilizer (username, password, email, created, points) VALUES ("dominic", "$2y$12$/OR080vuX/1Y4dyPYkPzAOaCmWjqytjr50/trYLXNsrYE9bnTf8da", "dominic@hotmail.com", 1507901651, 0);
-INSERT INTO Utilizer (username, password, email, created, points) VALUES ("zachary", "$2y$12$J4IKd4yNQMlD2scB5xqmYe.5nk1X.SsOZJISEZeEFF3Oyw7p4EUSa", "zachary@hotmail.com", 1508074451, 0);
-INSERT INTO Utilizer (username, password, email, created, points) VALUES ("alicia", "$2y$12$EclMUIx/gdXGHk6R7fADZOEXh0WtnWa3Zrkl1ksqhumgLcX6K7HZ.", "alicia@hotmail.com", 1508160851, -1);
-INSERT INTO Utilizer (username, password, email, created, points) VALUES ("abril", "$2y$12$bNJ35gRTwezT/3lx1thGpurbSIP3n.s9hWaIor7xmrAdApft0eZFm", "abril@hotmail.com", 1508247278, 0);
+INSERT INTO Utilizer (username, password, email, created, points) VALUES ("dominic", "$2y$12$/OR080vuX/1Y4dyPYkPzAOaCmWjqytjr50/trYLXNsrYE9bnTf8da", "dom@gmail.com", 1507901651, 2);
+INSERT INTO Utilizer (username, password, email, created, points) VALUES ("zachary", "$2y$12$J4IKd4yNQMlD2scB5xqmYe.5nk1X.SsOZJISEZeEFF3Oyw7p4EUSa", "zack207@hotmail.com", 1508074451, 5);
+INSERT INTO Utilizer (username, password, email, created, points) VALUES ("alicia", "$2y$12$EclMUIx/gdXGHk6R7fADZOEXh0WtnWa3Zrkl1ksqhumgLcX6K7HZ.", "foxlover1@hotmail.com", 1508160851, -2);
+INSERT INTO Utilizer (username, password, email, created, points) VALUES ("abril", "$2y$12$bNJ35gRTwezT/3lx1thGpurbSIP3n.s9hWaIor7xmrAdApft0eZFm", "april_with_b@yahoo.com", 1508247278, 0);
 
-INSERT INTO Story (title, published, channel, author, points, fulltext) VALUES ("A Autoeuropa, lembram-se?", 1507901651, "Portugal", "dominic", 0, "Há cerca de um ano estava o sub inundado de posts com notícias sobre a Autoeuropa e algumas divergências entre administração e trabalhadoras, relativamente a folgas, horários e remuneração de dias como sábado e domingo. Alguns dos títulos:");
+INSERT INTO Story (title, published, channel, author, points, fulltext) VALUES ("A Autoeuropa, lembram-se?", 1507901651, "Portugal", "dominic", 0, "Há cerca de um ano estava o sub inundado de posts com notícias sobre a Autoeuropa e algumas divergências entre administração e trabalhadoras, relativamente a folgas, horários e remuneração de dias como sábado e domingo. \");
 INSERT INTO Story (title, published, channel, author, points, fulltext) VALUES ("Vida profissional de um advogado em Portugal", 1508074451, "Portugal", "abril", 1, "Estou a fazer agora um estágio num escritório enquanto acabo o quarto ano de Direito. Gostava de conhecer o testemunho de alguns advogados enquanto vou conhecendo aos poucos a prática. Como é o ambiente no vosso escritório? Quais as qualidades mais prezadas num advogado/estagiário? Que salário devo esperar quando começar exercer a sério/ estagiar na ordem? Quais os principais problemas que costumam ocorrer e quais os pontos fortes da profissão?");
-INSERT INTO Story (title, published, channel, author, points, fulltext) VALUES ("What is Lorem Ipsum?", 1508160851, "Lorem Ipsum", "alicia", -1, "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.");
-INSERT INTO Story (title, published, channel, author, points, fulltext) VALUES ("Where does it come from?", 1508247278, "Lorem Ipsum", "zachary", 0, "Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, comes from a line in section 1.10.32.");
+INSERT INTO Story (title, published, channel, author, points, fulltext) VALUES ("Belgium says loot boxes are gambling, wants them banned in Europe", 1529512183, "Worldnews", "alicia", -1, "Last week, Belgium's Gaming Commission announced that it had launched an investigation into whether the loot boxes available for purchase in games like Overwatch and Star Wars Battlefront 2 constitute a form of gambling. Today, VTM News reported that the ruling is in, and the answer is yes. ");
+INSERT INTO Story (title, published, channel, author, points, fulltext) VALUES ("Russia 'fires on and seizes Ukraine ships'", 1543681783, "Worldnews", "zachary", 4, "Russia has fired on and seized three Ukrainian naval vessels off the Crimean Peninsula in a major escalation of tensions between the two countries.");
+INSERT INTO Story (title, published, channel, author, points, fulltext) VALUES ("Uber loses landmark case over worker rights, entitling UK drivers to minimum wage and sick leave", 1545323383, "Worldnews", "zachary", 1, "The United Kingdom's courts have ruled against Uber in a groundbreaking fight over industrial protections given to the thousands of drivers who use its app, in a decision that could have ramifications worldwide.");
+INSERT INTO Story (title, published, channel, author, points, fulltext) VALUES ("I don’t often tell Dad jokes.", 1545150583, "Jokes", "abril", 1, "But when I do, he laughs.");
 
-INSERT INTO Comment (story_id, parent_comment, username, date, points, text) VALUES (1, NULL, "dominic", 1507901651, 1, "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut at consequat libero. Ut a orci orci. Proin sodales venenatis risus.");
-INSERT INTO Comment (story_id, parent_comment, username, date, points, text) VALUES (2, NULL, "dominic", 1507901651, 0, "Lorem ipsum dolor sit amet, atis risus.");
-INSERT INTO Comment (story_id, parent_comment, username, date, points, text) VALUES (2, NULL, "abril", 1507901651, -1, "testing comments");
-INSERT INTO Comment (story_id, parent_comment, username, date, points, text) VALUES (1, 1, "alicia", 1508160851, 0, "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce id convallis odio. Vivamus risus velit, accumsan in pellentesque sed, commodo.");
-INSERT INTO Comment (story_id, parent_comment, username, date, points, text) VALUES (3, NULL, "dominic", 1508160851, 0, "Sed ullamcorper nec elit ut egestas. Ut et vehicula tellus. Donec faucibus, massa sit amet porta pharetra, dolor lorem consequat.");
+
+INSERT INTO Comment (story_id, parent_comment, username, date, points, text) VALUES (6, NULL, "dominic", 1507901651, 2, "Goddamn it. Take your upvote 😉");
+INSERT INTO Comment (story_id, parent_comment, username, date, points, text) VALUES (5, NULL, "dominic", 1507901651, 0, "This just in! Uber closes its doors in the UK but a new startup just hit the streets to fill it's place, say hello to Ubar.");
+INSERT INTO Comment (story_id, parent_comment, username, date, points, text) VALUES (1, 1, "alicia", 1508160851, -1, "Eu não me lembrava.");
+INSERT INTO Comment (story_id, parent_comment, username, date, points, text) VALUES (3, NULL, "dominic", 1508160851, 0, "Would be hilarious if EA ended up not only hated by the players but also by every other company in their gambling business. And I can totally see the EU screwing them just like that.");
+INSERT INTO Comment (story_id, parent_comment, username, date, points, text) VALUES (3, NULL, "alicia", 1508160851, 0, "EA not only shot themselves in the foot, they blew off the whole leg for every other developer who is taking advantage of people with loot Crates. This is awesome!");
+INSERT INTO Comment (story_id, parent_comment, username, date, points, text) VALUES (3, NULL, "dominic", 1508160851, 0, "I imagine this will be popular in the gaming community, not in the EA boardroom though.");
+INSERT INTO Comment (story_id, parent_comment, username, date, points, text) VALUES (6, NULL, "zachary", 1545150883, 1, "This is a dad joke about dad jokes! We're reaching new heights here guys");
 
 INSERT INTO UserSubscriptions VALUES ("abril", "Portugal");
-INSERT INTO UserSubscriptions VALUES ("abril", "Lorem Ipsum");
-INSERT INTO UserSubscriptions VALUES ("alicia", "Lorem Ipsum");
+INSERT INTO UserSubscriptions VALUES ("abril", "Worldnews");
+INSERT INTO UserSubscriptions VALUES ("alicia", "Worldnews");
+INSERT INTO UserSubscriptions VALUES ("dominic", "Worldnews");
+INSERT INTO UserSubscriptions VALUES ("zachary", "Worldnews");
+INSERT INTO UserSubscriptions VALUES ("abril", "Jokes");
+INSERT INTO UserSubscriptions VALUES ("zachary", "Jokes");
+
 
 INSERT INTO StoryVote VALUES ("dominic", 1, 1);
 INSERT INTO StoryVote VALUES ("alicia", 1, 0);
 INSERT INTO StoryVote VALUES ("dominic", 2, 1);
 INSERT INTO StoryVote VALUES ("abril", 3, 0);
+INSERT INTO StoryVote VALUES ("abril", 4, 1);
+INSERT INTO StoryVote VALUES ("alicia", 4, 1);
+INSERT INTO StoryVote VALUES ("dominic", 4, 1);
+INSERT INTO StoryVote VALUES ("zachary", 4, 1);
+INSERT INTO StoryVote VALUES ("dominic", 5, 1);
+
 
 INSERT INTO CommentVote VALUES ("zachary", 1, 1);
+INSERT INTO CommentVote VALUES ("alicia", 1, 1);
 INSERT INTO CommentVote VALUES ("zachary", 2, 0);
 INSERT INTO CommentVote VALUES ("abril", 2, 1); 
 INSERT INTO CommentVote VALUES ("zachary", 3, 0);
+INSERT INTO CommentVote VALUES ("abril", 7, 1); 
 
 COMMIT;
