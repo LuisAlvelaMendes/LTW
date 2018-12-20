@@ -1,19 +1,15 @@
+html {
+	position: relative;
+	min-height: 100%;
+}
+
 body {
 	margin: 0 auto;
 	padding-bottom: 5em;
 	
 	max-width: 80em;
 
-	--bg-color: #F7EBE8;
-	--panel-color: #f95d34;
-
-	--error-bg-color: lightcoral;
-	--error-ft-color: black;
-	
-	--successs-bg-color: lightgreen;
-	--success-ft-color: black;
-
-	background-color: var(--bg-color);
+	background-color: #F7EBE8;
 }
 
 body > header{
@@ -21,7 +17,7 @@ body > header{
 	grid-template-columns: 1fr auto;
 	grid-template-rows: auto auto;
 
-	background-color: var(--panel-color) ;
+	background-color: #F95D34 ;
 	color: white;
 	font-family: Verdana, sans-serif;
 }
@@ -100,13 +96,13 @@ body > #messages div {
 }
 
 body > #messages .error {
-	color: var(--error-ft-color);
-	background-color: var(--error-bg-color);
+	color: black;
+	background-color: lightcoral;
 }
 
 body > #messages .success {
-	color: var(--success-ft-color);
-	background-color: var(--successs-bg-color);
+	color: black;
+	background-color: lightgreen;
 }
 
 .infoBar {
@@ -239,11 +235,18 @@ body > #messages .success {
 }
 
 footer {
-	padding: 0.2em;
-	margin: 20px auto;
+	position: absolute;
+	bottom: 0;
 	max-width: 80em;
+	width: 100%;
+	margin-left: 0.5em;
 
-	background-color: var(--panel-color);
+	background-color: #F95D34;
 	color: white;
 	font-family: Verdana, sans-serif;
+}
+
+footer p {
+	font-size: 20px;
+	padding-left: 1em;
 }

@@ -197,7 +197,7 @@
 <?php function draw_footer() { ?>
 	</body>
 	<footer> 
-		<p>&copy; TRABALHO LTW LUÍS, RICARDO, SIMÃO</p>	
+		<p>&copy; Trabalho LTW Luís, Ricardo, Simão</p>	
 	</footer>
 	</html>
 <?php } ?>
