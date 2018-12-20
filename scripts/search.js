@@ -8,8 +8,12 @@ function inputChanged(event) {
         return;
 
     let input = text.value;
+
     let list = document.getElementById("matches");
     list.innerHTML = "";
+    
+    if(input.length == 0)
+        return;
 
     let searchChannels = document.getElementById("searchChannels").checked;
     let searchStories = document.getElementById("searchStories").checked;

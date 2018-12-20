@@ -29,10 +29,11 @@
 
 	$stories= getStoriesFromChannel($channel);
 
+	draw_channelButtons($channel, $subscribe);
+
 	if(count($stories) === 0)
 		channel_no_stories();
 	else
-		draw_channelButtons($channel, $subscribe);
 		drawStories($stories, $channel);
 
 	draw_footer();
