@@ -167,12 +167,12 @@ INSERT INTO Story (title, published, channel, author, points, fulltext) VALUES (
 INSERT INTO Story (title, published, channel, author, points, fulltext) VALUES ("I don’t often tell Dad jokes.", 1545150583, "Jokes", "abril", 1, "But when I do, he laughs.");
 
 
-INSERT INTO Comment (story_id, parent_comment, username, date, points, text) VALUES (6, NULL, "dominic", 1507901651, 2, "Goddamn it. Take your upvote 😉");
-INSERT INTO Comment (story_id, parent_comment, username, date, points, text) VALUES (5, NULL, "dominic", 1507901651, 0, "This just in! Uber closes its doors in the UK but a new startup just hit the streets to fill it's place, say hello to Ubar.");
+INSERT INTO Comment (story_id, parent_comment, username, date, points, text) VALUES (6, NULL, "dominic", 1545253025, 2, "Goddamn it. Take your upvote 😉");
+INSERT INTO Comment (story_id, parent_comment, username, date, points, text) VALUES (5, NULL, "dominic", 1545327325, 0, "This just in! Uber closes its doors in the UK but a new startup just hit the streets to fill it's place, say hello to Ubar.");
 INSERT INTO Comment (story_id, parent_comment, username, date, points, text) VALUES (1, 1, "alicia", 1508160851, -1, "Eu não me lembrava.");
-INSERT INTO Comment (story_id, parent_comment, username, date, points, text) VALUES (3, NULL, "dominic", 1508160851, 0, "Would be hilarious if EA ended up not only hated by the players but also by every other company in their gambling business. And I can totally see the EU screwing them just like that.");
-INSERT INTO Comment (story_id, parent_comment, username, date, points, text) VALUES (3, NULL, "alicia", 1508160851, 0, "EA not only shot themselves in the foot, they blew off the whole leg for every other developer who is taking advantage of people with loot Crates. This is awesome!");
-INSERT INTO Comment (story_id, parent_comment, username, date, points, text) VALUES (3, NULL, "dominic", 1508160851, 0, "I imagine this will be popular in the gaming community, not in the EA boardroom though.");
+INSERT INTO Comment (story_id, parent_comment, username, date, points, text) VALUES (3, NULL, "dominic", 1534798533, 0, "Would be hilarious if EA ended up not only hated by the players but also by every other company in their gambling business. And I can totally see the EU screwing them just like that.");
+INSERT INTO Comment (story_id, parent_comment, username, date, points, text) VALUES (3, NULL, "alicia", 1532120133, 0, "EA not only shot themselves in the foot, they blew off the whole leg for every other developer who is taking advantage of people with loot Crates. This is awesome!");
+INSERT INTO Comment (story_id, parent_comment, username, date, points, text) VALUES (3, NULL, "dominic", 1532972125, 0, "I imagine this will be popular in the gaming community, not in the EA boardroom though.");
 INSERT INTO Comment (story_id, parent_comment, username, date, points, text) VALUES (6, NULL, "zachary", 1545150883, 1, "This is a dad joke about dad jokes! We're reaching new heights here guys");
 
 INSERT INTO UserSubscriptions VALUES ("abril", "Portugal");
