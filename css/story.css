@@ -50,6 +50,10 @@
     line-height: 20px;
     width: 600px;
     height: 100px;
+
+    font-size: 15px;
+    line-height: 23px;
+    font-family: Arial, sans-serif; 
 }
 
 .addComment:focus {

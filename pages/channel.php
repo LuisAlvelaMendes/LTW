@@ -25,6 +25,8 @@
 		$subscribe = channelSubscribed($channel);
 	}	
 
+	draw_errorMessages();
+
 	$stories= getStoriesFromChannel($channel);
 
 	draw_channelButtons($channel, $subscribe);

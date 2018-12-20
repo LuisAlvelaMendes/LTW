@@ -18,6 +18,8 @@
 
 	draw_topchannels($topchannels);
 
+	draw_errorMessages();
+
 	draw_homepage_buttons();
 
 	if(!isset($_SESSION['username'])) {

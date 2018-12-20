@@ -52,16 +52,19 @@
 					</nav>
 				<?php } ?>
 			</header>
-
-			<?php if(isset($_SESSION['messages'])) { ?>
-				<section id="messages">
-					<?php foreach ($_SESSION['messages'] as $message) { ?>
-						<div class="<?=$message['type']?>"><?=$message['content']?></div>
-					<?php } ?>
-				</section>
-				<?php unset($_SESSION['messages']); 
-			} ?>
 <?php } ?>
+
+<?php // Draws error messages if there are any ?>
+<?php function draw_errorMessages() {?>
+	<?php if(isset($_SESSION['messages'])) { ?>
+		<section id="messages">
+			<?php foreach ($_SESSION['messages'] as $message) { ?>
+				<div class="<?=$message['type']?>"><?=$message['content']?></div>
+			<?php } ?>
+		</section>
+		<?php unset($_SESSION['messages']); 
+	} ?>
+<?php }?>
 
 <?php // Scans text for references to user or channels and creates links to them ?>
 <?php function draw_references($text) { 

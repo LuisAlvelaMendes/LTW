@@ -42,14 +42,15 @@
 			</select>
 		</section>
 	
-	
-		<?php draw_addStory($channel); ?>
-		
-		<?php if($subscribe) {
-			draw_unsubscribeButton($channel);
-		} else {
-			draw_subscribeButton($channel);
-		} ?>
+		<?php if($username != -1) { ?>
+			<?php draw_addStory($channel); ?>
+			
+			<?php if($subscribe) {
+				draw_unsubscribeButton($channel);
+			} else {
+				draw_subscribeButton($channel);
+			} ?>
+		<?php } ?>
 		
 	</section>
 <?php } ?>

@@ -4,6 +4,8 @@
 
 	draw_header(null, 'Homepage', 'Register');
 
+	draw_errorMessages();
+
 	draw_register();
 
 	draw_footer();

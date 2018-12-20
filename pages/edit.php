@@ -9,6 +9,8 @@
         draw_header($_SESSION['username'], 'Homepage', $_SESSION['username']);
     }
     
+    draw_errorMessages();
+
     draw_edit_profile();
 
     draw_footer();

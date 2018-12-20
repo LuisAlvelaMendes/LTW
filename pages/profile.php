@@ -19,6 +19,8 @@
         }
     }
 
+    draw_errorMessages();
+
     $userInfo = getUserPublicInfo($usernameOfProfile);
     
     draw_user_info($usernameOfProfile, $userInfo[0]['created'], $userInfo[0]['points'], $userInfo[0]['email']);

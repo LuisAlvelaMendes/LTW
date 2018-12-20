@@ -11,7 +11,9 @@
 	} else {
 		draw_header($_SESSION['username'], 'Homepage', 'Search');
     }	
-    
+	
+	draw_errorMessages();
+
     draw_searchbar();
 
     draw_footer();

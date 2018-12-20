@@ -18,6 +18,8 @@
 		draw_header($_SESSION['username'], $story[0]['channel'], $story[0]['channel']);
   	}
 	
+	draw_errorMessages();
+
 	draw_story($story);
 	
 	draw_comment_section($storyId);

@@ -4,6 +4,8 @@
 
 	draw_header(null, 'Homepage', 'Login');
 
+	draw_errorMessages();
+
 	draw_login();
 
 	draw_footer();

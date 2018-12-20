@@ -88,7 +88,7 @@ body > header #signup > a:first-child {
 }
 
 body > #messages div {
-	max-width: 25em;
+	max-width: 30em;
 	margin: 2em auto; 
 	padding: 1em;
 
@@ -96,13 +96,17 @@ body > #messages div {
 }
 
 body > #messages .error {
-	color: black;
-	background-color: lightcoral;
+	font-size: 20px;
+	font-family: Arial, sans-serif;
+	color: white;
+	background-color: #9E2B25;
 }
 
 body > #messages .success {
-	color: black;
-	background-color: lightgreen;
+	font-size: 20px;
+	font-family: Arial, sans-serif;
+	color: white;
+	background-color: #61D095;
 }
 
 .infoBar {

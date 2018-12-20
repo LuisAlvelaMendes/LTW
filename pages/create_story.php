@@ -23,6 +23,8 @@
 
 	draw_header($_SESSION['username'], $channel, $channel);	
 
+	draw_errorMessages();
+
 	draw_textareas($channel);
 
 	draw_footer();
