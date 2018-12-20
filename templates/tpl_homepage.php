@@ -34,8 +34,10 @@
 	
 	<section id="storyCards">
 	<?php foreach($allChannels as $channel){
-        $mostRecent = getMostRecentStoryFromChannel($channel['name']);
-		draw_storyCard($mostRecent[0], true);
+		$mostRecent = getMostRecentStoryFromChannel($channel['name']);
+
+		if(!is_null($mostRecent[0]['id']))
+			draw_storyCard($mostRecent[0], true);
 	}?>
 	</section>
 <?php } ?>
@@ -51,6 +53,7 @@
 	</section>
 <?php } ?>
 
+<?php // Displays warning informing user that he is not subscribed to any channel ?>
 <?php function draw_no_stories() { ?>	
 	<link rel="stylesheet" href="../css/common.css">
 

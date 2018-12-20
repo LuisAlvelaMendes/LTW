@@ -14,6 +14,16 @@
 	</section>
 <?php } ?>
 
+<?php // Displays warning informing user that current channel does not have any story ?>
+<?php function channel_no_stories() { ?>
+	<link rel="stylesheet" href="../css/common.css">
+
+	<section id="no_stories">
+		<p> This channel is still empty. </p>
+		<p> Why not be the one to create the first story ? </p>
+	</section>
+<?php } ?>
+
 <?php // Draws sort stories add story and subscribe button ?>
 <?php function draw_channelButtons($channel, $subscribe) { ?>
 	<link rel="stylesheet" href="../css/channel.css">
